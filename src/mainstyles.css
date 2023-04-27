@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-size: 1rem;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 4fr 100px;
+}
+
+.header {
+  grid-row: 1 / 2;
+}
+
+.main-section {
+  grid-row: 2 / 3;
+}
+
+.footer {
+  grid-row: 3 / 4;
+}
