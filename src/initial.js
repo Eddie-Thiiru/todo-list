@@ -13,6 +13,7 @@ const layout = () => {
   footer.classList.add("footer");
   menuButton.classList.add("menu-button");
 
+  menuButton.type = "button";
   menuButton.textContent = "Main menu";
 
   header.appendChild(menuButton);

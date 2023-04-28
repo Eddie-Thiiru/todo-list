@@ -5,16 +5,30 @@ function component() {
   layout();
   defaultContent();
 
-  const button = document.querySelector(".menu-button");
-  button.addEventListener("click", () => {
-    const element = document.querySelector(".new-content");
+  function eventHandler() {
+    const button = document.querySelector(".menu-button");
+    const main = document.querySelector(".main-section");
 
-    if (!element) {
-      mainMenu();
-      updateContent();
-    } else {
-      defaultContent();
-    }
-  });
+    button.addEventListener("click", () => {
+      const element = document.querySelector(".new-content");
+
+      if (!element) {
+        mainMenu();
+        // menuItems();
+        updateContent();
+      } else {
+        defaultContent();
+      }
+    });
+
+    main.addEventListener("click", function (e) {
+      if (e.target.className == "favorites-btn") {
+        console.log("favorites clicked");
+      } else if (e.target.className === "projects-btn") {
+        console.log("projects clicked");
+      }
+    });
+  }
+  eventHandler();
 }
 component();
