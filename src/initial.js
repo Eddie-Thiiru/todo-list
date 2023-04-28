@@ -1,4 +1,5 @@
-import "./mainstyles.css";
+import "./layout.css";
+import "./main.css";
 
 const layout = () => {
   const content = document.querySelector(".content");
@@ -22,40 +23,38 @@ const layout = () => {
   content.appendChild(footer);
 };
 
-const defaultContent = () => {
+const mainContent = () => {
   const container = document.querySelector(".main-section");
 
   container.textContent = "";
 
-  const defaultContainer = document.createElement("div");
-  const div1 = document.createElement("div");
-  const div2 = document.createElement("div");
+  const wrapper = document.createElement("div");
+  const header = document.createElement("div");
+  const todoDisplay = document.createElement("div");
   const heading = document.createElement("h2");
+  const div = document.createElement("div");
+  const para = document.createElement("p");
+  const btn = document.createElement("button");
+  const image = new Image();
 
-  defaultContainer.classList.add("default-content");
+  wrapper.classList.add("wrapper");
+  todoDisplay.classList.add("todo-display");
+  btn.classList.add("todo-btn");
+
+  image.alt = "empty image";
+  btn.type = "button";
   heading.textContent = "Today";
+  para.textContent = "Nothing to do";
+  btn.textContent = "Add Task";
 
-  div1.appendChild(heading);
-  defaultContainer.appendChild(div1);
-  defaultContainer.appendChild(div2);
-  container.appendChild(defaultContainer);
+  header.appendChild(heading);
+  div.appendChild(image);
+  div.appendChild(para);
+  todoDisplay.appendChild(div);
+  todoDisplay.appendChild(btn);
+  wrapper.appendChild(header);
+  wrapper.appendChild(todoDisplay);
+  container.appendChild(wrapper);
 };
 
-const updateContent = () => {
-  const container = document.querySelector(".new-content");
-
-  const defaultContainer = document.createElement("div");
-  const div1 = document.createElement("div");
-  const div2 = document.createElement("div");
-  const heading = document.createElement("h2");
-
-  defaultContainer.classList.add("default-content");
-  heading.textContent = "Today";
-
-  div1.appendChild(heading);
-  defaultContainer.appendChild(div1);
-  defaultContainer.appendChild(div2);
-  container.appendChild(defaultContainer);
-};
-
-export { layout, defaultContent, updateContent };
+export { layout, mainContent };

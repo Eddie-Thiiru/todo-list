@@ -1,24 +1,25 @@
-import { layout, defaultContent, updateContent } from "./initial.js";
+import { layout, mainContent } from "./initial.js";
+import { updateContent, form } from "./main-content.js";
 import { mainMenu } from "./menu.js";
 import { projectList } from "./projects.js";
 
 function component() {
   layout();
-  defaultContent();
+  mainContent();
 
   function eventHandler() {
-    const button = document.querySelector(".menu-button");
+    const menuBtn = document.querySelector(".menu-button");
     const main = document.querySelector(".main-section");
 
     // Toggles the Main Menu
-    button.addEventListener("click", () => {
+    menuBtn.addEventListener("click", () => {
       const element = document.querySelector(".new-content");
 
       if (!element) {
         mainMenu();
         updateContent();
       } else {
-        defaultContent();
+        mainContent();
       }
     });
 
@@ -40,6 +41,18 @@ function component() {
         } else {
           projects.textContent = "";
         }
+      }
+
+      if (e.target.className === "todo-btn") {
+        form();
+      }
+
+      if (e.target.className === "form-btn") {
+        e.preventDefault();
+        // add form details to specific project
+        // update main menu projects option to display added task
+        // then remove form and display added task
+        //
       }
     });
   }

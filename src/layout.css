@@ -28,10 +28,3 @@ body {
 .footer {
   grid-row: 3 / 4;
 }
-
-.default-content {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-rows: 100px 1fr;
-}

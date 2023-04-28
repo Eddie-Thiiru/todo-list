@@ -1,0 +1,24 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+}
+
+.todo-display {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.todo-display > div {
+  position: absolute;
+  bottom: 50%;
+  align-self: center;
+}
+
+.todo-btn {
+  position: absolute;
+  bottom: 0px;
+  align-self: end;
+}

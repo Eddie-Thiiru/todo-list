@@ -45,4 +45,6 @@ const projectList = () => {
   projects.appendChild(shoppingContainer);
 };
 
+const addProject = () => {};
+
 export { projectList };

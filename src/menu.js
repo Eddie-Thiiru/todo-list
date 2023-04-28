@@ -1,4 +1,4 @@
-import "./menu.css";
+import "./nav.css";
 
 const mainMenu = () => {
   const main = document.querySelector(".main-section");
@@ -18,7 +18,7 @@ const mainMenu = () => {
   const favoritesImg = new Image();
   const projectsImg = new Image();
 
-  container.classList.add("new-content");
+  container.classList.add("main");
   menu.classList.add("main-menu");
   todayBtn.classList.add("today-btn");
   upcomingBtn.classList.add("upcoming-btn");
