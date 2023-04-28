@@ -55,39 +55,4 @@ const mainMenu = () => {
   main.appendChild(container);
 };
 
-const projectList = () => {
-  const projects = document.querySelector(".projects");
-
-  const defaultLabel = document.createElement("label");
-  const personalLabel = document.createElement("label");
-  const workLabel = document.createElement("label");
-  const shoppingLabel = document.createElement("label");
-  const defaultList = document.createElement("optgroup");
-  const personalList = document.createElement("optgroup");
-  const workList = document.createElement("optgroup");
-  const shoppingList = document.createElement("optgroup");
-
-  defaultLabel.htmlFor = "default-list";
-  personalLabel.htmlFor = "personal-list";
-  workLabel.htmlFor = "work-list";
-  shoppingLabel.htmlFor = "shopping-list";
-  defaultList.name = "default-list";
-  personalList.name = "personal-list";
-  workList.name = "work-list";
-  shoppingList.name = "shopping-list";
-  defaultList.id = "default-list";
-  personalList.id = "personal-list";
-  workList.id = "work-list";
-  shoppingList.id = "shopping-list";
-
-  projects.appendChild(defaultList);
-  projects.appendChild(defaultLabel);
-  projects.appendChild(personalList);
-  projects.appendChild(personalLabel);
-  projects.appendChild(workList);
-  projects.appendChild(workLabel);
-  projects.appendChild(shoppingList);
-  projects.appendChild(shoppingLabel);
-};
-
 export { mainMenu };
