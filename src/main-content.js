@@ -1,5 +1,7 @@
 import "./main.css";
 
+const taskArray = [];
+
 const updateContent = () => {
   const container = document.querySelector(".main");
 
@@ -40,6 +42,7 @@ const form = () => {
 
   // create form inputs
   const form = document.createElement("form");
+  const formBtn = document.createElement("button");
   const taskDiv = document.createElement("div");
   const taskLabel = document.createElement("label");
   const taskInput = document.createElement("input");
@@ -72,32 +75,35 @@ const form = () => {
   const submitOption4 = document.createElement("option");
 
   //Adds attributes
+  formBtn.classList.add("form-btn");
+
   taskLabel.htmlFor = "task-title";
   descriptionLabel.htmlFor = "description";
   dueDateLabel.htmlFor = "date-time";
   priorityLabel.htmlFor = "priority";
   repeatLabel.htmlFor = "repeat";
-  submitLabel.htmlFor = "submit";
+  submitLabel.htmlFor = "list";
 
   taskInput.type = "text";
   descriptionInput.type = "text";
   dueDateInput.type = "datetime-local";
   priorityInput.name = "priority";
   repeatInput.name = "repeat";
-  submitInput.name = "submit";
+  submitInput.name = "choice";
   taskInput.id = "task-title";
   descriptionInput.id = "description";
   dueDateInput.id = "date-time";
   priorityInput.id = "priority";
   repeatInput.id = "repeat";
-  submitInput.id = "submit";
+  submitInput.id = "list";
 
   taskLabel.textContent = "Task name";
   descriptionLabel.textContent = "What is to be done?";
   dueDateLabel.textContent = "Due date";
   priorityLabel.textContent = "Priority";
   repeatLabel.textContent = "Repeat";
-  submitLabel.textContent = "Add to:";
+  submitLabel.textContent = "Add to List";
+  formBtn.textContent = "submit";
 
   priorityOption1.value = "1";
   priorityOption2.value = "2";
@@ -105,20 +111,18 @@ const form = () => {
   repeatOption1.value = "";
   repeatOption2.value = "week";
   repeatOption3.value = "month";
-  submitOption1.value = "default";
-  submitOption2.value = "personal";
-  submitOption3.value = "work";
-  submitOption4.value = "shopping";
+  submitOption1.value = "personal";
+  submitOption2.value = "work";
+  submitOption3.value = "shopping";
   priorityOption1.textContent = "1";
   priorityOption2.textContent = "2";
   priorityOption3.textContent = "3";
   repeatOption1.textContent = "No repeat";
   repeatOption2.textContent = "Once a Week";
   repeatOption3.textContent = "Once a Month";
-  submitOption1.textContent = "Default";
-  submitOption2.textContent = "Personal";
-  submitOption3.textContent = "Work";
-  submitOption4.textContent = "Shopping";
+  submitOption1.textContent = "Personal";
+  submitOption2.textContent = "Work";
+  submitOption3.textContent = "Shopping";
 
   // Appends all nodes
   priorityInput.appendChild(priorityOption1);
@@ -130,7 +134,6 @@ const form = () => {
   submitInput.appendChild(submitOption1);
   submitInput.appendChild(submitOption2);
   submitInput.appendChild(submitOption3);
-  submitInput.appendChild(submitOption4);
 
   taskDiv.appendChild(taskLabel);
   taskDiv.appendChild(taskInput);
@@ -151,7 +154,19 @@ const form = () => {
   form.appendChild(priorityDiv);
   form.appendChild(repeatDiv);
   form.appendChild(submitDiv);
+  form.appendChild(formBtn);
 
   display.insertBefore(form, btn);
 };
-export { updateContent, form };
+
+const processForm = () => {
+  const task = document.getElementById("task-title").value;
+  const description = document.getElementById("description").value;
+  const date = document.getElementById("date-time").value;
+  const priority = document.getElementById("priority").value;
+  const repeat = document.getElementById("repeat").value;
+  const choice = document.getElementById("list").value;
+
+  taskArray.push({ task, description, date, priority, repeat, choice });
+};
+export { updateContent, form, processForm, taskArray };

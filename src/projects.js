@@ -1,50 +1,37 @@
 const projectList = () => {
   const projects = document.querySelector(".projects");
 
-  const defaultContainer = document.createElement("div");
   const personalContainer = document.createElement("div");
   const workContainer = document.createElement("div");
   const shoppingContainer = document.createElement("div");
-  const defaultLabel = document.createElement("label");
-  const personalLabel = document.createElement("label");
-  const workLabel = document.createElement("label");
-  const shoppingLabel = document.createElement("label");
-  const defaultList = document.createElement("select");
-  const personalList = document.createElement("select");
-  const workList = document.createElement("select");
-  const shoppingList = document.createElement("select");
 
-  defaultLabel.htmlFor = "default-list";
-  personalLabel.htmlFor = "personal-list";
-  workLabel.htmlFor = "work-list";
-  shoppingLabel.htmlFor = "shopping-list";
-  defaultList.name = "default-list";
-  personalList.name = "personal-list";
-  workList.name = "work-list";
-  shoppingList.name = "shopping-list";
-  defaultList.id = "default-list";
-  personalList.id = "personal-list";
-  workList.id = "work-list";
-  shoppingList.id = "shopping-list";
-  defaultLabel.textContent = "Default";
-  personalLabel.textContent = "Personal";
-  workLabel.textContent = "Work";
-  shoppingLabel.textContent = "Shopping";
+  const personalList = document.createElement("div");
+  const workList = document.createElement("div");
+  const shoppingList = document.createElement("div");
+  const personalBtn = document.createElement("button");
+  const workBtn = document.createElement("button");
+  const shoppingBtn = document.createElement("button");
 
-  defaultContainer.appendChild(defaultList);
-  defaultContainer.appendChild(defaultLabel);
+  personalList.classList.add("personal-list");
+  workList.classList.add("work-list");
+  shoppingList.classList.add("shopping-list");
+  personalBtn.classList.add("personal-btn");
+  workBtn.classList.add("work-btn");
+  shoppingBtn.classList.add("shopping-btn");
+  personalBtn.textContent = "Personal";
+  workBtn.textContent = "Working";
+  shoppingBtn.textContent = "Shopping";
+
+  personalContainer.appendChild(personalBtn);
   personalContainer.appendChild(personalList);
-  personalContainer.appendChild(personalLabel);
-  shoppingContainer.appendChild(shoppingList);
-  shoppingContainer.appendChild(shoppingLabel);
+  workContainer.appendChild(workBtn);
   workContainer.appendChild(workList);
-  workContainer.appendChild(workLabel);
-  projects.appendChild(defaultContainer);
+  shoppingContainer.appendChild(shoppingBtn);
+  shoppingContainer.appendChild(shoppingList);
+
   projects.appendChild(personalContainer);
   projects.appendChild(workContainer);
   projects.appendChild(shoppingContainer);
 };
-
-const addProject = () => {};
 
 export { projectList };

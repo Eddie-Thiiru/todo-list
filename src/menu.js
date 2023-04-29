@@ -1,3 +1,4 @@
+import { taskArray } from "./main-content";
 import "./nav.css";
 
 const mainMenu = () => {
@@ -55,4 +56,66 @@ const mainMenu = () => {
   main.appendChild(container);
 };
 
-export { mainMenu };
+const showPersonalTodo = () => {
+  const personalList = document.querySelector(".personal-list");
+
+  personalList.textContent = "";
+
+  for (let i = 0; i < taskArray.length; i++) {
+    const arrValues = Object.values(taskArray[i]);
+    const title = arrValues[0];
+    const chosenList = arrValues[5];
+    console.log(chosenList);
+
+    if (chosenList === "personal") {
+      const projectBtn = document.createElement("button");
+
+      projectBtn.type = "button";
+      projectBtn.textContent = title;
+      personalList.appendChild(projectBtn);
+    }
+  }
+};
+const showWorkTodo = () => {
+  const workList = document.querySelector(".work-list");
+
+  workList.textContent = "";
+
+  for (let i = 0; i < taskArray.length; i++) {
+    const arrValues = Object.values(taskArray[i]);
+    const title = arrValues[0];
+    const chosenList = arrValues[5];
+    console.log(chosenList);
+
+    if (chosenList === "work") {
+      const projectBtn = document.createElement("button");
+
+      projectBtn.type = "button";
+      projectBtn.textContent = title;
+      workList.appendChild(projectBtn);
+    }
+  }
+};
+
+const showShoppingTodo = () => {
+  const shoppingList = document.querySelector(".shopping-list");
+
+  shoppingList.textContent = "";
+
+  for (let i = 0; i < taskArray.length; i++) {
+    const arrValues = Object.values(taskArray[i]);
+    const title = arrValues[0];
+    const chosenList = arrValues[5];
+    console.log(chosenList);
+
+    if (chosenList === "shopping") {
+      const projectBtn = document.createElement("button");
+
+      projectBtn.type = "button";
+      projectBtn.textContent = title;
+      shoppingList.appendChild(projectBtn);
+    }
+  }
+};
+
+export { mainMenu, showPersonalTodo, showWorkTodo, showShoppingTodo };

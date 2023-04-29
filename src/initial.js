@@ -39,7 +39,7 @@ const mainContent = () => {
 
   wrapper.classList.add("wrapper");
   todoDisplay.classList.add("todo-display");
-  btn.classList.add("todo-btn");
+  btn.classList.add("create-form-btn");
 
   image.alt = "empty image";
   btn.type = "button";
