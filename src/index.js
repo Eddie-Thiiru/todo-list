@@ -1,6 +1,6 @@
 import { layout, mainSection } from "./initial.js";
 import { updateContent, form, processForm } from "./main-content.js";
-import { mainMenu, projectList } from "./menu.js";
+import { mainMenu, projectList, taskCount } from "./menu.js";
 import { taskBars } from "./main-display.js";
 
 function component() {
@@ -38,6 +38,7 @@ function component() {
         const projects = document.querySelector(".projects");
         if (projects.textContent === "") {
           projectList();
+          taskCount();
         } else {
           projects.textContent = "";
         }
@@ -53,6 +54,7 @@ function component() {
         e.preventDefault();
         processForm();
         taskBars();
+        taskCount();
       }
     });
   }

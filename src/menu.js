@@ -1,3 +1,4 @@
+import { taskArray } from "./main-content";
 import "./nav.css";
 
 const mainMenu = () => {
@@ -75,6 +76,9 @@ const projectList = () => {
   personalCount.classList.add("personal-count");
   workCount.classList.add("work-count");
   shoppingCount.classList.add("shopping-count");
+  personalCount.id = "count";
+  workCount.id = "count";
+  shoppingCount.id = "count";
   personalBtn.classList.add("personal-btn");
   workBtn.classList.add("work-btn");
   shoppingBtn.classList.add("shopping-btn");
@@ -94,4 +98,25 @@ const projectList = () => {
   projects.appendChild(shoppingContainer);
 };
 
-export { mainMenu, projectList };
+const taskCount = () => {
+  const counts = document.querySelectorAll("#count");
+
+  counts.forEach((count) => {
+    const className = count.className;
+
+    let num = 0;
+
+    for (let i = 0; i < taskArray.length; i++) {
+      const values = Object.values(taskArray[i]);
+      const listChoice = values[values.length - 1];
+
+      if (className.includes(listChoice)) {
+        num += 1;
+      }
+    }
+
+    count.textContent = num;
+  });
+};
+
+export { mainMenu, projectList, taskCount };
