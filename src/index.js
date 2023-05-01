@@ -1,17 +1,17 @@
-import { layout, mainContent } from "./initial.js";
+import { layout, mainSection } from "./initial.js";
 import { updateContent, form, processForm } from "./main-content.js";
 import {
   mainMenu,
+  projectList,
   showPersonalTodo,
   showWorkTodo,
   showShoppingTodo,
 } from "./menu.js";
-import { projectList } from "./projects.js";
-
+import { displayTasks } from "./main-display.js";
 function component() {
   // Generates initial page layout
   layout();
-  mainContent();
+  mainSection();
 
   function eventHandler() {
     const menuBtn = document.querySelector(".menu-button");
@@ -25,7 +25,7 @@ function component() {
         mainMenu();
         updateContent();
       } else {
-        mainContent();
+        mainSection();
       }
     });
 
@@ -55,7 +55,7 @@ function component() {
       if (e.target.className === "form-btn") {
         e.preventDefault();
         processForm();
-        displayAddedTask();
+        displayTasks();
         // add form details to specific project
         // update main menu projects option to display added task
         // then remove form and display added task

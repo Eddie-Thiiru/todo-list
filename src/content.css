@@ -1,0 +1,37 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+}
+
+.task-display {
+  display: flex;
+  flex-direction: column;
+  /* Inroduce scroll bar
+  height: 596px;
+  overflow-y: auto; */
+}
+
+.create-form-btn {
+  position: absolute;
+  right: 0px;
+  align-self: end;
+}
+
+.empty-indicator {
+  position: absolute;
+  bottom: 50%;
+  align-self: center;
+}
+
+.task {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task > div {
+  display: flex;
+}

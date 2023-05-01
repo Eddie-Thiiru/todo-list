@@ -1,4 +1,4 @@
-import "./main.css";
+import "./content.css";
 
 const taskArray = [];
 
@@ -7,16 +7,17 @@ const updateContent = () => {
 
   const wrapper = document.createElement("div");
   const header = document.createElement("div");
-  const todoDisplay = document.createElement("div");
+  const taskDisplay = document.createElement("div");
   const heading = document.createElement("h2");
-  const div = document.createElement("div");
+  const emptyIndicator = document.createElement("div");
   const para = document.createElement("p");
   const btn = document.createElement("button");
   const image = new Image();
 
   wrapper.classList.add("wrapper");
-  todoDisplay.classList.add("todo-display");
-  btn.classList.add("todo-btn");
+  taskDisplay.classList.add("task-display");
+  emptyIndicator.classList.add("empty-indicator");
+  btn.classList.add("create-form-btn");
 
   image.alt = "empty image";
   btn.type = "button";
@@ -25,20 +26,20 @@ const updateContent = () => {
   btn.textContent = "Add Task";
 
   header.appendChild(heading);
-  div.appendChild(image);
-  div.appendChild(para);
-  todoDisplay.appendChild(div);
-  todoDisplay.appendChild(btn);
+  emptyIndicator.appendChild(image);
+  emptyIndicator.appendChild(para);
+  taskDisplay.appendChild(emptyIndicator);
   wrapper.appendChild(header);
-  wrapper.appendChild(todoDisplay);
+  wrapper.appendChild(taskDisplay);
+  wrapper.appendChild(btn);
   container.appendChild(wrapper);
 };
 
 const form = () => {
-  const display = document.querySelector(".todo-display");
-  const btn = document.querySelector(".todo-btn");
+  const display = document.querySelector(".task-display");
+  const btn = document.querySelector(".create-form-btn");
 
-  display.removeChild(display.firstChild);
+  display.textContent = "";
 
   // create form inputs
   const form = document.createElement("form");
@@ -155,8 +156,7 @@ const form = () => {
   form.appendChild(repeatDiv);
   form.appendChild(submitDiv);
   form.appendChild(formBtn);
-
-  display.insertBefore(form, btn);
+  display.appendChild(form);
 };
 
 const processForm = () => {

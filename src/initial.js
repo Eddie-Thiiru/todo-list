@@ -1,5 +1,5 @@
 import "./layout.css";
-import "./main.css";
+import "./content.css";
 
 const layout = () => {
   const content = document.querySelector(".content");
@@ -23,22 +23,23 @@ const layout = () => {
   content.appendChild(footer);
 };
 
-const mainContent = () => {
+const mainSection = () => {
   const container = document.querySelector(".main-section");
 
   container.textContent = "";
 
   const wrapper = document.createElement("div");
   const header = document.createElement("div");
-  const todoDisplay = document.createElement("div");
+  const taskDisplay = document.createElement("div");
   const heading = document.createElement("h2");
-  const div = document.createElement("div");
+  const emptyIndicator = document.createElement("div");
   const para = document.createElement("p");
   const btn = document.createElement("button");
   const image = new Image();
 
   wrapper.classList.add("wrapper");
-  todoDisplay.classList.add("todo-display");
+  taskDisplay.classList.add("task-display");
+  emptyIndicator.classList.add("empty-indicator");
   btn.classList.add("create-form-btn");
 
   image.alt = "empty image";
@@ -48,13 +49,13 @@ const mainContent = () => {
   btn.textContent = "Add Task";
 
   header.appendChild(heading);
-  div.appendChild(image);
-  div.appendChild(para);
-  todoDisplay.appendChild(div);
-  todoDisplay.appendChild(btn);
+  emptyIndicator.appendChild(image);
+  emptyIndicator.appendChild(para);
+  taskDisplay.appendChild(emptyIndicator);
   wrapper.appendChild(header);
-  wrapper.appendChild(todoDisplay);
+  wrapper.appendChild(taskDisplay);
+  wrapper.appendChild(btn);
   container.appendChild(wrapper);
 };
 
-export { layout, mainContent };
+export { layout, mainSection };

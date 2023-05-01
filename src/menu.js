@@ -56,16 +56,51 @@ const mainMenu = () => {
   main.appendChild(container);
 };
 
+const projectList = () => {
+  const projects = document.querySelector(".projects");
+
+  const personalContainer = document.createElement("div");
+  const workContainer = document.createElement("div");
+  const shoppingContainer = document.createElement("div");
+
+  const personalList = document.createElement("div");
+  const workList = document.createElement("div");
+  const shoppingList = document.createElement("div");
+  const personalBtn = document.createElement("button");
+  const workBtn = document.createElement("button");
+  const shoppingBtn = document.createElement("button");
+
+  personalList.classList.add("personal-list");
+  workList.classList.add("work-list");
+  shoppingList.classList.add("shopping-list");
+  personalBtn.classList.add("personal-btn");
+  workBtn.classList.add("work-btn");
+  shoppingBtn.classList.add("shopping-btn");
+  personalBtn.textContent = "Personal";
+  workBtn.textContent = "Working";
+  shoppingBtn.textContent = "Shopping";
+
+  personalContainer.appendChild(personalBtn);
+  personalContainer.appendChild(personalList);
+  workContainer.appendChild(workBtn);
+  workContainer.appendChild(workList);
+  shoppingContainer.appendChild(shoppingBtn);
+  shoppingContainer.appendChild(shoppingList);
+
+  projects.appendChild(personalContainer);
+  projects.appendChild(workContainer);
+  projects.appendChild(shoppingContainer);
+};
+
 const showPersonalTodo = () => {
   const personalList = document.querySelector(".personal-list");
 
   personalList.textContent = "";
 
   for (let i = 0; i < taskArray.length; i++) {
-    const arrValues = Object.values(taskArray[i]);
-    const title = arrValues[0];
-    const chosenList = arrValues[5];
-    console.log(chosenList);
+    const values = Object.values(taskArray[i]);
+    const title = values[0];
+    const chosenList = values[5];
 
     if (chosenList === "personal") {
       const projectBtn = document.createElement("button");
@@ -82,10 +117,9 @@ const showWorkTodo = () => {
   workList.textContent = "";
 
   for (let i = 0; i < taskArray.length; i++) {
-    const arrValues = Object.values(taskArray[i]);
-    const title = arrValues[0];
-    const chosenList = arrValues[5];
-    console.log(chosenList);
+    const values = Object.values(taskArray[i]);
+    const title = values[0];
+    const chosenList = values[values.length - 1];
 
     if (chosenList === "work") {
       const projectBtn = document.createElement("button");
@@ -118,4 +152,10 @@ const showShoppingTodo = () => {
   }
 };
 
-export { mainMenu, showPersonalTodo, showWorkTodo, showShoppingTodo };
+export {
+  mainMenu,
+  projectList,
+  showPersonalTodo,
+  showWorkTodo,
+  showShoppingTodo,
+};
