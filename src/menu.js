@@ -1,4 +1,3 @@
-import { taskArray } from "./main-content";
 import "./nav.css";
 
 const mainMenu = () => {
@@ -63,99 +62,36 @@ const projectList = () => {
   const workContainer = document.createElement("div");
   const shoppingContainer = document.createElement("div");
 
-  const personalList = document.createElement("div");
-  const workList = document.createElement("div");
-  const shoppingList = document.createElement("div");
+  const personalCount = document.createElement("div");
+  const workCount = document.createElement("div");
+  const shoppingCount = document.createElement("div");
   const personalBtn = document.createElement("button");
   const workBtn = document.createElement("button");
   const shoppingBtn = document.createElement("button");
 
-  personalList.classList.add("personal-list");
-  workList.classList.add("work-list");
-  shoppingList.classList.add("shopping-list");
+  personalContainer.classList.add("personal-list");
+  workContainer.classList.add("work-list");
+  shoppingContainer.classList.add("shopping-list");
+  personalCount.classList.add("personal-count");
+  workCount.classList.add("work-count");
+  shoppingCount.classList.add("shopping-count");
   personalBtn.classList.add("personal-btn");
   workBtn.classList.add("work-btn");
   shoppingBtn.classList.add("shopping-btn");
   personalBtn.textContent = "Personal";
-  workBtn.textContent = "Working";
+  workBtn.textContent = "Work";
   shoppingBtn.textContent = "Shopping";
 
   personalContainer.appendChild(personalBtn);
-  personalContainer.appendChild(personalList);
+  personalContainer.appendChild(personalCount);
   workContainer.appendChild(workBtn);
-  workContainer.appendChild(workList);
+  workContainer.appendChild(workCount);
   shoppingContainer.appendChild(shoppingBtn);
-  shoppingContainer.appendChild(shoppingList);
+  shoppingContainer.appendChild(shoppingCount);
 
   projects.appendChild(personalContainer);
   projects.appendChild(workContainer);
   projects.appendChild(shoppingContainer);
 };
 
-const showPersonalTodo = () => {
-  const personalList = document.querySelector(".personal-list");
-
-  personalList.textContent = "";
-
-  for (let i = 0; i < taskArray.length; i++) {
-    const values = Object.values(taskArray[i]);
-    const title = values[0];
-    const chosenList = values[5];
-
-    if (chosenList === "personal") {
-      const projectBtn = document.createElement("button");
-
-      projectBtn.type = "button";
-      projectBtn.textContent = title;
-      personalList.appendChild(projectBtn);
-    }
-  }
-};
-const showWorkTodo = () => {
-  const workList = document.querySelector(".work-list");
-
-  workList.textContent = "";
-
-  for (let i = 0; i < taskArray.length; i++) {
-    const values = Object.values(taskArray[i]);
-    const title = values[0];
-    const chosenList = values[values.length - 1];
-
-    if (chosenList === "work") {
-      const projectBtn = document.createElement("button");
-
-      projectBtn.type = "button";
-      projectBtn.textContent = title;
-      workList.appendChild(projectBtn);
-    }
-  }
-};
-
-const showShoppingTodo = () => {
-  const shoppingList = document.querySelector(".shopping-list");
-
-  shoppingList.textContent = "";
-
-  for (let i = 0; i < taskArray.length; i++) {
-    const arrValues = Object.values(taskArray[i]);
-    const title = arrValues[0];
-    const chosenList = arrValues[5];
-    console.log(chosenList);
-
-    if (chosenList === "shopping") {
-      const projectBtn = document.createElement("button");
-
-      projectBtn.type = "button";
-      projectBtn.textContent = title;
-      shoppingList.appendChild(projectBtn);
-    }
-  }
-};
-
-export {
-  mainMenu,
-  projectList,
-  showPersonalTodo,
-  showWorkTodo,
-  showShoppingTodo,
-};
+export { mainMenu, projectList };

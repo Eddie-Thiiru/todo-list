@@ -1,13 +1,8 @@
 import { layout, mainSection } from "./initial.js";
 import { updateContent, form, processForm } from "./main-content.js";
-import {
-  mainMenu,
-  projectList,
-  showPersonalTodo,
-  showWorkTodo,
-  showShoppingTodo,
-} from "./menu.js";
-import { displayTasks } from "./main-display.js";
+import { mainMenu, projectList } from "./menu.js";
+import { taskBars } from "./main-display.js";
+
 function component() {
   // Generates initial page layout
   layout();
@@ -29,9 +24,9 @@ function component() {
       }
     });
 
-    // Toggles Favorites and Projects menu choices
     main.addEventListener("click", function (e) {
-      if (e.target.className == "favorites-btn") {
+      // Toggles Favorites and Projects menu choices
+      if (e.target.className === "favorites-btn") {
         const favorites = document.querySelector(".favorites");
         if (favorites.textContent === "") {
         } else {
@@ -48,45 +43,16 @@ function component() {
         }
       }
 
+      // Creates form for new task additions
       if (e.target.className === "create-form-btn") {
         form();
       }
 
+      // Submits and processes forms
       if (e.target.className === "form-btn") {
         e.preventDefault();
         processForm();
-        displayTasks();
-        // add form details to specific project
-        // update main menu projects option to display added task
-        // then remove form and display added task
-      }
-
-      if (e.target.className === "personal-btn") {
-        const personalList = document.querySelector(".personal-list");
-
-        if (personalList.textContent === "") {
-          showPersonalTodo();
-        } else {
-          personalList.textContent = "";
-        }
-      }
-      if (e.target.className === "work-btn") {
-        const workList = document.querySelector(".work-list");
-
-        if (workList.textContent === "") {
-          showWorkTodo();
-        } else {
-          workList.textContent = "";
-        }
-      }
-      if (e.target.className === "shopping-btn") {
-        const shoppingList = document.querySelector(".shopping-list");
-
-        if (shoppingList.textContent === "") {
-          showShoppingTodo();
-        } else {
-          shoppingList.textContent = "";
-        }
+        taskBars();
       }
     });
   }

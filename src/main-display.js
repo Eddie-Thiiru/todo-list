@@ -1,8 +1,7 @@
 import { taskArray } from "./main-content.js";
 
-const displayTasks = () => {
+const taskBars = () => {
   const display = document.querySelector(".task-display");
-  const btn = document.querySelector(".create-form-btn");
 
   display.textContent = "";
 
@@ -45,4 +44,4 @@ const displayTasks = () => {
   }
 };
 
-export { displayTasks };
+export { taskBars };
