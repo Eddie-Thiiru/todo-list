@@ -1,31 +1,32 @@
-import { layout, mainSection } from "./initial.js";
-import { updateContent, form, processForm } from "./main-content.js";
+import { pageLayout } from "./layout.js";
+import { mainContent, form, processForm } from "./main-content.js";
 import { mainMenu, projectList, taskCount } from "./menu.js";
-import { taskBars } from "./main-display.js";
+import { taskBars, sortTaskBars } from "./task-display.js";
 
 function component() {
-  // Generates initial page layout
-  layout();
-  mainSection();
+  // Generate initial page layout
+  pageLayout();
+  mainContent();
 
   function eventHandler() {
     const menuBtn = document.querySelector(".menu-button");
     const main = document.querySelector(".main-section");
 
-    // Toggles the Main Menu
+    // Toggle the Main Menu
     menuBtn.addEventListener("click", () => {
-      const element = document.querySelector(".new-content");
+      const element = document.querySelector(".main");
 
       if (!element) {
         mainMenu();
-        updateContent();
+        mainContent();
       } else {
-        mainSection();
+        main.textContent = "";
+        mainContent();
       }
     });
 
     main.addEventListener("click", function (e) {
-      // Toggles Favorites and Projects menu choices
+      // Toggle Favorites and Projects menu choices
       if (e.target.className === "favorites-btn") {
         const favorites = document.querySelector(".favorites");
         if (favorites.textContent === "") {
@@ -36,6 +37,9 @@ function component() {
 
       if (e.target.className === "projects-btn") {
         const projects = document.querySelector(".projects");
+
+        taskBars();
+
         if (projects.textContent === "") {
           projectList();
           taskCount();
@@ -44,17 +48,24 @@ function component() {
         }
       }
 
-      // Creates form for new task additions
+      // Create form for new task addition
       if (e.target.className === "create-form-btn") {
         form();
       }
 
-      // Submits and processes forms
+      // Submit and process form
       if (e.target.className === "form-btn") {
         e.preventDefault();
         processForm();
         taskBars();
         taskCount();
+      }
+
+      // Sort tasks according to the clicked project list
+      if (e.target.id === "task-btn") {
+        const btn = e.target;
+        sortTaskBars(btn);
+        // Add empty image when list has no projects
       }
     });
   }

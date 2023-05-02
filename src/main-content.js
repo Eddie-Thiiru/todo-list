@@ -2,8 +2,9 @@ import "./content.css";
 
 const taskArray = [];
 
-const updateContent = () => {
-  const container = document.querySelector(".main");
+const mainContent = () => {
+  const containerOne = document.querySelector(".main-section");
+  const containerTwo = document.querySelector(".main");
 
   const wrapper = document.createElement("div");
   const header = document.createElement("div");
@@ -32,7 +33,12 @@ const updateContent = () => {
   wrapper.appendChild(header);
   wrapper.appendChild(taskDisplay);
   wrapper.appendChild(btn);
-  container.appendChild(wrapper);
+
+  if (containerTwo) {
+    containerTwo.appendChild(wrapper);
+  } else {
+    containerOne.appendChild(wrapper);
+  }
 };
 
 const form = () => {
@@ -73,9 +79,8 @@ const form = () => {
   const submitOption1 = document.createElement("option");
   const submitOption2 = document.createElement("option");
   const submitOption3 = document.createElement("option");
-  const submitOption4 = document.createElement("option");
 
-  //Adds attributes
+  //Add attributes
   formBtn.classList.add("form-btn");
 
   taskLabel.htmlFor = "task-title";
@@ -125,7 +130,7 @@ const form = () => {
   submitOption2.textContent = "Work";
   submitOption3.textContent = "Shopping";
 
-  // Appends all nodes
+  // Append nodes
   priorityInput.appendChild(priorityOption1);
   priorityInput.appendChild(priorityOption2);
   priorityInput.appendChild(priorityOption3);
@@ -169,4 +174,4 @@ const processForm = () => {
 
   taskArray.push({ task, description, date, priority, repeat, choice });
 };
-export { updateContent, form, processForm, taskArray };
+export { mainContent, form, processForm, taskArray };

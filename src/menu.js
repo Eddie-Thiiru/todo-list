@@ -82,6 +82,9 @@ const projectList = () => {
   personalBtn.classList.add("personal-btn");
   workBtn.classList.add("work-btn");
   shoppingBtn.classList.add("shopping-btn");
+  personalBtn.id = "task-btn";
+  workBtn.id = "task-btn";
+  shoppingBtn.id = "task-btn";
   personalBtn.textContent = "Personal";
   workBtn.textContent = "Work";
   shoppingBtn.textContent = "Shopping";
