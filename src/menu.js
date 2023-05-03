@@ -4,10 +4,8 @@ import { listArray } from "./layout";
 
 const mainMenu = () => {
   const main = document.querySelector(".main-section");
+  const wrapper = document.querySelector(".wrapper");
 
-  main.textContent = "";
-
-  const container = document.createElement("div");
   const menu = document.createElement("div");
   const todayBtn = document.createElement("button");
   const upcomingBtn = document.createElement("button");
@@ -21,7 +19,6 @@ const mainMenu = () => {
   const favoritesImg = new Image();
   const projectsImg = new Image();
 
-  container.classList.add("main");
   menu.classList.add("main-menu");
   todayBtn.classList.add("today-btn");
   upcomingBtn.classList.add("upcoming-btn");
@@ -58,8 +55,8 @@ const mainMenu = () => {
   menu.appendChild(upcomingBtn);
   menu.appendChild(favContainer);
   menu.appendChild(projContainer);
-  container.appendChild(menu);
-  main.appendChild(container);
+
+  main.insertBefore(menu, wrapper);
 };
 
 const projectList = () => {
@@ -78,7 +75,6 @@ const projectList = () => {
     listBtn.id = "task-btn";
     taskCount.id = "count";
     listBtn.textContent = listName;
-    taskCount.textContent = 0;
 
     container.appendChild(listBtn);
     container.appendChild(taskCount);
@@ -103,7 +99,11 @@ const taskCount = () => {
       }
     }
 
-    count.textContent = num;
+    if (num === 0) {
+      count.textContent = "";
+    } else {
+      count.textContent = num;
+    }
   });
 };
 

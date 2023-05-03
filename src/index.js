@@ -1,6 +1,7 @@
 import { pageLayout, updateListArray } from "./layout.js";
 import {
   mainContent,
+  emptyIndicator,
   form,
   newListForm,
   addListOption,
@@ -13,6 +14,7 @@ function component() {
   // Generate initial page layout
   pageLayout();
   mainContent();
+  emptyIndicator();
 
   function eventHandler() {
     const menuBtn = document.querySelector(".menu-button");
@@ -20,16 +22,12 @@ function component() {
 
     // Toggle the Main Menu
     menuBtn.addEventListener("click", () => {
-      const element = document.querySelector(".main");
+      const menu = document.querySelector(".main-menu");
 
-      if (!element) {
-        mainMenu();
-        mainContent();
-        taskBars();
+      if (main.contains(menu)) {
+        main.removeChild(menu);
       } else {
-        main.textContent = "";
-        mainContent();
-        taskBars();
+        mainMenu();
       }
     });
 
@@ -98,7 +96,6 @@ function component() {
       if (e.target.id === "task-btn") {
         const btn = e.target;
         sortTaskBars(btn);
-        // Add empty image when list has no projects
       }
     });
   }

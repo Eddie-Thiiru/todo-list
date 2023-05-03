@@ -4,42 +4,44 @@ import { listArray } from "./layout";
 const taskArray = [];
 
 const mainContent = () => {
-  const containerOne = document.querySelector(".main-section");
-  const containerTwo = document.querySelector(".main");
+  const container = document.querySelector(".main-section");
 
   const wrapper = document.createElement("div");
   const header = document.createElement("div");
   const taskDisplay = document.createElement("div");
   const heading = document.createElement("h2");
-  const emptyIndicator = document.createElement("div");
-  const para = document.createElement("p");
   const btn = document.createElement("button");
-  const image = new Image();
 
   wrapper.classList.add("wrapper");
   taskDisplay.classList.add("task-display");
-  emptyIndicator.classList.add("empty-indicator");
   btn.classList.add("create-form-btn");
 
-  image.alt = "empty image";
   btn.type = "button";
   heading.textContent = "Today";
-  para.textContent = "Nothing to do";
   btn.textContent = "Add Task";
 
   header.appendChild(heading);
-  emptyIndicator.appendChild(image);
-  emptyIndicator.appendChild(para);
-  taskDisplay.appendChild(emptyIndicator);
   wrapper.appendChild(header);
   wrapper.appendChild(taskDisplay);
   wrapper.appendChild(btn);
 
-  if (containerTwo) {
-    containerTwo.appendChild(wrapper);
-  } else {
-    containerOne.appendChild(wrapper);
-  }
+  container.appendChild(wrapper);
+};
+
+const emptyIndicator = () => {
+  const display = document.querySelector(".task-display");
+  const container = document.createElement("div");
+  const para = document.createElement("p");
+
+  const image = new Image();
+
+  image.alt = "empty image";
+  container.classList.add("empty-indicator");
+  para.textContent = "Nothing to do";
+
+  container.appendChild(image);
+  container.appendChild(para);
+  display.appendChild(container);
 };
 
 const form = () => {
@@ -223,6 +225,7 @@ const processForm = () => {
 };
 export {
   mainContent,
+  emptyIndicator,
   form,
   newListForm,
   addListOption,
