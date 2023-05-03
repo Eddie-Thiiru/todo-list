@@ -1,5 +1,11 @@
-import { pageLayout } from "./layout.js";
-import { mainContent, form, processForm } from "./main-content.js";
+import { pageLayout, updateListArray } from "./layout.js";
+import {
+  mainContent,
+  form,
+  newListForm,
+  addListOption,
+  processForm,
+} from "./main-content.js";
 import { mainMenu, projectList, taskCount } from "./menu.js";
 import { taskBars, sortTaskBars } from "./task-display.js";
 
@@ -19,9 +25,11 @@ function component() {
       if (!element) {
         mainMenu();
         mainContent();
+        taskBars();
       } else {
         main.textContent = "";
         mainContent();
+        taskBars();
       }
     });
 
@@ -29,6 +37,7 @@ function component() {
       // Toggle Favorites and Projects menu choices
       if (e.target.className === "favorites-btn") {
         const favorites = document.querySelector(".favorites");
+
         if (favorites.textContent === "") {
         } else {
           favorites.textContent = "";
@@ -51,6 +60,30 @@ function component() {
       // Create form for new task addition
       if (e.target.className === "create-form-btn") {
         form();
+      }
+
+      // Create new list form
+      if (
+        e.target.className === "add-project-btn" ||
+        e.target.className === "create-list-btn"
+      ) {
+        newListForm();
+      }
+
+      // Add new list option
+      if (e.target.className === "add-list-btn") {
+        const wrapper = document.querySelector(".wrapper");
+        const display = document.querySelector(".task-display");
+        const form = document.querySelector("form");
+
+        e.preventDefault();
+        updateListArray();
+
+        if (display.contains(form)) {
+          addListOption();
+        }
+
+        wrapper.removeChild(wrapper.lastChild);
       }
 
       // Submit and process form

@@ -1,5 +1,7 @@
 import "./layout.css";
 
+const listArray = ["personal", "work", "shopping"];
+
 const pageLayout = () => {
   const content = document.querySelector(".content");
 
@@ -22,4 +24,9 @@ const pageLayout = () => {
   content.appendChild(footer);
 };
 
-export { pageLayout };
+const updateListArray = () => {
+  const newList = document.querySelector("#new-list").value;
+  listArray.push(newList);
+};
+
+export { listArray, pageLayout, updateListArray };

@@ -1,5 +1,6 @@
 import { taskArray } from "./main-content";
 import "./nav.css";
+import { listArray } from "./layout";
 
 const mainMenu = () => {
   const main = document.querySelector(".main-section");
@@ -16,6 +17,7 @@ const mainMenu = () => {
   const projects = document.createElement("div");
   const favoritesBtn = document.createElement("button");
   const projectsBtn = document.createElement("button");
+  const addListBtn = document.createElement("button");
   const favoritesImg = new Image();
   const projectsImg = new Image();
 
@@ -27,6 +29,7 @@ const mainMenu = () => {
   projContainer.classList.add("proj-container");
   favoritesBtn.classList.add("favorites-btn");
   projectsBtn.classList.add("projects-btn");
+  addListBtn.classList.add("add-project-btn");
   favorites.classList.add("favorites");
   projects.classList.add("projects");
 
@@ -36,17 +39,20 @@ const mainMenu = () => {
   projectsImg.alt = "pro";
   favoritesBtn.type = "button";
   projectsBtn.type = "button";
+  addListBtn.type = "button";
 
   todayBtn.textContent = "Today";
   upcomingBtn.textContent = "Upcoming";
   favoritesBtn.textContent = "Favorites";
   projectsBtn.textContent = "Projects";
+  addListBtn.textContent = "Add";
 
   favContainer.appendChild(favoritesImg);
   favContainer.appendChild(favoritesBtn);
   favContainer.appendChild(favorites);
   projContainer.appendChild(projectsImg);
   projContainer.appendChild(projectsBtn);
+  projContainer.appendChild(addListBtn);
   projContainer.appendChild(projects);
   menu.appendChild(todayBtn);
   menu.appendChild(upcomingBtn);
@@ -59,46 +65,25 @@ const mainMenu = () => {
 const projectList = () => {
   const projects = document.querySelector(".projects");
 
-  const personalContainer = document.createElement("div");
-  const workContainer = document.createElement("div");
-  const shoppingContainer = document.createElement("div");
+  for (let i = 0; i < listArray.length; i++) {
+    const listName = listArray[i];
 
-  const personalCount = document.createElement("div");
-  const workCount = document.createElement("div");
-  const shoppingCount = document.createElement("div");
-  const personalBtn = document.createElement("button");
-  const workBtn = document.createElement("button");
-  const shoppingBtn = document.createElement("button");
+    const container = document.createElement("div");
+    const listBtn = document.createElement("button");
+    const taskCount = document.createElement("div");
 
-  personalContainer.classList.add("personal-list");
-  workContainer.classList.add("work-list");
-  shoppingContainer.classList.add("shopping-list");
-  personalCount.classList.add("personal-count");
-  workCount.classList.add("work-count");
-  shoppingCount.classList.add("shopping-count");
-  personalCount.id = "count";
-  workCount.id = "count";
-  shoppingCount.id = "count";
-  personalBtn.classList.add("personal-btn");
-  workBtn.classList.add("work-btn");
-  shoppingBtn.classList.add("shopping-btn");
-  personalBtn.id = "task-btn";
-  workBtn.id = "task-btn";
-  shoppingBtn.id = "task-btn";
-  personalBtn.textContent = "Personal";
-  workBtn.textContent = "Work";
-  shoppingBtn.textContent = "Shopping";
+    container.classList.add(`${listName}-list`);
+    listBtn.classList.add(`${listName}-btn`);
+    taskCount.classList.add(`${listName}-count`);
+    listBtn.id = "task-btn";
+    taskCount.id = "count";
+    listBtn.textContent = listName;
+    taskCount.textContent = 0;
 
-  personalContainer.appendChild(personalBtn);
-  personalContainer.appendChild(personalCount);
-  workContainer.appendChild(workBtn);
-  workContainer.appendChild(workCount);
-  shoppingContainer.appendChild(shoppingBtn);
-  shoppingContainer.appendChild(shoppingCount);
-
-  projects.appendChild(personalContainer);
-  projects.appendChild(workContainer);
-  projects.appendChild(shoppingContainer);
+    container.appendChild(listBtn);
+    container.appendChild(taskCount);
+    projects.appendChild(container);
+  }
 };
 
 const taskCount = () => {
@@ -122,4 +107,4 @@ const taskCount = () => {
   });
 };
 
-export { mainMenu, projectList, taskCount };
+export { listArray, mainMenu, projectList, taskCount };

@@ -14,6 +14,15 @@
   overflow-y: auto; */
 }
 
+.wrapper > form {
+  background-color: aqua;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+}
+
 .create-form-btn {
   position: absolute;
   right: 0px;
