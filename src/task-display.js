@@ -60,8 +60,9 @@ const sortTaskBars = (btn) => {
     for (let i = 0; i < taskArray.length; i++) {
       const values = Object.values(taskArray[i]);
       const listChoice = values[values.length - 1];
+      const priority = values[3];
 
-      if (btnClass.includes(listChoice)) {
+      if (btnClass.includes(listChoice) || btnClass.includes(priority)) {
         // create elements for each task
         const wrapper = document.createElement("div");
         const wrapperTwo = document.createElement("div");

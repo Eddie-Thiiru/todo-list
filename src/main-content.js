@@ -114,15 +114,15 @@ const form = () => {
   createListBtn.textContent = "new list";
   formBtn.textContent = "submit";
 
-  priorityOption1.value = "1";
-  priorityOption2.value = "2";
-  priorityOption3.value = "3";
+  priorityOption1.value = "critical";
+  priorityOption2.value = "high";
+  priorityOption3.value = "normal";
   repeatOption1.value = "";
   repeatOption2.value = "week";
   repeatOption3.value = "month";
-  priorityOption1.textContent = "1";
-  priorityOption2.textContent = "2";
-  priorityOption3.textContent = "3";
+  priorityOption1.textContent = "Critical";
+  priorityOption2.textContent = "High";
+  priorityOption3.textContent = "Normal";
   repeatOption1.textContent = "No repeat";
   repeatOption2.textContent = "Once a Week";
   repeatOption3.textContent = "Once a Month";

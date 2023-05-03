@@ -7,7 +7,7 @@ import {
   addListOption,
   processForm,
 } from "./main-content.js";
-import { mainMenu, projectList, taskCount } from "./menu.js";
+import { mainMenu, projectList, favoritesList, taskCount } from "./menu.js";
 import { taskBars, sortTaskBars } from "./task-display.js";
 
 function component() {
@@ -37,6 +37,8 @@ function component() {
         const favorites = document.querySelector(".favorites");
 
         if (favorites.textContent === "") {
+          favoritesList();
+          taskCount();
         } else {
           favorites.textContent = "";
         }
@@ -92,8 +94,8 @@ function component() {
         taskCount();
       }
 
-      // Sort tasks according to the clicked project list
-      if (e.target.id === "task-btn") {
+      // Sort tasks according to the clicked project or priority list
+      if (e.target.id === "task-btn" || e.target.id === "priority-btn") {
         const btn = e.target;
         sortTaskBars(btn);
       }

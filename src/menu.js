@@ -59,6 +59,55 @@ const mainMenu = () => {
   main.insertBefore(menu, wrapper);
 };
 
+const favoritesList = () => {
+  const favorites = document.querySelector(".favorites");
+  const containerOne = document.createElement("div");
+  const containerTwo = document.createElement("div");
+  const containerThree = document.createElement("div");
+  const priorityOne = document.createElement("button");
+  const priorityTwo = document.createElement("button");
+  const priorityThree = document.createElement("button");
+  const priorityOneCount = document.createElement("div");
+  const priorityTwoCount = document.createElement("div");
+  const priorityThreeCount = document.createElement("div");
+  const criticalImg = new Image();
+  const highImg = new Image();
+  const normalImg = new Image();
+
+  priorityOne.classList.add("critical-btn");
+  priorityTwo.classList.add("high-btn");
+  priorityThree.classList.add("normal-btn");
+  priorityOne.id = "priority-btn";
+  priorityTwo.id = "priority-btn";
+  priorityThree.id = "priority-btn";
+  priorityOneCount.classList.add("critical-count");
+  priorityTwoCount.classList.add("high-count");
+  priorityThreeCount.classList.add("normal-count");
+  priorityOneCount.id = "count";
+  priorityTwoCount.id = "count";
+  priorityThreeCount.id = "count";
+  criticalImg.alt = "cri";
+  highImg.alt = "hi";
+  normalImg.alt = "nor";
+
+  priorityOne.textContent = "Critical priority work";
+  priorityTwo.textContent = "High priority work";
+  priorityThree.textContent = "Normal priority work";
+
+  containerOne.appendChild(criticalImg);
+  containerOne.appendChild(priorityOne);
+  containerOne.appendChild(priorityOneCount);
+  containerTwo.appendChild(highImg);
+  containerTwo.appendChild(priorityTwo);
+  containerTwo.appendChild(priorityTwoCount);
+  containerThree.appendChild(normalImg);
+  containerThree.appendChild(priorityThree);
+  containerThree.appendChild(priorityThreeCount);
+  favorites.appendChild(containerOne);
+  favorites.appendChild(containerTwo);
+  favorites.appendChild(containerThree);
+};
+
 const projectList = () => {
   const projects = document.querySelector(".projects");
 
@@ -68,14 +117,31 @@ const projectList = () => {
     const container = document.createElement("div");
     const listBtn = document.createElement("button");
     const taskCount = document.createElement("div");
+    const img = new Image();
 
     container.classList.add(`${listName}-list`);
     listBtn.classList.add(`${listName}-btn`);
     taskCount.classList.add(`${listName}-count`);
     listBtn.id = "task-btn";
     taskCount.id = "count";
+
+    if (listName === "personal") {
+      //img.src =
+      img.alt = "per";
+    } else if (listName === "work") {
+      //img.src =
+      img.alt = "wor";
+    } else if (listName === "shopping") {
+      //img.src =
+      img.alt = "sho";
+    } else {
+      //img.src =
+      img.alt = "cre";
+    }
+
     listBtn.textContent = listName;
 
+    container.appendChild(img);
     container.appendChild(listBtn);
     container.appendChild(taskCount);
     projects.appendChild(container);
@@ -93,8 +159,9 @@ const taskCount = () => {
     for (let i = 0; i < taskArray.length; i++) {
       const values = Object.values(taskArray[i]);
       const listChoice = values[values.length - 1];
+      const priority = values[3];
 
-      if (className.includes(listChoice)) {
+      if (className.includes(listChoice) || className.includes(priority)) {
         num += 1;
       }
     }
@@ -107,4 +174,4 @@ const taskCount = () => {
   });
 };
 
-export { listArray, mainMenu, projectList, taskCount };
+export { listArray, mainMenu, projectList, favoritesList, taskCount };
