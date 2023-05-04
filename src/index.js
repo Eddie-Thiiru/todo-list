@@ -29,18 +29,25 @@ function component() {
         main.removeChild(menu);
       } else {
         mainMenu();
+        taskCount();
+        // const btn1 = document.querySelector(".today-btn");
+        // const btn2 = document.querySelector(".upcoming-btn");
       }
     });
 
     main.addEventListener("click", function (e) {
       if (e.target.className === "today-btn") {
+        const btn = e.target;
         const heading = document.querySelector("h2");
         heading.textContent = "Today";
+        sortTaskBars(btn);
       }
 
       if (e.target.className === "upcoming-btn") {
+        const btn = e.target;
         const heading = document.querySelector("h2");
         heading.textContent = "Upcoming";
+        sortTaskBars(btn);
       }
 
       // Toggle Favorites and Projects menu choices

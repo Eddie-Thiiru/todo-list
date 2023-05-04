@@ -4,12 +4,13 @@ const taskBars = () => {
   const display = document.querySelector(".task-display");
 
   display.textContent = "";
-  if (taskArray.length === 0) {
-    emptyIndicator();
-  } else {
+
+  if (taskArray.length !== 0) {
     for (let i = 0; i < taskArray.length; i++) {
-      const values = Object.values(taskArray[i]);
-      const listChoice = values[values.length - 1];
+      const obj = taskArray[i];
+      const taskTitle = obj["task"];
+      const listChoice = obj["choice"];
+      const taskDate = obj["date"];
 
       // create elements for each task
       const wrapper = document.createElement("div");
@@ -17,7 +18,7 @@ const taskBars = () => {
       const container = document.createElement("div");
       const checkBox = document.createElement("input");
       const title = document.createElement("label");
-      const time = document.createElement("div");
+      const date = document.createElement("div");
       const listContainer = document.createElement("div");
       const listName = document.createElement("p");
       const listImg = new Image();
@@ -30,13 +31,13 @@ const taskBars = () => {
       title.htmlFor = "title";
       listImg.alt = "img";
 
-      title.textContent = values[0];
-      time.textContent = values[2];
+      title.textContent = taskTitle;
+      date.textContent = taskDate;
       listName.textContent = listChoice;
       //   listImg = img
 
       container.appendChild(title);
-      container.appendChild(time);
+      container.appendChild(date);
       wrapperTwo.appendChild(checkBox);
       wrapperTwo.appendChild(container);
       listContainer.appendChild(listName);
@@ -45,6 +46,8 @@ const taskBars = () => {
       wrapper.appendChild(listContainer);
       display.appendChild(wrapper);
     }
+  } else {
+    emptyIndicator();
   }
 };
 
@@ -57,9 +60,11 @@ const sortTaskBars = (btn) => {
 
   if (sibling.textContent !== "") {
     for (let i = 0; i < taskArray.length; i++) {
-      const values = Object.values(taskArray[i]);
-      const listChoice = values[values.length - 1];
-      const priority = values[3];
+      const obj = taskArray[i];
+      const taskTitle = obj["task"];
+      const listChoice = obj["choice"];
+      const taskDate = obj["date"];
+      const priority = obj["priority"];
 
       if (btnClass.includes(listChoice) || btnClass.includes(priority)) {
         // create elements for each task
@@ -68,7 +73,7 @@ const sortTaskBars = (btn) => {
         const container = document.createElement("div");
         const checkBox = document.createElement("input");
         const title = document.createElement("label");
-        const time = document.createElement("div");
+        const date = document.createElement("div");
         const listContainer = document.createElement("div");
         const listName = document.createElement("p");
         const listImg = new Image();
@@ -81,13 +86,13 @@ const sortTaskBars = (btn) => {
         title.htmlFor = "title";
         listImg.alt = "img";
 
-        title.textContent = values[0];
-        time.textContent = values[2];
+        title.textContent = taskTitle;
+        date.textContent = taskDate;
         listName.textContent = listChoice;
         //   listImg = img
 
         container.appendChild(title);
-        container.appendChild(time);
+        container.appendChild(date);
         wrapperTwo.appendChild(checkBox);
         wrapperTwo.appendChild(container);
         listContainer.appendChild(listName);
@@ -101,4 +106,5 @@ const sortTaskBars = (btn) => {
     emptyIndicator();
   }
 };
+
 export { taskBars, sortTaskBars };

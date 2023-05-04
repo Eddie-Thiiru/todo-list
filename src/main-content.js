@@ -103,7 +103,6 @@ const form = () => {
   submitLabel.textContent = "Add to List";
   createListBtn.textContent = "new list";
   formBtn.textContent = "submit";
-
   priorityOption1.value = "critical";
   priorityOption2.value = "high";
   priorityOption3.value = "normal";
@@ -164,7 +163,6 @@ const newListForm = () => {
   label.htmlFor = "new-list";
   input.name = "new-list";
   input.id = "new-list";
-
   label.textContent = "New List";
   cancelBtn.textContent = "Cancel";
   acceptBtn.textContent = "Add";
@@ -203,7 +201,6 @@ const addTimeOption = (input) => {
 const addListOption = () => {
   const optionsContainer = document.querySelector("#list");
   const name = document.querySelector("#new-list").value;
-
   const newOption = document.createElement("option");
 
   newOption.value = name;
@@ -221,7 +218,14 @@ const processForm = () => {
   const priority = document.getElementById("priority").value;
   const choice = document.getElementById("list").value;
 
-  taskArray.push({ task, description, date, time, priority, choice });
+  taskArray.push({
+    task: task,
+    description: description,
+    date: date,
+    time: time,
+    priority: priority,
+    choice: choice,
+  });
 };
 export {
   mainContent,

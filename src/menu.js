@@ -7,8 +7,12 @@ const mainMenu = () => {
   const wrapper = document.querySelector(".wrapper");
 
   const menu = document.createElement("div");
+  const todayContainer = document.createElement("div");
   const todayBtn = document.createElement("button");
+  const todayCount = document.createElement("div");
+  const upcomingContainer = document.createElement("div");
   const upcomingBtn = document.createElement("button");
+  const upcomingCount = document.createElement("div");
   const favContainer = document.createElement("div");
   const projContainer = document.createElement("div");
   const favorites = document.createElement("div");
@@ -20,8 +24,12 @@ const mainMenu = () => {
   const projectsImg = new Image();
 
   menu.classList.add("main-menu");
+  todayContainer.classList.add("today-container");
+  upcomingContainer.classList.add("upcoming-container");
   todayBtn.classList.add("today-btn");
   upcomingBtn.classList.add("upcoming-btn");
+  todayCount.classList.add("today-count");
+  upcomingCount.classList.add("upcoming-container");
   favContainer.classList.add("fav-container");
   projContainer.classList.add("proj-container");
   favoritesBtn.classList.add("favorites-btn");
@@ -30,6 +38,8 @@ const mainMenu = () => {
   favorites.classList.add("favorites");
   projects.classList.add("projects");
 
+  todayCount.id = "count";
+  upcomingCount.id = "count";
   todayBtn.type = "button";
   upcomingBtn.type = "button";
   favoritesImg.alt = "fav";
@@ -44,6 +54,10 @@ const mainMenu = () => {
   projectsBtn.textContent = "Projects";
   addListBtn.textContent = "Add";
 
+  todayContainer.appendChild(todayBtn);
+  todayContainer.appendChild(todayCount);
+  upcomingContainer.appendChild(upcomingBtn);
+  upcomingContainer.appendChild(upcomingCount);
   favContainer.appendChild(favoritesImg);
   favContainer.appendChild(favoritesBtn);
   favContainer.appendChild(favorites);
@@ -51,8 +65,8 @@ const mainMenu = () => {
   projContainer.appendChild(projectsBtn);
   projContainer.appendChild(addListBtn);
   projContainer.appendChild(projects);
-  menu.appendChild(todayBtn);
-  menu.appendChild(upcomingBtn);
+  menu.appendChild(todayContainer);
+  menu.appendChild(upcomingContainer);
   menu.appendChild(favContainer);
   menu.appendChild(projContainer);
 
@@ -150,6 +164,7 @@ const projectList = () => {
 
 const taskCount = () => {
   const counts = document.querySelectorAll("#count");
+  const todayDate = new Date().toISOString().split("T")[0];
 
   counts.forEach((count) => {
     const className = count.className;
@@ -157,11 +172,17 @@ const taskCount = () => {
     let num = 0;
 
     for (let i = 0; i < taskArray.length; i++) {
-      const values = Object.values(taskArray[i]);
-      const listChoice = values[values.length - 1];
-      const priority = values[3];
+      const obj = taskArray[i];
+      const listChoice = obj["choice"];
+      const taskPriority = obj["priority"];
+      const taskDate = obj["date"];
 
-      if (className.includes(listChoice) || className.includes(priority)) {
+      if (
+        className.includes(listChoice) ||
+        (todayDate === taskDate && className.includes("today")) ||
+        (todayDate !== taskDate && className.includes("upcoming")) ||
+        className.includes(taskPriority)
+      ) {
         num += 1;
       }
     }
