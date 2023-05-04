@@ -66,18 +66,12 @@ const form = () => {
   const priorityDiv = document.createElement("div");
   const priorityLabel = document.createElement("label");
   const priorityInput = document.createElement("select");
-  const repeatDiv = document.createElement("div");
-  const repeatLabel = document.createElement("label");
-  const repeatInput = document.createElement("select");
   const submitDiv = document.createElement("div");
   const submitLabel = document.createElement("label");
   const submitInput = document.createElement("select");
   const priorityOption1 = document.createElement("option");
   const priorityOption2 = document.createElement("option");
   const priorityOption3 = document.createElement("option");
-  const repeatOption1 = document.createElement("option");
-  const repeatOption2 = document.createElement("option");
-  const repeatOption3 = document.createElement("option");
   const createListBtn = document.createElement("button");
 
   //Add attributes
@@ -86,30 +80,26 @@ const form = () => {
 
   taskLabel.htmlFor = "task-title";
   descriptionLabel.htmlFor = "description";
-  dueDateLabel.htmlFor = "date-time";
+  dueDateLabel.htmlFor = "date";
   priorityLabel.htmlFor = "priority";
-  repeatLabel.htmlFor = "repeat";
   submitLabel.htmlFor = "list";
 
   taskInput.type = "text";
   descriptionInput.type = "text";
-  dueDateInput.type = "datetime-local";
+  dueDateInput.type = "date";
   createListBtn.type = "button";
   priorityInput.name = "priority";
-  repeatInput.name = "repeat";
   submitInput.name = "choice";
   taskInput.id = "task-title";
   descriptionInput.id = "description";
-  dueDateInput.id = "date-time";
+  dueDateInput.id = "date";
   priorityInput.id = "priority";
-  repeatInput.id = "repeat";
   submitInput.id = "list";
 
   taskLabel.textContent = "Task name";
   descriptionLabel.textContent = "What is to be done?";
   dueDateLabel.textContent = "Due date";
   priorityLabel.textContent = "Priority";
-  repeatLabel.textContent = "Repeat";
   submitLabel.textContent = "Add to List";
   createListBtn.textContent = "new list";
   formBtn.textContent = "submit";
@@ -117,15 +107,9 @@ const form = () => {
   priorityOption1.value = "critical";
   priorityOption2.value = "high";
   priorityOption3.value = "normal";
-  repeatOption1.value = "";
-  repeatOption2.value = "week";
-  repeatOption3.value = "month";
   priorityOption1.textContent = "Critical";
   priorityOption2.textContent = "High";
   priorityOption3.textContent = "Normal";
-  repeatOption1.textContent = "No repeat";
-  repeatOption2.textContent = "Once a Week";
-  repeatOption3.textContent = "Once a Month";
 
   // Dynamically add list options. When the user adds a new list,
   // the new list will be present in the next form.
@@ -142,10 +126,6 @@ const form = () => {
   priorityInput.appendChild(priorityOption1);
   priorityInput.appendChild(priorityOption2);
   priorityInput.appendChild(priorityOption3);
-  repeatInput.appendChild(repeatOption1);
-  repeatInput.appendChild(repeatOption2);
-  repeatInput.appendChild(repeatOption3);
-
   taskDiv.appendChild(taskLabel);
   taskDiv.appendChild(taskInput);
   descriptionDiv.appendChild(descriptionLabel);
@@ -154,8 +134,6 @@ const form = () => {
   dueDateDiv.appendChild(dueDateInput);
   priorityDiv.appendChild(priorityLabel);
   priorityDiv.appendChild(priorityInput);
-  repeatDiv.appendChild(repeatLabel);
-  repeatDiv.appendChild(repeatInput);
   submitDiv.appendChild(submitLabel);
   submitDiv.appendChild(submitInput);
   submitDiv.appendChild(createListBtn);
@@ -164,7 +142,6 @@ const form = () => {
   form.appendChild(descriptionDiv);
   form.appendChild(dueDateDiv);
   form.appendChild(priorityDiv);
-  form.appendChild(repeatDiv);
   form.appendChild(submitDiv);
   form.appendChild(formBtn);
   display.appendChild(form);
@@ -200,6 +177,29 @@ const newListForm = () => {
   wrapper.appendChild(listForm);
 };
 
+const addTimeOption = (input) => {
+  const parent = input.parentNode;
+  const divChild = document.querySelector(".time-container");
+
+  if (parent.contains(divChild)) {
+    return;
+  } else {
+    const container = document.createElement("div");
+    const label = document.createElement("label");
+    const timeInput = document.createElement("input");
+
+    container.classList.add("time-container");
+    label.htmlFor = "time";
+    timeInput.type = "time";
+    timeInput.id = "time";
+    label.textContent = "Time:";
+
+    container.appendChild(label);
+    container.appendChild(timeInput);
+    parent.appendChild(container);
+  }
+};
+
 const addListOption = () => {
   const optionsContainer = document.querySelector("#list");
   const name = document.querySelector("#new-list").value;
@@ -216,18 +216,19 @@ const addListOption = () => {
 const processForm = () => {
   const task = document.getElementById("task-title").value;
   const description = document.getElementById("description").value;
-  const date = document.getElementById("date-time").value;
+  const date = document.getElementById("date").value;
+  const time = document.getElementById("time").value;
   const priority = document.getElementById("priority").value;
-  const repeat = document.getElementById("repeat").value;
   const choice = document.getElementById("list").value;
 
-  taskArray.push({ task, description, date, priority, repeat, choice });
+  taskArray.push({ task, description, date, time, priority, choice });
 };
 export {
   mainContent,
   emptyIndicator,
   form,
   newListForm,
+  addTimeOption,
   addListOption,
   processForm,
   taskArray,

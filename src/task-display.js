@@ -4,7 +4,6 @@ const taskBars = () => {
   const display = document.querySelector(".task-display");
 
   display.textContent = "";
-
   if (taskArray.length === 0) {
     emptyIndicator();
   } else {

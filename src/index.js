@@ -4,6 +4,7 @@ import {
   emptyIndicator,
   form,
   newListForm,
+  addTimeOption,
   addListOption,
   processForm,
 } from "./main-content.js";
@@ -32,6 +33,16 @@ function component() {
     });
 
     main.addEventListener("click", function (e) {
+      if (e.target.className === "today-btn") {
+        const heading = document.querySelector("h2");
+        heading.textContent = "Today";
+      }
+
+      if (e.target.className === "upcoming-btn") {
+        const heading = document.querySelector("h2");
+        heading.textContent = "Upcoming";
+      }
+
       // Toggle Favorites and Projects menu choices
       if (e.target.className === "favorites-btn") {
         const favorites = document.querySelector(".favorites");
@@ -84,6 +95,11 @@ function component() {
         }
 
         wrapper.removeChild(wrapper.lastChild);
+      }
+
+      if (e.target.id === "date") {
+        const input = e.target;
+        addTimeOption(input);
       }
 
       // Submit and process form
