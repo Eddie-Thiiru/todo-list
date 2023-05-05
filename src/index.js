@@ -9,7 +9,7 @@ import {
   processForm,
 } from "./main-content.js";
 import { mainMenu, projectList, favoritesList, taskCount } from "./menu.js";
-import { taskBars, sortTaskBars } from "./task-display.js";
+import { taskBars, taskPage, sortTaskBars } from "./task-display.js";
 
 function component() {
   // Generate initial page layout
@@ -30,8 +30,6 @@ function component() {
       } else {
         mainMenu();
         taskCount();
-        // const btn1 = document.querySelector(".today-btn");
-        // const btn2 = document.querySelector(".upcoming-btn");
       }
     });
 
@@ -88,6 +86,12 @@ function component() {
         newListForm();
       }
 
+      if (e.target.className === "cancel-list-btn") {
+        const wrapper = document.querySelector(".wrapper");
+
+        wrapper.removeChild(wrapper.lastChild);
+      }
+
       // Add new list option
       if (e.target.className === "add-list-btn") {
         const wrapper = document.querySelector(".wrapper");
@@ -104,6 +108,7 @@ function component() {
         wrapper.removeChild(wrapper.lastChild);
       }
 
+      // Add time input option
       if (e.target.id === "date") {
         const input = e.target;
         addTimeOption(input);
@@ -121,6 +126,16 @@ function component() {
       if (e.target.id === "task-btn" || e.target.id === "priority-btn") {
         const btn = e.target;
         sortTaskBars(btn);
+      }
+
+      // Display all task details
+      if (e.target.className === "task") {
+        const task = e.target;
+        taskPage(task);
+      }
+
+      if (e.target.className === "back-btn") {
+        taskBars();
       }
     });
   }
