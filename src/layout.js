@@ -2,6 +2,8 @@ import "./layout.css";
 
 const listArray = ["personal", "work", "shopping"];
 
+const priorityArray = ["critical", "high", "normal"];
+
 const pageLayout = () => {
   const content = document.querySelector(".content");
 
@@ -29,4 +31,4 @@ const updateListArray = () => {
   listArray.push(newList);
 };
 
-export { listArray, pageLayout, updateListArray };
+export { listArray, priorityArray, pageLayout, updateListArray };

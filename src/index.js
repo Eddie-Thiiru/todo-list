@@ -7,6 +7,7 @@ import {
   addTimeOption,
   addListOption,
   processForm,
+  modifyTask,
 } from "./main-content.js";
 import { mainMenu, projectList, favoritesList, taskCount } from "./menu.js";
 import { taskBars, taskPage, sortTaskBars } from "./task-display.js";
@@ -73,9 +74,36 @@ function component() {
         }
       }
 
-      // Create form for new task addition
-      if (e.target.className === "create-form-btn") {
+      // create, submit and process forms
+      if (
+        e.target.className === "form-btn" &&
+        e.target.textContent === "Add Task"
+      ) {
         form();
+      } else if (
+        e.target.className === "form-btn" &&
+        e.target.textContent === "Submit"
+      ) {
+        const taskBtn = document.querySelector(".form-btn");
+
+        taskBtn.textContent = "Add Task";
+        taskBtn.type = "submit";
+
+        e.preventDefault();
+        processForm();
+        taskBars();
+        taskCount();
+      } else if (
+        e.target.className === "form-btn" &&
+        e.target.textContent === "Save Changes"
+      ) {
+        const taskBtn = document.querySelector(".form-btn");
+
+        taskBtn.textContent = "Add Task";
+
+        modifyTask();
+        taskBars();
+        taskCount();
       }
 
       // Create new list form
@@ -86,6 +114,7 @@ function component() {
         newListForm();
       }
 
+      // Cancel new list form
       if (e.target.className === "cancel-list-btn") {
         const wrapper = document.querySelector(".wrapper");
 
@@ -96,7 +125,7 @@ function component() {
       if (e.target.className === "add-list-btn") {
         const wrapper = document.querySelector(".wrapper");
         const display = document.querySelector(".task-display");
-        const form = document.querySelector("form");
+        const form = document.querySelector(".task-form");
 
         e.preventDefault();
         updateListArray();
@@ -109,17 +138,8 @@ function component() {
       }
 
       // Add time input option
-      if (e.target.id === "date") {
-        const input = e.target;
-        addTimeOption(input);
-      }
-
-      // Submit and process form
-      if (e.target.className === "form-btn") {
-        e.preventDefault();
-        processForm();
-        taskBars();
-        taskCount();
+      if (e.target.id === "date" && e.target.name === "date") {
+        addTimeOption();
       }
 
       // Sort tasks according to the clicked project or priority list
@@ -130,11 +150,16 @@ function component() {
 
       // Display all task details
       if (e.target.className === "task") {
-        const task = e.target;
-        taskPage(task);
+        const index = e.target.dataset.num;
+
+        taskPage(index);
       }
 
       if (e.target.className === "back-btn") {
+        const taskBtn = document.querySelector(".form-btn");
+
+        taskBtn.textContent = "Add Task";
+
         taskBars();
       }
     });

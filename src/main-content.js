@@ -14,7 +14,7 @@ const mainContent = () => {
 
   wrapper.classList.add("wrapper");
   taskDisplay.classList.add("task-display");
-  btn.classList.add("create-form-btn");
+  btn.classList.add("form-btn");
 
   btn.type = "button";
   heading.textContent = "Today";
@@ -24,7 +24,6 @@ const mainContent = () => {
   wrapper.appendChild(header);
   wrapper.appendChild(taskDisplay);
   wrapper.appendChild(btn);
-
   container.appendChild(wrapper);
 };
 
@@ -46,27 +45,31 @@ const emptyIndicator = () => {
 
 const form = () => {
   const display = document.querySelector(".task-display");
+  const taskBtn = document.querySelector(".form-btn");
 
   display.textContent = "";
+  taskBtn.textContent = "Submit";
 
   // create form inputs
   const form = document.createElement("form");
-  const formBtn = document.createElement("button");
-  const taskDiv = document.createElement("div");
+  const taskContainer = document.createElement("div");
   const taskLabel = document.createElement("label");
-  const taskInput = document.createElement("input");
-  const descriptionDiv = document.createElement("div");
+  const taskInput = document.createElement("textarea");
+  const descriptionContainer = document.createElement("div");
   const descriptionLabel = document.createElement("label");
-  const descriptionInput = document.createElement("input");
-  const dueDateDiv = document.createElement("div");
+  const descriptionInput = document.createElement("textarea");
+  const dueDateContainer = document.createElement("div");
+  const dateContainer = document.createElement("div");
   const dueDateLabel = document.createElement("label");
   const dueDateInput = document.createElement("input");
+  const backBtn = document.createElement("button");
 
   // create form selections
   const priorityDiv = document.createElement("div");
   const priorityLabel = document.createElement("label");
   const priorityInput = document.createElement("select");
-  const submitDiv = document.createElement("div");
+  const submitContainer = document.createElement("div");
+  const submitSelect = document.createElement("div");
   const submitLabel = document.createElement("label");
   const submitInput = document.createElement("select");
   const priorityOption1 = document.createElement("option");
@@ -75,21 +78,24 @@ const form = () => {
   const createListBtn = document.createElement("button");
 
   //Add attributes
-  formBtn.classList.add("form-btn");
   createListBtn.classList.add("create-list-btn");
+  form.classList.add("task-form");
+  dateContainer.classList.add("date-container");
+  backBtn.classList.add("back-btn");
 
   taskLabel.htmlFor = "task-title";
   descriptionLabel.htmlFor = "description";
   dueDateLabel.htmlFor = "date";
   priorityLabel.htmlFor = "priority";
   submitLabel.htmlFor = "list";
-
-  taskInput.type = "text";
-  descriptionInput.type = "text";
   dueDateInput.type = "date";
   createListBtn.type = "button";
+  backBtn.type = "button";
+  taskInput.name = "title";
+  descriptionInput.name = "description";
+  dueDateInput.name = "date";
   priorityInput.name = "priority";
-  submitInput.name = "choice";
+  submitInput.name = "list";
   taskInput.id = "task-title";
   descriptionInput.id = "description";
   dueDateInput.id = "date";
@@ -102,7 +108,8 @@ const form = () => {
   priorityLabel.textContent = "Priority";
   submitLabel.textContent = "Add to List";
   createListBtn.textContent = "new list";
-  formBtn.textContent = "submit";
+  backBtn.textContent = "Back";
+  // formBtn.textContent = "submit";
   priorityOption1.value = "critical";
   priorityOption2.value = "high";
   priorityOption3.value = "normal";
@@ -125,24 +132,27 @@ const form = () => {
   priorityInput.appendChild(priorityOption1);
   priorityInput.appendChild(priorityOption2);
   priorityInput.appendChild(priorityOption3);
-  taskDiv.appendChild(taskLabel);
-  taskDiv.appendChild(taskInput);
-  descriptionDiv.appendChild(descriptionLabel);
-  descriptionDiv.appendChild(descriptionInput);
-  dueDateDiv.appendChild(dueDateLabel);
-  dueDateDiv.appendChild(dueDateInput);
+  taskContainer.appendChild(taskLabel);
+  taskContainer.appendChild(taskInput);
+  descriptionContainer.appendChild(descriptionLabel);
+  descriptionContainer.appendChild(descriptionInput);
+  dateContainer.appendChild(dueDateLabel);
+  dateContainer.appendChild(dueDateInput);
   priorityDiv.appendChild(priorityLabel);
   priorityDiv.appendChild(priorityInput);
-  submitDiv.appendChild(submitLabel);
-  submitDiv.appendChild(submitInput);
-  submitDiv.appendChild(createListBtn);
+  submitSelect.appendChild(submitLabel);
+  submitSelect.appendChild(submitInput);
+  submitContainer.appendChild(submitSelect);
+  submitContainer.appendChild(createListBtn);
+  dueDateContainer.appendChild(dateContainer);
 
-  form.appendChild(taskDiv);
-  form.appendChild(descriptionDiv);
-  form.appendChild(dueDateDiv);
+  form.appendChild(backBtn);
+  form.appendChild(taskContainer);
+  form.appendChild(descriptionContainer);
+  form.appendChild(dueDateContainer);
   form.appendChild(priorityDiv);
-  form.appendChild(submitDiv);
-  form.appendChild(formBtn);
+  form.appendChild(submitContainer);
+  // form.appendChild(formBtn);
   display.appendChild(form);
 };
 
@@ -175,11 +185,12 @@ const newListForm = () => {
   wrapper.appendChild(listForm);
 };
 
-const addTimeOption = (input) => {
-  const parent = input.parentNode;
-  const divChild = document.querySelector(".time-container");
+const addTimeOption = () => {
+  const sibling = document.querySelector(".date-container");
+  const siblingTwo = document.querySelector(".time-container");
+  const parent = sibling.parentNode;
 
-  if (parent.contains(divChild)) {
+  if (parent.contains(siblingTwo)) {
     return;
   } else {
     const container = document.createElement("div");
@@ -189,6 +200,7 @@ const addTimeOption = (input) => {
     container.classList.add("time-container");
     label.htmlFor = "time";
     timeInput.type = "time";
+    timeInput.name = "time";
     timeInput.id = "time";
     label.textContent = "Time:";
 
@@ -211,21 +223,18 @@ const addListOption = () => {
 };
 
 const processForm = () => {
-  const task = document.getElementById("task-title").value;
-  const description = document.getElementById("description").value;
-  const date = document.getElementById("date").value;
-  const time = document.getElementById("time").value;
-  const priority = document.getElementById("priority").value;
-  const choice = document.getElementById("list").value;
+  const form = document.querySelector(".task-form");
+  const getFormData = Object.fromEntries(new FormData(form));
 
-  taskArray.push({
-    task: task,
-    description: description,
-    date: date,
-    time: time,
-    priority: priority,
-    choice: choice,
-  });
+  taskArray.push(getFormData);
+};
+
+const modifyTask = () => {
+  const form = document.querySelector(".full-task-form");
+  const index = parseInt(form.dataset.num);
+  const formData = Object.fromEntries(new FormData(form));
+
+  taskArray.splice(index, 1, formData);
 };
 export {
   mainContent,
@@ -235,5 +244,6 @@ export {
   addTimeOption,
   addListOption,
   processForm,
+  modifyTask,
   taskArray,
 };

@@ -25,7 +25,7 @@
   justify-self: center;
 }
 
-.create-form-btn {
+.form-btn {
   position: absolute;
   right: 0px;
   align-self: end;
@@ -44,11 +44,18 @@
   gap: 10px;
 }
 
-.full-task {
+.task-form {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 50px 3fr 1fr;
+  grid-template-rows: 1fr 3fr 50px 50px 50px;
+}
+
+.full-task-form {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 50px 3fr 50px 50px;
   justify-items: center;
   /* align-items: center; */
 }
@@ -58,9 +65,43 @@
   align-self: center;
 }
 
-.full-task > h2,
-.full-task > div {
+.task-form > div > textarea {
+  height: 100%;
+}
+
+.task-form > div:nth-of-type(1),
+.task-form > div:nth-of-type(2),
+.task-form > div:nth-of-type(4) {
   grid-column: 2 / 3;
+  /* width: 100%; */
+
+  display: flex;
+  flex-direction: column;
+}
+
+.task-form > div:nth-of-type(3),
+.task-form > div:nth-of-type(5) {
+  grid-column: 2 / 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.full-task-form > div {
+  grid-column: 2 / 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-task-form > div > textarea {
+  text-align: center;
+  resize: none;
+}
+
+.description > textarea {
+  height: 100%;
+  width: 100%;
 }
 
 .task > div {

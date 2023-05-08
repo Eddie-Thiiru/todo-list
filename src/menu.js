@@ -173,7 +173,7 @@ const taskCount = () => {
 
     for (let i = 0; i < taskArray.length; i++) {
       const obj = taskArray[i];
-      const listChoice = obj["choice"];
+      const listChoice = obj["list"];
       const taskPriority = obj["priority"];
       const taskDate = obj["date"];
 
