@@ -10,7 +10,14 @@ import {
   modifyTask,
 } from "./main-content.js";
 import { mainMenu, projectList, favoritesList, taskCount } from "./menu.js";
-import { taskBars, taskPage, sortTaskBars } from "./task-display.js";
+import {
+  taskBars,
+  taskPage,
+  sortTaskBars,
+  addDeleteOption,
+  removeDeleteOption,
+  deleteTask,
+} from "./task-display.js";
 
 function component() {
   // Generate initial page layout
@@ -161,6 +168,21 @@ function component() {
         taskBtn.textContent = "Add Task";
 
         taskBars();
+      }
+
+      // Delete tasks
+      if (e.target.className === "checkbox" && e.target.checked === true) {
+        addDeleteOption();
+      } else if (
+        e.target.className === "checkbox" &&
+        e.target.checked === false
+      ) {
+        removeDeleteOption();
+      }
+
+      if (e.target.className === "del-btn") {
+        deleteTask();
+        taskCount();
       }
     });
   }

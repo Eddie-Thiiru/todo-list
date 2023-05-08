@@ -13,6 +13,7 @@ const mainContent = () => {
   const btn = document.createElement("button");
 
   wrapper.classList.add("wrapper");
+  header.classList.add("task-header");
   taskDisplay.classList.add("task-display");
   btn.classList.add("form-btn");
 

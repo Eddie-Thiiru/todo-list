@@ -15,7 +15,7 @@ const taskBars = () => {
 
       // create elements for each task
       const wrapper = document.createElement("div");
-      const checkBoxContainer = document.createElement("div");
+      const checkBoxContainer = document.createElement("form");
       const checkBoxLabel = document.createElement("label");
       const checkBox = document.createElement("input");
       const wrapperTwo = document.createElement("div");
@@ -28,10 +28,10 @@ const taskBars = () => {
       wrapper.classList.add("task");
       wrapper.id = taskTitle;
       wrapper.dataset.num = `${i}`;
-      checkBoxLabel.htmlFor = `checkbox-${i}`;
+      checkBoxLabel.htmlFor = "checkbox";
       checkBox.type = "checkbox";
-      checkBox.name = "checkbox";
-      checkBox.id = `checkbox-${i}`;
+      checkBox.name = "task-checkbox";
+      checkBox.classList.add("checkbox");
       listImg.alt = "img";
 
       title.textContent = taskTitle;
@@ -220,10 +220,10 @@ const sortTaskBars = (btn) => {
         wrapper.classList.add("task");
         wrapper.id = taskTitle;
         wrapper.dataset.num = i;
-        checkBoxLabel.htmlFor = `checkbox-${i}`;
+        checkBoxLabel.htmlFor = "checkbox";
         checkBox.type = "checkbox";
-        checkBox.name = "checkbox";
-        checkBox.id = `checkbox-${i}`;
+        checkBox.name = "task-checkbox";
+        checkBox.classList.add("checkbox");
         listImg.alt = "img";
         title.textContent = taskTitle;
         date.textContent = taskDate;
@@ -247,4 +247,62 @@ const sortTaskBars = (btn) => {
   }
 };
 
-export { taskBars, taskPage, sortTaskBars };
+const addDeleteOption = () => {
+  const header = document.querySelector(".task-header");
+  const div = document.querySelector(".del-btn-container");
+
+  if (header.contains(div)) {
+    return;
+  }
+
+  const container = document.createElement("div");
+  const delBtn = document.createElement("button");
+
+  container.classList.add("del-btn-container");
+  delBtn.type = "submit";
+  delBtn.classList.add("del-btn");
+  delBtn.textContent = "Delete";
+
+  container.appendChild(delBtn);
+  header.appendChild(container);
+};
+
+const removeDeleteOption = () => {
+  const header = document.querySelector(".task-header");
+  const div = document.querySelector(".del-btn-container");
+
+  header.removeChild(div);
+};
+
+const deleteTask = () => {
+  const display = document.querySelector(".task-display");
+  const tasks = document.querySelectorAll(".checkbox");
+  const displayNodes = display.childNodes;
+
+  tasks.forEach((task) => {
+    if (task.checked === true) {
+      const grandParent = task.parentNode.parentNode;
+      const taskIndex = grandParent.dataset.num;
+
+      taskArray.splice(taskIndex, 1);
+      display.removeChild(displayNodes[taskIndex]);
+
+      for (let i = 0; i < displayNodes.length; i++) {
+        displayNodes[i].dataset.num = i;
+      }
+    }
+  });
+
+  if (display.textContent === "") {
+    emptyIndicator();
+  }
+};
+
+export {
+  taskBars,
+  taskPage,
+  sortTaskBars,
+  addDeleteOption,
+  removeDeleteOption,
+  deleteTask,
+};
