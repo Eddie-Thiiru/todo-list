@@ -32,11 +32,10 @@ const taskBars = () => {
       checkBox.type = "checkbox";
       checkBox.name = "task-checkbox";
       checkBox.classList.add("checkbox");
-      listImg.alt = "img";
-
       title.textContent = taskTitle;
       date.textContent = taskDate;
       listName.textContent = listChoice;
+      listImg.alt = "img";
       //   listImg = img
 
       checkBoxContainer.appendChild(checkBoxLabel);
@@ -98,40 +97,37 @@ const taskPage = (taskIndex) => {
   dateContainer.classList.add("date-container");
   timeContainer.classList.add("time-container");
   backBtn.classList.add("back-btn");
-
   titleLabel.htmlFor = "task-title";
+  titleLabel.textContent = "Name";
   descriptionLabel.htmlFor = "description";
   dateLabel.htmlFor = "date";
-  timeLabel.htmlFor = "time";
-  priorityLabel.htmlFor = "priority";
-  listSelectLabel.htmlFor = "list";
-
-  backBtn.type = "button";
-  date.type = "date";
-  time.type = "time";
-
-  title.name = "title";
-  description.name = "description";
-  date.name = "date";
-  time.name = "time";
-  prioritySelect.name = "priority";
-  listSelect.name = "list";
-  title.id = "task-title";
-  description.id = "description";
-  date.id = "date";
-  time.id = "time";
-  prioritySelect.id = "priority";
-  listSelect.id = "list";
-  title.value = taskTitle;
-  description.value = taskDescription;
-  date.value = taskDate;
-  time.value = taskTime;
-
-  timeLabel.textContent = "Time";
-  priorityLabel.textContent = "Priority";
-  titleLabel.textContent = "Name";
   dateLabel.textContent = "Due date: ";
+  timeLabel.htmlFor = "time";
+  timeLabel.textContent = "Time";
+  priorityLabel.htmlFor = "priority";
+  priorityLabel.textContent = "Priority";
+  listSelectLabel.htmlFor = "list";
+  backBtn.type = "button";
   backBtn.textContent = "Back";
+  title.name = "title";
+  title.id = "task-title";
+  title.value = taskTitle;
+  title.required = true;
+  description.name = "description";
+  description.id = "description";
+  description.value = taskDescription;
+  listSelect.name = "list";
+  listSelect.id = "list";
+  date.type = "date";
+  date.name = "date";
+  date.id = "date";
+  date.value = taskDate;
+  time.type = "time";
+  time.name = "time";
+  time.id = "time";
+  time.value = taskTime;
+  prioritySelect.name = "priority";
+  prioritySelect.id = "priority";
 
   // Dynamically add list options. When the user adds a new list,
   // the new list will be present in the next form.
@@ -295,6 +291,7 @@ const deleteTask = () => {
 
   if (display.textContent === "") {
     emptyIndicator();
+    removeDeleteOption();
   }
 };
 

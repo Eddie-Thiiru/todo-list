@@ -67,6 +67,7 @@
 
 .task-form > div > textarea {
   height: 100%;
+  resize: none;
 }
 
 .task-form > div:nth-of-type(1),

@@ -5,7 +5,6 @@ import { listArray } from "./layout";
 const mainMenu = () => {
   const main = document.querySelector(".main-section");
   const wrapper = document.querySelector(".wrapper");
-
   const menu = document.createElement("div");
   const todayContainer = document.createElement("div");
   const todayBtn = document.createElement("button");
@@ -26,33 +25,31 @@ const mainMenu = () => {
   menu.classList.add("main-menu");
   todayContainer.classList.add("today-container");
   upcomingContainer.classList.add("upcoming-container");
+  todayBtn.type = "button";
   todayBtn.classList.add("today-btn");
+  todayBtn.textContent = "Today";
+  upcomingBtn.type = "button";
   upcomingBtn.classList.add("upcoming-btn");
+  upcomingBtn.textContent = "Upcoming";
   todayCount.classList.add("today-count");
+  todayCount.id = "count";
   upcomingCount.classList.add("upcoming-container");
+  upcomingCount.id = "count";
   favContainer.classList.add("fav-container");
   projContainer.classList.add("proj-container");
+  favoritesBtn.type = "button";
   favoritesBtn.classList.add("favorites-btn");
+  favoritesBtn.textContent = "Favorites";
+  projectsBtn.type = "button";
   projectsBtn.classList.add("projects-btn");
+  projectsBtn.textContent = "Projects";
+  addListBtn.type = "button";
   addListBtn.classList.add("add-project-btn");
+  addListBtn.textContent = "Add";
   favorites.classList.add("favorites");
   projects.classList.add("projects");
-
-  todayCount.id = "count";
-  upcomingCount.id = "count";
-  todayBtn.type = "button";
-  upcomingBtn.type = "button";
   favoritesImg.alt = "fav";
   projectsImg.alt = "pro";
-  favoritesBtn.type = "button";
-  projectsBtn.type = "button";
-  addListBtn.type = "button";
-
-  todayBtn.textContent = "Today";
-  upcomingBtn.textContent = "Upcoming";
-  favoritesBtn.textContent = "Favorites";
-  projectsBtn.textContent = "Projects";
-  addListBtn.textContent = "Add";
 
   todayContainer.appendChild(todayBtn);
   todayContainer.appendChild(todayCount);
@@ -89,24 +86,23 @@ const favoritesList = () => {
   const normalImg = new Image();
 
   priorityOne.classList.add("critical-btn");
-  priorityTwo.classList.add("high-btn");
-  priorityThree.classList.add("normal-btn");
   priorityOne.id = "priority-btn";
+  priorityOne.textContent = "Critical priority work";
+  priorityTwo.classList.add("high-btn");
   priorityTwo.id = "priority-btn";
+  priorityTwo.textContent = "High priority work";
+  priorityThree.classList.add("normal-btn");
   priorityThree.id = "priority-btn";
+  priorityThree.textContent = "Normal priority work";
   priorityOneCount.classList.add("critical-count");
-  priorityTwoCount.classList.add("high-count");
-  priorityThreeCount.classList.add("normal-count");
   priorityOneCount.id = "count";
+  priorityTwoCount.classList.add("high-count");
   priorityTwoCount.id = "count";
+  priorityThreeCount.classList.add("normal-count");
   priorityThreeCount.id = "count";
   criticalImg.alt = "cri";
   highImg.alt = "hi";
   normalImg.alt = "nor";
-
-  priorityOne.textContent = "Critical priority work";
-  priorityTwo.textContent = "High priority work";
-  priorityThree.textContent = "Normal priority work";
 
   containerOne.appendChild(criticalImg);
   containerOne.appendChild(priorityOne);
@@ -135,8 +131,9 @@ const projectList = () => {
 
     container.classList.add(`${listName}-list`);
     listBtn.classList.add(`${listName}-btn`);
-    taskCount.classList.add(`${listName}-count`);
     listBtn.id = "task-btn";
+    listBtn.textContent = listName;
+    taskCount.classList.add(`${listName}-count`);
     taskCount.id = "count";
 
     if (listName === "personal") {
@@ -153,8 +150,6 @@ const projectList = () => {
       img.alt = "cre";
     }
 
-    listBtn.textContent = listName;
-
     container.appendChild(img);
     container.appendChild(listBtn);
     container.appendChild(taskCount);
@@ -167,7 +162,7 @@ const taskCount = () => {
   const todayDate = new Date().toISOString().split("T")[0];
 
   counts.forEach((count) => {
-    const className = count.className;
+    let className = count.className;
 
     let num = 0;
 

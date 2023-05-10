@@ -2,7 +2,7 @@ import { pageLayout, updateListArray } from "./layout.js";
 import {
   mainContent,
   emptyIndicator,
-  form,
+  createForm,
   newListForm,
   addTimeOption,
   addListOption,
@@ -42,17 +42,22 @@ function component() {
     });
 
     main.addEventListener("click", function (e) {
+      const heading = document.querySelector("h2");
+
+      // Toggle Today or Upcoming projects
       if (e.target.className === "today-btn") {
         const btn = e.target;
-        const heading = document.querySelector("h2");
+
         heading.textContent = "Today";
+
         sortTaskBars(btn);
       }
 
       if (e.target.className === "upcoming-btn") {
         const btn = e.target;
-        const heading = document.querySelector("h2");
+
         heading.textContent = "Upcoming";
+
         sortTaskBars(btn);
       }
 
@@ -81,36 +86,69 @@ function component() {
         }
       }
 
+      const wrapper = document.querySelector(".wrapper");
+      const taskBtn = document.querySelector(".form-btn");
+      const form = document.querySelector(".task-form");
+      const listForm = document.querySelector(".list-form");
+
       // create, submit and process forms
       if (
         e.target.className === "form-btn" &&
         e.target.textContent === "Add Task"
       ) {
-        form();
+        createForm();
       } else if (
         e.target.className === "form-btn" &&
         e.target.textContent === "Submit"
       ) {
-        const taskBtn = document.querySelector(".form-btn");
+        const isFormValid = form.checkValidity();
 
-        taskBtn.textContent = "Add Task";
-        taskBtn.type = "submit";
+        if (!isFormValid) {
+          form.reportValidity();
+        } else {
+          if (listForm) {
+            wrapper.removeChild(listForm);
+          }
 
-        e.preventDefault();
-        processForm();
-        taskBars();
-        taskCount();
+          taskBtn.textContent = "Add Task";
+
+          e.preventDefault();
+          processForm();
+          taskBars();
+          taskCount();
+        }
       } else if (
         e.target.className === "form-btn" &&
         e.target.textContent === "Save Changes"
       ) {
-        const taskBtn = document.querySelector(".form-btn");
+        const form = document.querySelector(".full-task-form");
+        const isFormValid = form.checkValidity();
 
+        if (!isFormValid) {
+          form.reportValidity();
+        } else {
+          taskBtn.textContent = "Add Task";
+
+          modifyTask();
+          taskBars();
+          taskCount();
+        }
+      }
+
+      // Add time input option
+      if (e.target.id === "date" && e.target.name === "date") {
+        addTimeOption();
+      }
+
+      // Remove form display or full-task display
+      if (e.target.className === "back-btn") {
         taskBtn.textContent = "Add Task";
 
-        modifyTask();
+        if (listForm) {
+          wrapper.removeChild(listForm);
+        }
+
         taskBars();
-        taskCount();
       }
 
       // Create new list form
@@ -123,17 +161,13 @@ function component() {
 
       // Cancel new list form
       if (e.target.className === "cancel-list-btn") {
-        const wrapper = document.querySelector(".wrapper");
-
         wrapper.removeChild(wrapper.lastChild);
       }
 
+      const display = document.querySelector(".task-display");
+
       // Add new list option
       if (e.target.className === "add-list-btn") {
-        const wrapper = document.querySelector(".wrapper");
-        const display = document.querySelector(".task-display");
-        const form = document.querySelector(".task-form");
-
         e.preventDefault();
         updateListArray();
 
@@ -144,30 +178,24 @@ function component() {
         wrapper.removeChild(wrapper.lastChild);
       }
 
-      // Add time input option
-      if (e.target.id === "date" && e.target.name === "date") {
-        addTimeOption();
-      }
-
       // Sort tasks according to the clicked project or priority list
       if (e.target.id === "task-btn" || e.target.id === "priority-btn") {
         const btn = e.target;
+
         sortTaskBars(btn);
       }
 
       // Display all task details
       if (e.target.className === "task") {
+        const header = document.querySelector(".task-header");
+        const delBtnContainer = document.querySelector(".del-btn-container");
         const index = e.target.dataset.num;
 
+        if (header.contains(delBtnContainer)) {
+          header.removeChild(delBtnContainer);
+        }
+
         taskPage(index);
-      }
-
-      if (e.target.className === "back-btn") {
-        const taskBtn = document.querySelector(".form-btn");
-
-        taskBtn.textContent = "Add Task";
-
-        taskBars();
       }
 
       // Delete tasks

@@ -15,11 +15,10 @@ const mainContent = () => {
   wrapper.classList.add("wrapper");
   header.classList.add("task-header");
   taskDisplay.classList.add("task-display");
-  btn.classList.add("form-btn");
-
   btn.type = "button";
-  heading.textContent = "Today";
+  btn.classList.add("form-btn");
   btn.textContent = "Add Task";
+  heading.textContent = "Today";
 
   header.appendChild(heading);
   wrapper.appendChild(header);
@@ -32,11 +31,10 @@ const emptyIndicator = () => {
   const display = document.querySelector(".task-display");
   const container = document.createElement("div");
   const para = document.createElement("p");
-
   const image = new Image();
 
-  image.alt = "empty image";
   container.classList.add("empty-indicator");
+  image.alt = "empty image";
   para.textContent = "Nothing to do";
 
   container.appendChild(image);
@@ -44,7 +42,7 @@ const emptyIndicator = () => {
   display.appendChild(container);
 };
 
-const form = () => {
+const createForm = () => {
   const display = document.querySelector(".task-display");
   const taskBtn = document.querySelector(".form-btn");
 
@@ -79,43 +77,41 @@ const form = () => {
   const createListBtn = document.createElement("button");
 
   //Add attributes
-  createListBtn.classList.add("create-list-btn");
   form.classList.add("task-form");
   dateContainer.classList.add("date-container");
-  backBtn.classList.add("back-btn");
-
-  taskLabel.htmlFor = "task-title";
-  descriptionLabel.htmlFor = "description";
-  dueDateLabel.htmlFor = "date";
-  priorityLabel.htmlFor = "priority";
-  submitLabel.htmlFor = "list";
-  dueDateInput.type = "date";
-  createListBtn.type = "button";
   backBtn.type = "button";
-  taskInput.name = "title";
-  descriptionInput.name = "description";
-  dueDateInput.name = "date";
-  priorityInput.name = "priority";
-  submitInput.name = "list";
-  taskInput.id = "task-title";
-  descriptionInput.id = "description";
-  dueDateInput.id = "date";
-  priorityInput.id = "priority";
-  submitInput.id = "list";
-
-  taskLabel.textContent = "Task name";
-  descriptionLabel.textContent = "What is to be done?";
-  dueDateLabel.textContent = "Due date";
-  priorityLabel.textContent = "Priority";
-  submitLabel.textContent = "Add to List";
-  createListBtn.textContent = "new list";
+  backBtn.classList.add("back-btn");
   backBtn.textContent = "Back";
-  // formBtn.textContent = "submit";
+  taskLabel.htmlFor = "task-title";
+  taskLabel.textContent = "Task name";
+  descriptionLabel.htmlFor = "description";
+  descriptionLabel.textContent = "What is to be done?";
+  dueDateLabel.htmlFor = "date";
+  dueDateLabel.textContent = "Due date";
+  priorityLabel.htmlFor = "priority";
+  priorityLabel.textContent = "Priority";
+  submitLabel.htmlFor = "list";
+  submitLabel.textContent = "Add to List";
+  dueDateInput.type = "date";
+  taskInput.name = "title";
+  taskInput.id = "task-title";
+  taskInput.required = true;
+  descriptionInput.name = "description";
+  descriptionInput.id = "description";
+  dueDateInput.name = "date";
+  dueDateInput.id = "date";
+  priorityInput.name = "priority";
+  priorityInput.id = "priority";
+  createListBtn.type = "button";
+  createListBtn.classList.add("create-list-btn");
+  createListBtn.textContent = "new list";
+  submitInput.name = "list";
+  submitInput.id = "list";
   priorityOption1.value = "critical";
-  priorityOption2.value = "high";
-  priorityOption3.value = "normal";
   priorityOption1.textContent = "Critical";
+  priorityOption2.value = "high";
   priorityOption2.textContent = "High";
+  priorityOption3.value = "normal";
   priorityOption3.textContent = "Normal";
 
   // Dynamically add list options. When the user adds a new list,
@@ -167,16 +163,17 @@ const newListForm = () => {
   const cancelBtn = document.createElement("button");
   const acceptBtn = document.createElement("button");
 
-  cancelBtn.classList.add("cancel-list-btn");
-  acceptBtn.classList.add("add-list-btn");
+  listForm.classList.add("list-form");
   cancelBtn.type = "button";
+  cancelBtn.classList.add("cancel-list-btn");
+  cancelBtn.textContent = "Cancel";
   acceptBtn.type = "submit";
+  acceptBtn.classList.add("add-list-btn");
+  acceptBtn.textContent = "Add";
   label.htmlFor = "new-list";
+  label.textContent = "New List";
   input.name = "new-list";
   input.id = "new-list";
-  label.textContent = "New List";
-  cancelBtn.textContent = "Cancel";
-  acceptBtn.textContent = "Add";
 
   btnContainer.appendChild(cancelBtn);
   btnContainer.appendChild(acceptBtn);
@@ -200,10 +197,10 @@ const addTimeOption = () => {
 
     container.classList.add("time-container");
     label.htmlFor = "time";
+    label.textContent = "Time:";
     timeInput.type = "time";
     timeInput.name = "time";
     timeInput.id = "time";
-    label.textContent = "Time:";
 
     container.appendChild(label);
     container.appendChild(timeInput);
@@ -240,7 +237,7 @@ const modifyTask = () => {
 export {
   mainContent,
   emptyIndicator,
-  form,
+  createForm,
   newListForm,
   addTimeOption,
   addListOption,
