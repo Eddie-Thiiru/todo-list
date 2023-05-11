@@ -3,6 +3,7 @@ import {
   mainContent,
   emptyIndicator,
   createForm,
+  changeButton,
   newListForm,
   addTimeOption,
   addListOption,
@@ -87,20 +88,17 @@ function component() {
       }
 
       const wrapper = document.querySelector(".wrapper");
-      const taskBtn = document.querySelector(".form-btn");
       const form = document.querySelector(".task-form");
       const listForm = document.querySelector(".list-form");
 
       // create, submit and process forms
-      if (
-        e.target.className === "form-btn" &&
-        e.target.textContent === "Add Task"
-      ) {
+      if (e.target.className === "form-btn") {
+        console.log("yeah");
         createForm();
-      } else if (
-        e.target.className === "form-btn" &&
-        e.target.textContent === "Submit"
-      ) {
+        changeButton(e.target);
+      }
+
+      if (e.target.className === "submit-btn") {
         const isFormValid = form.checkValidity();
 
         if (!isFormValid) {
@@ -110,28 +108,25 @@ function component() {
             wrapper.removeChild(listForm);
           }
 
-          taskBtn.textContent = "Add Task";
-
           e.preventDefault();
           processForm();
           taskBars();
           taskCount();
+          changeButton(e.target);
         }
-      } else if (
-        e.target.className === "form-btn" &&
-        e.target.textContent === "Save Changes"
-      ) {
+      }
+
+      if (e.target.className === "save-btn") {
         const form = document.querySelector(".full-task-form");
         const isFormValid = form.checkValidity();
 
         if (!isFormValid) {
           form.reportValidity();
         } else {
-          taskBtn.textContent = "Add Task";
-
           modifyTask();
           taskBars();
           taskCount();
+          changeButton(e.target);
         }
       }
 
@@ -142,13 +137,12 @@ function component() {
 
       // Remove form display or full-task display
       if (e.target.className === "back-btn") {
-        taskBtn.textContent = "Add Task";
-
         if (listForm) {
           wrapper.removeChild(listForm);
         }
 
         taskBars();
+        changeButton(e.target);
       }
 
       // Create new list form
@@ -168,14 +162,22 @@ function component() {
 
       // Add new list option
       if (e.target.className === "add-list-btn") {
-        e.preventDefault();
-        updateListArray();
+        const listForm = document.querySelector(".list-form");
+        const isFormValid = listForm.checkValidity();
+
+        if (!isFormValid) {
+          listForm.reportValidity();
+        } else {
+          e.preventDefault();
+          updateListArray();
+        }
 
         if (display.contains(form)) {
           addListOption();
+          wrapper.removeChild(wrapper.lastChild);
+        } else {
+          wrapper.removeChild(wrapper.lastChild);
         }
-
-        wrapper.removeChild(wrapper.lastChild);
       }
 
       // Sort tasks according to the clicked project or priority list
@@ -196,6 +198,7 @@ function component() {
         }
 
         taskPage(index);
+        changeButton(e.target);
       }
 
       // Delete tasks

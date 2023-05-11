@@ -17,6 +17,10 @@ body {
   grid-template-rows: 80px 4fr 100px;
 }
 
+.content > div {
+  padding: 10px;
+}
+
 .header {
   grid-row: 1 / 2;
 }
@@ -30,4 +34,20 @@ body {
 
 .footer {
   grid-row: 3 / 4;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header img {
+  height: 30px;
+  width: 30px;
+}
+
+.display-btn-container img,
+.del-btn-container img,
+.create-list-btn img {
+  pointer-events: none;
 }

@@ -1,5 +1,10 @@
 import "./content.css";
 import { listArray } from "./layout";
+import Img from "./images/add-task.svg";
+import Img2 from "./images/back.svg";
+import Img3 from "./images/add-list.svg";
+import Img4 from "./images/save.svg";
+import Img5 from "./images/calendar.svg";
 
 const taskArray = [];
 
@@ -10,20 +15,26 @@ const mainContent = () => {
   const header = document.createElement("div");
   const taskDisplay = document.createElement("div");
   const heading = document.createElement("h2");
+  const btnContainer = document.createElement("div");
   const btn = document.createElement("button");
+  const btnImg = new Image();
 
   wrapper.classList.add("wrapper");
   header.classList.add("task-header");
   taskDisplay.classList.add("task-display");
+  btnContainer.classList.add("display-btn-container");
   btn.type = "button";
   btn.classList.add("form-btn");
-  btn.textContent = "Add Task";
+  btnImg.src = Img;
+  btnImg.alt = "Add circle icon";
   heading.textContent = "Today";
 
   header.appendChild(heading);
+  btn.appendChild(btnImg);
+  btnContainer.appendChild(btn);
   wrapper.appendChild(header);
   wrapper.appendChild(taskDisplay);
-  wrapper.appendChild(btn);
+  wrapper.appendChild(btnContainer);
   container.appendChild(wrapper);
 };
 
@@ -31,23 +42,25 @@ const emptyIndicator = () => {
   const display = document.querySelector(".task-display");
   const container = document.createElement("div");
   const para = document.createElement("p");
-  const image = new Image();
+  const img = new Image();
 
   container.classList.add("empty-indicator");
-  image.alt = "empty image";
+  img.src = Img5;
+  img.alt = "empty image";
   para.textContent = "Nothing to do";
 
-  container.appendChild(image);
+  container.appendChild(img);
   container.appendChild(para);
   display.appendChild(container);
 };
 
 const createForm = () => {
   const display = document.querySelector(".task-display");
-  const taskBtn = document.querySelector(".form-btn");
+
+  // const taskBtn = document.querySelector(".form-btn");
 
   display.textContent = "";
-  taskBtn.textContent = "Submit";
+  // taskBtn.textContent = "Submit";
 
   // create form inputs
   const form = document.createElement("form");
@@ -62,6 +75,7 @@ const createForm = () => {
   const dueDateLabel = document.createElement("label");
   const dueDateInput = document.createElement("input");
   const backBtn = document.createElement("button");
+  const backBtnImg = new Image();
 
   // create form selections
   const priorityDiv = document.createElement("div");
@@ -75,13 +89,15 @@ const createForm = () => {
   const priorityOption2 = document.createElement("option");
   const priorityOption3 = document.createElement("option");
   const createListBtn = document.createElement("button");
+  const createListImg = new Image();
 
   //Add attributes
   form.classList.add("task-form");
   dateContainer.classList.add("date-container");
   backBtn.type = "button";
   backBtn.classList.add("back-btn");
-  backBtn.textContent = "Back";
+  backBtnImg.src = Img2;
+  backBtnImg.alt = "Back arrow icon";
   taskLabel.htmlFor = "task-title";
   taskLabel.textContent = "Task name";
   descriptionLabel.htmlFor = "description";
@@ -104,7 +120,8 @@ const createForm = () => {
   priorityInput.id = "priority";
   createListBtn.type = "button";
   createListBtn.classList.add("create-list-btn");
-  createListBtn.textContent = "new list";
+  createListImg.src = Img3;
+  createListImg.alt = "Add list icon";
   submitInput.name = "list";
   submitInput.id = "list";
   priorityOption1.value = "critical";
@@ -139,18 +156,63 @@ const createForm = () => {
   priorityDiv.appendChild(priorityInput);
   submitSelect.appendChild(submitLabel);
   submitSelect.appendChild(submitInput);
+  createListBtn.appendChild(createListImg);
   submitContainer.appendChild(submitSelect);
   submitContainer.appendChild(createListBtn);
   dueDateContainer.appendChild(dateContainer);
-
+  backBtn.appendChild(backBtnImg);
   form.appendChild(backBtn);
   form.appendChild(taskContainer);
   form.appendChild(descriptionContainer);
   form.appendChild(dueDateContainer);
   form.appendChild(priorityDiv);
   form.appendChild(submitContainer);
-  // form.appendChild(formBtn);
   display.appendChild(form);
+};
+
+const changeButton = (ele) => {
+  const btnContainer = document.querySelector(".display-btn-container");
+
+  btnContainer.textContent = "";
+
+  if (ele.className === "form-btn") {
+    const btn = document.createElement("button");
+    const btnImg = new Image();
+
+    btn.type = "button";
+    btn.classList.add("submit-btn");
+    btnImg.src = Img4;
+    btnImg.alt = "Check circle icon";
+
+    btn.appendChild(btnImg);
+    btnContainer.appendChild(btn);
+  } else if (
+    ele.className === "submit-btn" ||
+    ele.className === "back-btn" ||
+    ele.className === "save-btn"
+  ) {
+    const btn = document.createElement("button");
+    const btnImg = new Image();
+
+    btn.type = "button";
+    btn.classList.add("form-btn");
+    btnImg.src = Img;
+    btnImg.alt = "Add circle icon";
+
+    btn.appendChild(btnImg);
+    btnContainer.appendChild(btn);
+  } else {
+    const btn = document.createElement("button");
+    const btnImg = new Image();
+
+    btn.type = "button";
+    btn.classList.add("save-btn");
+    btnImg.src = Img4;
+    btnImg.alt = "Check circle icon";
+
+    btn.appendChild(btnImg);
+    btnContainer.appendChild(btn);
+  }
 };
 
 const newListForm = () => {
@@ -167,13 +229,15 @@ const newListForm = () => {
   cancelBtn.type = "button";
   cancelBtn.classList.add("cancel-list-btn");
   cancelBtn.textContent = "Cancel";
-  acceptBtn.type = "submit";
+  acceptBtn.type = "button";
   acceptBtn.classList.add("add-list-btn");
   acceptBtn.textContent = "Add";
   label.htmlFor = "new-list";
   label.textContent = "New List";
+  input.type = "text";
   input.name = "new-list";
   input.id = "new-list";
+  input.required = true;
 
   btnContainer.appendChild(cancelBtn);
   btnContainer.appendChild(acceptBtn);
@@ -238,6 +302,7 @@ export {
   mainContent,
   emptyIndicator,
   createForm,
+  changeButton,
   newListForm,
   addTimeOption,
   addListOption,

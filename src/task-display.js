@@ -1,5 +1,10 @@
 import { taskArray, emptyIndicator } from "./main-content.js";
 import { listArray, priorityArray } from "./layout.js";
+import Img from "./images/personal.svg";
+import Img2 from "./images/work.svg";
+import Img3 from "./images/shopping.svg";
+import Img4 from "./images/new.svg";
+import Img5 from "./images/delete.svg";
 
 const taskBars = () => {
   const display = document.querySelector(".task-display");
@@ -23,7 +28,7 @@ const taskBars = () => {
       const date = document.createElement("div");
       const listContainer = document.createElement("div");
       const listName = document.createElement("p");
-      const listImg = new Image();
+      const img = new Image();
 
       wrapper.classList.add("task");
       wrapper.id = taskTitle;
@@ -35,15 +40,27 @@ const taskBars = () => {
       title.textContent = taskTitle;
       date.textContent = taskDate;
       listName.textContent = listChoice;
-      listImg.alt = "img";
-      //   listImg = img
+
+      if (listChoice === "personal") {
+        img.src = Img;
+        img.alt = "Person icon";
+      } else if (listChoice === "work") {
+        img.src = Img2;
+        img.alt = "Briefcase icon";
+      } else if (listChoice === "shopping") {
+        img.src = Img3;
+        img.alt = "Shopping cart icon";
+      } else {
+        img.src = Img4;
+        img.alt = "Large dot icon";
+      }
 
       checkBoxContainer.appendChild(checkBoxLabel);
       checkBoxContainer.appendChild(checkBox);
       wrapperTwo.appendChild(title);
       wrapperTwo.appendChild(date);
       listContainer.appendChild(listName);
-      listContainer.appendChild(listImg);
+      listContainer.appendChild(img);
       wrapper.appendChild(checkBoxContainer);
       wrapper.appendChild(wrapperTwo);
       wrapper.appendChild(listContainer);
@@ -56,10 +73,8 @@ const taskBars = () => {
 
 const taskPage = (taskIndex) => {
   const display = document.querySelector(".task-display");
-  const taskBtn = document.querySelector(".form-btn");
 
   display.textContent = "";
-  taskBtn.textContent = "Save Changes";
 
   const obj = taskArray[taskIndex];
   const taskTitle = obj["title"];
@@ -253,12 +268,15 @@ const addDeleteOption = () => {
 
   const container = document.createElement("div");
   const delBtn = document.createElement("button");
+  const delBtnImg = new Image();
 
   container.classList.add("del-btn-container");
   delBtn.type = "submit";
   delBtn.classList.add("del-btn");
-  delBtn.textContent = "Delete";
+  delBtnImg.src = Img5;
+  delBtnImg.alt = "Delete icon";
 
+  delBtn.appendChild(delBtnImg);
   container.appendChild(delBtn);
   header.appendChild(container);
 };

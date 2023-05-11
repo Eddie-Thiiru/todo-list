@@ -1,26 +1,39 @@
 import { taskArray } from "./main-content";
 import "./nav.css";
 import { listArray } from "./layout";
+import Img from "./images/today.svg";
+import Img2 from "./images/upcoming.svg";
+import Img3 from "./images/favorites.svg";
+import Img4 from "./images/projects.svg";
+import Img5 from "./images/critical.svg";
+import Img6 from "./images/high.svg";
+import Img7 from "./images/normal.svg";
+import Img8 from "./images/personal.svg";
+import Img9 from "./images/work.svg";
+import Img10 from "./images/shopping.svg";
+import Img11 from "./images/new.svg";
 
 const mainMenu = () => {
   const main = document.querySelector(".main-section");
   const wrapper = document.querySelector(".wrapper");
   const menu = document.createElement("div");
   const todayContainer = document.createElement("div");
+  const todayImg = new Image();
   const todayBtn = document.createElement("button");
   const todayCount = document.createElement("div");
   const upcomingContainer = document.createElement("div");
+  const upcomingImg = new Image();
   const upcomingBtn = document.createElement("button");
   const upcomingCount = document.createElement("div");
   const favContainer = document.createElement("div");
-  const projContainer = document.createElement("div");
-  const favorites = document.createElement("div");
-  const projects = document.createElement("div");
+  const favoritesImg = new Image();
   const favoritesBtn = document.createElement("button");
+  const favorites = document.createElement("div");
+  const projContainer = document.createElement("div");
+  const projectsImg = new Image();
+  const projects = document.createElement("div");
   const projectsBtn = document.createElement("button");
   const addListBtn = document.createElement("button");
-  const favoritesImg = new Image();
-  const projectsImg = new Image();
 
   menu.classList.add("main-menu");
   todayContainer.classList.add("today-container");
@@ -48,11 +61,19 @@ const mainMenu = () => {
   addListBtn.textContent = "Add";
   favorites.classList.add("favorites");
   projects.classList.add("projects");
-  favoritesImg.alt = "fav";
-  projectsImg.alt = "pro";
+  todayImg.src = Img;
+  todayImg.alt = "Calender icon";
+  upcomingImg.src = Img2;
+  upcomingImg.alt = "Calender icon";
+  favoritesImg.src = Img3;
+  favoritesImg.alt = "Star icon";
+  projectsImg.src = Img4;
+  projectsImg.alt = "List icon";
 
+  todayContainer.appendChild(todayImg);
   todayContainer.appendChild(todayBtn);
   todayContainer.appendChild(todayCount);
+  upcomingContainer.appendChild(upcomingImg);
   upcomingContainer.appendChild(upcomingBtn);
   upcomingContainer.appendChild(upcomingCount);
   favContainer.appendChild(favoritesImg);
@@ -100,9 +121,12 @@ const favoritesList = () => {
   priorityTwoCount.id = "count";
   priorityThreeCount.classList.add("normal-count");
   priorityThreeCount.id = "count";
-  criticalImg.alt = "cri";
-  highImg.alt = "hi";
-  normalImg.alt = "nor";
+  criticalImg.src = Img5;
+  criticalImg.alt = "Water drop icon";
+  highImg.src = Img6;
+  highImg.alt = "Water drop icon";
+  normalImg.src = Img7;
+  normalImg.alt = "Water drop icon";
 
   containerOne.appendChild(criticalImg);
   containerOne.appendChild(priorityOne);
@@ -137,17 +161,17 @@ const projectList = () => {
     taskCount.id = "count";
 
     if (listName === "personal") {
-      //img.src =
-      img.alt = "per";
+      img.src = Img8;
+      img.alt = "Person icon";
     } else if (listName === "work") {
-      //img.src =
-      img.alt = "wor";
+      img.src = Img9;
+      img.alt = "Briefcase icon";
     } else if (listName === "shopping") {
-      //img.src =
-      img.alt = "sho";
+      img.src = Img10;
+      img.alt = "Shopping cart icon";
     } else {
-      //img.src =
-      img.alt = "cre";
+      img.src = Img11;
+      img.alt = "Large dot icon";
     }
 
     container.appendChild(img);
