@@ -57,10 +57,7 @@ const emptyIndicator = () => {
 const createForm = () => {
   const display = document.querySelector(".task-display");
 
-  // const taskBtn = document.querySelector(".form-btn");
-
   display.textContent = "";
-  // taskBtn.textContent = "Submit";
 
   // create form inputs
   const form = document.createElement("form");

@@ -218,7 +218,7 @@ const sortTaskBars = (btn) => {
       ) {
         // create elements for each task
         const wrapper = document.createElement("div");
-        const checkBoxContainer = document.createElement("div");
+        const checkBoxContainer = document.createElement("form");
         const checkBoxLabel = document.createElement("label");
         const checkBox = document.createElement("input");
         const wrapperTwo = document.createElement("div");

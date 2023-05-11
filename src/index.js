@@ -10,7 +10,14 @@ import {
   processForm,
   modifyTask,
 } from "./main-content.js";
-import { mainMenu, projectList, favoritesList, taskCount } from "./menu.js";
+import {
+  mainMenu,
+  projectList,
+  favoritesList,
+  taskCount,
+  changeFavoritesImage,
+  changeProjectsImage,
+} from "./menu.js";
 import {
   taskBars,
   taskPage,
@@ -69,26 +76,35 @@ function component() {
         if (favorites.textContent === "") {
           favoritesList();
           taskCount();
+          changeFavoritesImage();
         } else {
           favorites.textContent = "";
+          changeFavoritesImage();
         }
       }
+
+      const display = document.querySelector(".task-display");
+      const form = document.querySelector(".task-form");
 
       if (e.target.className === "projects-btn") {
         const projects = document.querySelector(".projects");
 
-        taskBars();
-
         if (projects.textContent === "") {
           projectList();
           taskCount();
+          changeProjectsImage();
         } else {
           projects.textContent = "";
+          changeProjectsImage();
+        }
+
+        if (display.contains(form)) {
+        } else {
+          taskBars();
         }
       }
 
       const wrapper = document.querySelector(".wrapper");
-      const form = document.querySelector(".task-form");
       const listForm = document.querySelector(".list-form");
 
       // create, submit and process forms
@@ -158,8 +174,6 @@ function component() {
         wrapper.removeChild(wrapper.lastChild);
       }
 
-      const display = document.querySelector(".task-display");
-
       // Add new list option
       if (e.target.className === "add-list-btn") {
         const listForm = document.querySelector(".list-form");
@@ -170,13 +184,18 @@ function component() {
         } else {
           e.preventDefault();
           updateListArray();
-        }
 
-        if (display.contains(form)) {
-          addListOption();
-          wrapper.removeChild(wrapper.lastChild);
-        } else {
-          wrapper.removeChild(wrapper.lastChild);
+          if (display.contains(form)) {
+            addListOption();
+            projectList();
+            changeProjectsImage();
+            wrapper.removeChild(wrapper.lastChild);
+          } else {
+            projectList();
+            changeProjectsImage();
+            taskCount();
+            wrapper.removeChild(wrapper.lastChild);
+          }
         }
       }
 

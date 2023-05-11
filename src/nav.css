@@ -1,15 +1,75 @@
 .main-menu {
+  background-color: #ecf0f2;
   grid-column: span 1;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  justify-items: center;
 }
 
+.main-menu > div {
+  padding: 5px;
+}
+
+.main-menu button {
+  text-align: start;
+}
+
+.today-container,
+.upcoming-container {
+  display: grid;
+  grid-template-columns: 35px 3fr 35px;
+  column-gap: 5px;
+}
+
+.fav-container,
+.proj-container {
+  display: grid;
+  grid-template-columns: 35px 3fr 35px;
+  grid-template-rows: auto;
+}
+
+.fav-container > div:nth-child(1),
+.proj-container > div:nth-child(1) {
+  grid-column: 1 / 4;
+  display: grid;
+  grid-template-columns: 35px 3fr 35px;
+  column-gap: 5px;
+}
+
+.favorites,
 .projects {
-  display: flex;
-  flex-direction: column;
+  grid-column: 2 / 4;
+  display: grid;
 }
 
-.main-menu img {
+.favorites > div,
+.projects > div {
+  padding: 10px 0px;
+  display: grid;
+  grid-template-columns: 20px 3fr 1fr;
+}
+
+.favorites > div > img,
+.projects > div > img {
+  height: 15px;
+  width: 15px;
+}
+
+.today-container > img,
+.upcoming-container > img,
+.fav-container img,
+.proj-container img {
   height: 30px;
   width: 30px;
+}
+
+.add-project-btn {
+  height: 30px;
+  width: 30px;
+  justify-self: end;
+}
+
+[class*="count"] {
+  text-align: end;
 }
