@@ -9,6 +9,7 @@ import {
   addListOption,
   processForm,
   modifyTask,
+  backButtonController,
 } from "./main-content.js";
 import {
   mainMenu,
@@ -109,7 +110,7 @@ function component() {
 
       // create, submit and process forms
       if (e.target.className === "form-btn") {
-        console.log("yeah");
+        removeDeleteOption();
         createForm();
         changeButton(e.target);
       }
@@ -126,6 +127,7 @@ function component() {
 
           e.preventDefault();
           processForm();
+          backButtonController();
           taskBars();
           taskCount();
           changeButton(e.target);
@@ -140,6 +142,7 @@ function component() {
           form.reportValidity();
         } else {
           modifyTask();
+          backButtonController();
           taskBars();
           taskCount();
           changeButton(e.target);
@@ -157,6 +160,7 @@ function component() {
           wrapper.removeChild(listForm);
         }
 
+        backButtonController();
         taskBars();
         changeButton(e.target);
       }
@@ -208,14 +212,9 @@ function component() {
 
       // Display all task details
       if (e.target.className === "task") {
-        const header = document.querySelector(".task-header");
-        const delBtnContainer = document.querySelector(".del-btn-container");
         const index = e.target.dataset.num;
 
-        if (header.contains(delBtnContainer)) {
-          header.removeChild(delBtnContainer);
-        }
-
+        removeDeleteOption();
         taskPage(index);
         changeButton(e.target);
       }

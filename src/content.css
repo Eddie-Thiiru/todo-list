@@ -1,6 +1,7 @@
 .wrapper {
   height: 100%;
   width: 100%;
+  padding: 10px;
   position: relative;
   grid-column: span 3;
   display: grid;
@@ -8,9 +9,10 @@
 }
 
 .task-display {
+  position: relative;
   display: flex;
   flex-direction: column;
-  position: relative;
+  gap: 10px;
   /* Inroduce scroll bar
   height: 596px;
   overflow-y: auto; */
@@ -27,8 +29,8 @@
 
 .display-btn-container {
   position: absolute;
-  right: 0px;
-  align-self: end;
+  right: 10px;
+  bottom: 10px;
 }
 
 .empty-indicator {
@@ -40,15 +42,18 @@
 .task {
   width: 100%;
   height: 50px;
+  padding: 5px;
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .task-form {
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 3fr 50px 50px 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr 50px 50px;
+  gap: 10px;
 }
 
 .full-task-form {
@@ -61,43 +66,77 @@
 }
 
 .back-btn {
-  grid-column: 1 / 2;
+  justify-self: self-start;
+}
+
+.create-list-btn {
   align-self: center;
+  justify-self: start;
 }
 
-.task-form > div > textarea {
-  height: 100%;
-  resize: none;
+.task-form > div {
+  padding: 5px;
 }
 
-.task-form > div:nth-of-type(1),
-.task-form > div:nth-of-type(2),
-.task-form > div:nth-of-type(4) {
+.title-wrapper {
   grid-column: 2 / 3;
-  /* width: 100%; */
-
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
-.task-form > div:nth-of-type(3),
-.task-form > div:nth-of-type(5) {
-  grid-column: 2 / 3;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.full-task-form > div {
-  grid-column: 2 / 3;
-  width: 100%;
+.title-wrapper input {
+  height: 30px;
+  padding: 0px 5px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
-.full-task-form > div > textarea {
-  text-align: center;
+.description-wrapper {
+  grid-column: 2 / 4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.description-wrapper textarea {
+  height: 100%;
   resize: none;
+  padding: 5px 5px;
+}
+
+.due-date-wrapper {
+  grid-column: 2 / 4;
+  grid-row: 3 / 4;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.priority-wrapper {
+  grid-column: 2 / 3;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.list-wrapper {
+  grid-column: 3 / 4;
+  grid-row: 4 / 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.due-date-wrapper > div,
+.list-wrapper > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.due-date-wrapper .time-container {
+  padding: 5px;
 }
 
 .description > textarea {
@@ -105,8 +144,13 @@
   width: 100%;
 }
 
+.task > form {
+  padding: 5px;
+}
 .task > div {
+  padding: 5px;
   display: flex;
+  gap: 5px;
 }
 
 .task > div:nth-child(2) {
@@ -118,8 +162,27 @@
 }
 
 .task img {
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
+  align-self: center;
+}
+
+.full-task-form > div {
+  grid-column: 2 / 3;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.full-task-form > div:nth-child(4) {
+  padding: 0px 10px;
+  gap: 10px;
+}
+
+.full-task-form textarea {
+  resize: none;
+  padding: 5px 5px;
 }
 
 .back-btn img,

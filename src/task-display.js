@@ -5,6 +5,7 @@ import Img2 from "./images/work.svg";
 import Img3 from "./images/shopping.svg";
 import Img4 from "./images/new.svg";
 import Img5 from "./images/delete.svg";
+import Img6 from "./images/back.svg";
 
 const taskBars = () => {
   const display = document.querySelector(".task-display");
@@ -73,6 +74,7 @@ const taskBars = () => {
 
 const taskPage = (taskIndex) => {
   const display = document.querySelector(".task-display");
+  const header = document.querySelector(".task-header");
 
   display.textContent = "";
 
@@ -105,25 +107,27 @@ const taskPage = (taskIndex) => {
   const priorityLabel = document.createElement("label");
   const prioritySelect = document.createElement("select");
   const backBtn = document.createElement("button");
+  const backBtnImg = new Image();
 
   form.classList.add("full-task-form");
   form.dataset.num = taskIndex;
   descriptionContainer.classList.add("description");
   dateContainer.classList.add("date-container");
   timeContainer.classList.add("time-container");
-  backBtn.classList.add("back-btn");
   titleLabel.htmlFor = "task-title";
-  titleLabel.textContent = "Name";
+  // titleLabel.textContent = "Name";
   descriptionLabel.htmlFor = "description";
   dateLabel.htmlFor = "date";
-  dateLabel.textContent = "Due date: ";
+  dateLabel.textContent = "Due On: ";
   timeLabel.htmlFor = "time";
-  timeLabel.textContent = "Time";
+  timeLabel.textContent = "At: ";
   priorityLabel.htmlFor = "priority";
-  priorityLabel.textContent = "Priority";
+  // priorityLabel.textContent = "Priority";
   listSelectLabel.htmlFor = "list";
   backBtn.type = "button";
-  backBtn.textContent = "Back";
+  backBtn.classList.add("back-btn");
+  backBtnImg.src = Img6;
+  backBtnImg.alt = "Back arrow icon";
   title.name = "title";
   title.id = "task-title";
   title.value = taskTitle;
@@ -185,7 +189,8 @@ const taskPage = (taskIndex) => {
   timeContainer.appendChild(time);
   dateWrapper.appendChild(dateContainer);
   dateWrapper.appendChild(timeContainer);
-  form.appendChild(backBtn);
+  backBtn.appendChild(backBtnImg);
+  header.appendChild(backBtn);
   form.appendChild(titleContainer);
   form.appendChild(listNameContainer);
   form.appendChild(descriptionContainer);
@@ -285,7 +290,9 @@ const removeDeleteOption = () => {
   const header = document.querySelector(".task-header");
   const div = document.querySelector(".del-btn-container");
 
-  header.removeChild(div);
+  if (header.contains(div)) {
+    header.removeChild(div);
+  }
 };
 
 const deleteTask = () => {

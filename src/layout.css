@@ -18,12 +18,12 @@ body {
   grid-template-rows: 80px 4fr 100px;
 }
 
-.content > div {
-  padding: 10px;
-}
-
 .header {
   grid-row: 1 / 2;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .main-section {
@@ -35,11 +35,22 @@ body {
 
 .footer {
   grid-row: 3 / 4;
+  padding: 10px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
+.task-header {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* .content {
+  padding: 10px;
+} */
+
+.header > div:nth-child(2) {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 .header img {

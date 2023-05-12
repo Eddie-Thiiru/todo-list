@@ -56,6 +56,7 @@ const emptyIndicator = () => {
 
 const createForm = () => {
   const display = document.querySelector(".task-display");
+  const header = document.querySelector(".task-header");
 
   display.textContent = "";
 
@@ -63,7 +64,7 @@ const createForm = () => {
   const form = document.createElement("form");
   const taskContainer = document.createElement("div");
   const taskLabel = document.createElement("label");
-  const taskInput = document.createElement("textarea");
+  const taskInput = document.createElement("input");
   const descriptionContainer = document.createElement("div");
   const descriptionLabel = document.createElement("label");
   const descriptionInput = document.createElement("textarea");
@@ -90,6 +91,11 @@ const createForm = () => {
 
   //Add attributes
   form.classList.add("task-form");
+  taskContainer.classList.add("title-wrapper");
+  descriptionContainer.classList.add("description-wrapper");
+  dueDateContainer.classList.add("due-date-wrapper");
+  priorityDiv.classList.add("priority-wrapper");
+  submitContainer.classList.add("list-wrapper");
   dateContainer.classList.add("date-container");
   backBtn.type = "button";
   backBtn.classList.add("back-btn");
@@ -104,8 +110,9 @@ const createForm = () => {
   priorityLabel.htmlFor = "priority";
   priorityLabel.textContent = "Priority";
   submitLabel.htmlFor = "list";
-  submitLabel.textContent = "Add to List";
+  submitLabel.textContent = "Add To";
   dueDateInput.type = "date";
+  taskInput.type = "text";
   taskInput.name = "title";
   taskInput.id = "task-title";
   taskInput.required = true;
@@ -158,12 +165,12 @@ const createForm = () => {
   submitContainer.appendChild(createListBtn);
   dueDateContainer.appendChild(dateContainer);
   backBtn.appendChild(backBtnImg);
-  form.appendChild(backBtn);
   form.appendChild(taskContainer);
   form.appendChild(descriptionContainer);
   form.appendChild(dueDateContainer);
   form.appendChild(priorityDiv);
   form.appendChild(submitContainer);
+  header.appendChild(backBtn);
   display.appendChild(form);
 };
 
@@ -295,6 +302,15 @@ const modifyTask = () => {
 
   taskArray.splice(index, 1, formData);
 };
+
+const backButtonController = () => {
+  const header = document.querySelector(".task-header");
+  const child = document.querySelector(".back-btn");
+
+  if (header.contains(child)) {
+    header.removeChild(child);
+  }
+};
 export {
   mainContent,
   emptyIndicator,
@@ -305,5 +321,6 @@ export {
   addListOption,
   processForm,
   modifyTask,
+  backButtonController,
   taskArray,
 };
