@@ -1,5 +1,6 @@
 import { taskArray, emptyIndicator } from "./main-content.js";
 import { listArray, priorityArray } from "./layout.js";
+import "./forms.css";
 import Img from "./images/personal.svg";
 import Img2 from "./images/work.svg";
 import Img3 from "./images/shopping.svg";
@@ -106,6 +107,7 @@ const taskPage = (taskIndex) => {
   const priorityContainer = document.createElement("div");
   const priorityLabel = document.createElement("label");
   const prioritySelect = document.createElement("select");
+  const backBtnContainer = document.createElement("div");
   const backBtn = document.createElement("button");
   const backBtnImg = new Image();
 
@@ -114,13 +116,14 @@ const taskPage = (taskIndex) => {
   descriptionContainer.classList.add("description");
   dateContainer.classList.add("date-container");
   timeContainer.classList.add("time-container");
+  backBtnContainer.classList.add("back-btn-container");
   titleLabel.htmlFor = "task-title";
   // titleLabel.textContent = "Name";
   descriptionLabel.htmlFor = "description";
   dateLabel.htmlFor = "date";
-  dateLabel.textContent = "Due On: ";
+  dateLabel.textContent = "Due Date";
   timeLabel.htmlFor = "time";
-  timeLabel.textContent = "At: ";
+  timeLabel.textContent = "Due Time";
   priorityLabel.htmlFor = "priority";
   // priorityLabel.textContent = "Priority";
   listSelectLabel.htmlFor = "list";
@@ -190,7 +193,8 @@ const taskPage = (taskIndex) => {
   dateWrapper.appendChild(dateContainer);
   dateWrapper.appendChild(timeContainer);
   backBtn.appendChild(backBtnImg);
-  header.appendChild(backBtn);
+  backBtnContainer.appendChild(backBtn);
+  header.appendChild(backBtnContainer);
   form.appendChild(titleContainer);
   form.appendChild(listNameContainer);
   form.appendChild(descriptionContainer);

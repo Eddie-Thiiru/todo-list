@@ -106,7 +106,7 @@ function component() {
       }
 
       const wrapper = document.querySelector(".wrapper");
-      const listForm = document.querySelector(".list-form");
+      const listForm = document.querySelector(".pop-up");
 
       // create, submit and process forms
       if (e.target.className === "form-btn") {
@@ -180,7 +180,7 @@ function component() {
 
       // Add new list option
       if (e.target.className === "add-list-btn") {
-        const listForm = document.querySelector(".list-form");
+        const listForm = document.querySelector(".pop-up");
         const isFormValid = listForm.checkValidity();
 
         if (!isFormValid) {

@@ -1,4 +1,5 @@
 import "./content.css";
+import "./forms.css";
 import { listArray } from "./layout";
 import Img from "./images/add-task.svg";
 import Img2 from "./images/back.svg";
@@ -108,11 +109,11 @@ const createForm = () => {
   descriptionLabel.htmlFor = "description";
   descriptionLabel.textContent = "What is to be done?";
   dueDateLabel.htmlFor = "date";
-  dueDateLabel.textContent = "Due date";
+  dueDateLabel.textContent = "Date";
   priorityLabel.htmlFor = "priority";
   priorityLabel.textContent = "Priority";
   submitLabel.htmlFor = "list";
-  submitLabel.textContent = "Add To";
+  submitLabel.textContent = "List";
   dueDateInput.type = "date";
   taskInput.type = "text";
   taskInput.name = "title";
@@ -232,7 +233,7 @@ const newListForm = () => {
   const cancelBtn = document.createElement("button");
   const acceptBtn = document.createElement("button");
 
-  listForm.classList.add("list-form");
+  listForm.classList.add("pop-up");
   cancelBtn.type = "button";
   cancelBtn.classList.add("cancel-list-btn");
   cancelBtn.textContent = "Cancel";
@@ -268,7 +269,7 @@ const addTimeOption = () => {
 
     container.classList.add("time-container");
     label.htmlFor = "time";
-    label.textContent = "Time:";
+    label.textContent = "Time";
     timeInput.type = "time";
     timeInput.name = "time";
     timeInput.id = "time";
