@@ -51,7 +51,9 @@ const mainMenu = () => {
   todayCount.classList.add("today-count");
   upcomingCount.classList.add("upcoming-count");
   favContainer.classList.add("fav-container");
+  favWrapper.classList.add("fav-wrapper");
   projContainer.classList.add("proj-container");
+  projWrapper.classList.add("proj-wrapper");
   favoritesBtn.type = "button";
   favoritesBtn.classList.add("favorites-btn");
   favoritesBtn.textContent = "Favorites";
@@ -115,13 +117,13 @@ const favoritesList = () => {
 
   priorityOne.classList.add("critical-btn");
   priorityOne.id = "priority-btn";
-  priorityOne.textContent = "Critical";
+  priorityOne.textContent = "Critical Priority";
   priorityTwo.classList.add("high-btn");
   priorityTwo.id = "priority-btn";
-  priorityTwo.textContent = "High";
+  priorityTwo.textContent = "High Priority";
   priorityThree.classList.add("normal-btn");
   priorityThree.id = "priority-btn";
-  priorityThree.textContent = "Normal";
+  priorityThree.textContent = "Normal Priority";
   priorityOneCount.classList.add("critical-count");
   priorityTwoCount.classList.add("high-count");
   priorityThreeCount.classList.add("normal-count");
