@@ -1,7 +1,7 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   position: relative;
   grid-column: span 3;
   display: grid;
@@ -25,12 +25,6 @@
   flex-direction: column;
   align-self: center;
   justify-self: center;
-}
-
-.display-btn-container {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
 }
 
 .empty-indicator {
@@ -65,13 +59,24 @@
   /* align-items: center; */
 }
 
-.back-btn {
-  justify-self: self-start;
+.display-btn-container {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
 }
 
-.create-list-btn {
+.back-btn-container,
+.del-btn-container {
   align-self: center;
-  justify-self: start;
+}
+
+.wrapper button {
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  display: grid;
+  justify-self: self-start;
+  align-items: center;
 }
 
 .task-form > div {
@@ -195,4 +200,8 @@
 .empty-indicator img {
   height: 100px;
   width: 100px;
+}
+
+.wrapper button:hover {
+  background-color: gray;
 }

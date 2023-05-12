@@ -26,7 +26,7 @@ const mainContent = () => {
   btn.type = "button";
   btn.classList.add("form-btn");
   btnImg.src = Img;
-  btnImg.alt = "Add circle icon";
+  btnImg.alt = "Plus icon";
   heading.textContent = "Today";
 
   header.appendChild(heading);
@@ -72,6 +72,7 @@ const createForm = () => {
   const dateContainer = document.createElement("div");
   const dueDateLabel = document.createElement("label");
   const dueDateInput = document.createElement("input");
+  const backBtnContainer = document.createElement("div");
   const backBtn = document.createElement("button");
   const backBtnImg = new Image();
 
@@ -97,6 +98,7 @@ const createForm = () => {
   priorityDiv.classList.add("priority-wrapper");
   submitContainer.classList.add("list-wrapper");
   dateContainer.classList.add("date-container");
+  backBtnContainer.classList.add("back-btn-container");
   backBtn.type = "button";
   backBtn.classList.add("back-btn");
   backBtnImg.src = Img2;
@@ -165,12 +167,13 @@ const createForm = () => {
   submitContainer.appendChild(createListBtn);
   dueDateContainer.appendChild(dateContainer);
   backBtn.appendChild(backBtnImg);
+  backBtnContainer.appendChild(backBtn);
   form.appendChild(taskContainer);
   form.appendChild(descriptionContainer);
   form.appendChild(dueDateContainer);
   form.appendChild(priorityDiv);
   form.appendChild(submitContainer);
-  header.appendChild(backBtn);
+  header.appendChild(backBtnContainer);
   display.appendChild(form);
 };
 
@@ -305,7 +308,7 @@ const modifyTask = () => {
 
 const backButtonController = () => {
   const header = document.querySelector(".task-header");
-  const child = document.querySelector(".back-btn");
+  const child = document.querySelector(".back-btn-container");
 
   if (header.contains(child)) {
     header.removeChild(child);

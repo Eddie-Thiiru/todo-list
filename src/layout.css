@@ -20,6 +20,7 @@ body {
 
 .header {
   grid-row: 1 / 2;
+  background-color: #ecf0f2;
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -43,9 +44,11 @@ body {
   grid-template-rows: 1fr 1fr;
 }
 
-/* .content {
-  padding: 10px;
-} */
+.menu-button {
+  border: none;
+  display: grid;
+  align-items: center;
+}
 
 .header > div:nth-child(2) {
   display: grid;
@@ -54,8 +57,12 @@ body {
 }
 
 .header img {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 40px;
+}
+
+.menu-button:hover {
+  background-color: grey;
 }
 
 .display-btn-container img,
