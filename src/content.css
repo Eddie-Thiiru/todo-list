@@ -1,11 +1,10 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  /* background-color: #f7f9fc; */
   padding: 15px;
   position: relative;
   display: grid;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 80px 1fr;
 }
 
 .task-display {
@@ -90,5 +89,5 @@
 }
 
 .wrapper button:hover {
-  background-color: gray;
+  background-color: #cccccc;
 }
