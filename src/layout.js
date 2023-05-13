@@ -12,6 +12,7 @@ const pageLayout = () => {
   const header = document.createElement("div");
   const main = document.createElement("div");
   const footer = document.createElement("div");
+  const para = document.createElement("p");
   const menuContainer = document.createElement("div");
   const menuButton = document.createElement("button");
   const menuImg = new Image();
@@ -23,6 +24,7 @@ const pageLayout = () => {
   header.classList.add("header");
   main.classList.add("main-section");
   footer.classList.add("footer");
+  para.textContent = "Copyright @ Todo 2023";
   menuImg.src = Img;
   menuImg.alt = "menu icon";
   menuButton.type = "button";
@@ -41,6 +43,7 @@ const pageLayout = () => {
   menuContainer.appendChild(menuButton);
   header.appendChild(menuContainer);
   header.appendChild(profile);
+  footer.appendChild(para);
   content.appendChild(header);
   content.appendChild(main);
   content.appendChild(footer);

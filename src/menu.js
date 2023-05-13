@@ -15,8 +15,8 @@ import Img11 from "./images/new.svg";
 import Img12 from "./images/add-list.svg";
 
 const mainMenu = () => {
+  const content = document.querySelector(".content");
   const main = document.querySelector(".main-section");
-  const wrapper = document.querySelector(".wrapper");
   const menu = document.createElement("div");
   const todayContainer = document.createElement("div");
   const todayImg = new Image();
@@ -97,7 +97,7 @@ const mainMenu = () => {
   menu.appendChild(upcomingContainer);
   menu.appendChild(favContainer);
   menu.appendChild(projContainer);
-  main.insertBefore(menu, wrapper);
+  content.insertBefore(menu, main);
 };
 
 const favoritesList = () => {

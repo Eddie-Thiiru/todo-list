@@ -4,7 +4,6 @@
   /* background-color: #f7f9fc; */
   padding: 15px;
   position: relative;
-  grid-column: span 6;
   display: grid;
   grid-template-rows: 100px 1fr;
 }

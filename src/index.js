@@ -36,21 +36,21 @@ function component() {
 
   function eventHandler() {
     const menuBtn = document.querySelector(".menu-button");
-    const main = document.querySelector(".main-section");
+    const content = document.querySelector(".content");
 
     // Toggle the Main Menu
     menuBtn.addEventListener("click", () => {
       const menu = document.querySelector(".main-menu");
 
-      if (main.contains(menu)) {
-        main.removeChild(menu);
+      if (content.contains(menu)) {
+        content.removeChild(menu);
       } else {
         mainMenu();
         taskCount();
       }
     });
 
-    main.addEventListener("click", function (e) {
+    content.addEventListener("click", function (e) {
       const heading = document.querySelector("h2");
 
       // Toggle Today or Upcoming projects
