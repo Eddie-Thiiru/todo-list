@@ -118,6 +118,7 @@ const createForm = () => {
   taskInput.type = "text";
   taskInput.name = "title";
   taskInput.id = "task-title";
+  taskInput.maxLength = "35";
   taskInput.required = true;
   descriptionInput.name = "description";
   descriptionInput.id = "description";

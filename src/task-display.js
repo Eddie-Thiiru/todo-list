@@ -132,6 +132,7 @@ const taskPage = (taskIndex) => {
   title.name = "title";
   title.id = "task-title";
   title.value = taskTitle;
+  title.maxLength = "35";
   title.required = true;
   description.name = "description";
   description.id = "description";
