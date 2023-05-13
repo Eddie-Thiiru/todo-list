@@ -6,21 +6,62 @@
   gap: 10px;
 }
 
-.pop-up {
-  background-color: aqua;
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-self: center;
-}
-
 .full-task-form {
   height: 100%;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr 50px 3fr 50px 50px;
   justify-items: center;
+}
+
+body.modal-open {
+  pointer-events: none;
+}
+
+body.modal-open .task-form {
+  opacity: 0.5;
+}
+
+body.modal-open .pop-up {
+  pointer-events: auto;
+}
+
+.pop-up {
+  position: absolute;
+  width: 250px;
+  height: 150px;
+  background-color: aqua;
+  border-radius: 5px;
+  padding: 10px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pop-up label,
+.pop-up div {
+  padding: 5px 0px;
+}
+
+.pop-up input {
+  background-color: aqua;
+  border-radius: 0px;
+  border-bottom: 2px solid black;
+}
+
+.pop-up > div {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+  justify-content: end;
+}
+
+.pop-up button {
+  border-radius: 5px;
+  width: 60px;
 }
 
 .task > form {
@@ -71,12 +112,6 @@
   grid-template-columns: 1fr 40px;
   align-items: center;
 }
-
-/* .title-wrapper input {
-    height: 30px;
-    display: flex;
-    align-items: center;
-  } */
 
 .date-container,
 .time-container {

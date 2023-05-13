@@ -152,7 +152,9 @@ const favoritesList = () => {
 const projectList = () => {
   const projects = document.querySelector(".projects");
 
-  projects.textContent = "";
+  if (projects) {
+    projects.textContent = "";
+  }
 
   for (let i = 0; i < listArray.length; i++) {
     const listName = listArray[i];
@@ -186,7 +188,10 @@ const projectList = () => {
     container.appendChild(img);
     container.appendChild(listBtn);
     container.appendChild(taskCount);
-    projects.appendChild(container);
+
+    if (projects) {
+      projects.appendChild(container);
+    }
   }
 };
 
@@ -240,12 +245,14 @@ const changeProjectsImage = () => {
   const projectsContainer = document.querySelector(".projects");
   const image = document.querySelector(".projects-img");
 
-  if (projectsContainer.textContent === "") {
-    image.src = Img3;
-    image.alt = "Expand less icon";
-  } else {
-    image.src = Img4;
-    image.alt = "Expand more icon";
+  if (projectsContainer) {
+    if (projectsContainer.textContent === "") {
+      image.src = Img3;
+      image.alt = "Expand less icon";
+    } else {
+      image.src = Img4;
+      image.alt = "Expand more icon";
+    }
   }
 };
 

@@ -105,7 +105,6 @@ function component() {
         }
       }
 
-      const wrapper = document.querySelector(".wrapper");
       const listForm = document.querySelector(".pop-up");
 
       // create, submit and process forms
@@ -122,7 +121,7 @@ function component() {
           form.reportValidity();
         } else {
           if (listForm) {
-            wrapper.removeChild(listForm);
+            display.removeChild(listForm);
           }
 
           e.preventDefault();
@@ -157,7 +156,7 @@ function component() {
       // Remove form display or full-task display
       if (e.target.className === "back-btn") {
         if (listForm) {
-          wrapper.removeChild(listForm);
+          display.removeChild(listForm);
         }
 
         backButtonController();
@@ -171,17 +170,21 @@ function component() {
         e.target.className === "create-list-btn"
       ) {
         newListForm();
+        document.body.classList.toggle("modal-open");
       }
 
       // Cancel new list form
       if (e.target.className === "cancel-list-btn") {
-        wrapper.removeChild(wrapper.lastChild);
+        document.body.classList.toggle("modal-open");
+
+        display.removeChild(listForm);
       }
 
       // Add new list option
       if (e.target.className === "add-list-btn") {
-        const listForm = document.querySelector(".pop-up");
         const isFormValid = listForm.checkValidity();
+
+        document.body.classList.toggle("modal-open");
 
         if (!isFormValid) {
           listForm.reportValidity();
@@ -193,12 +196,12 @@ function component() {
             addListOption();
             projectList();
             changeProjectsImage();
-            wrapper.removeChild(wrapper.lastChild);
+            display.removeChild(listForm);
           } else {
             projectList();
             changeProjectsImage();
             taskCount();
-            wrapper.removeChild(wrapper.lastChild);
+            display.removeChild(listForm);
           }
         }
       }
@@ -210,7 +213,7 @@ function component() {
         sortTaskBars(btn);
       }
 
-      // Display all task details
+      // Display full task details
       if (e.target.className === "task") {
         const index = e.target.dataset.num;
 

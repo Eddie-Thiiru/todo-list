@@ -118,14 +118,12 @@ const taskPage = (taskIndex) => {
   timeContainer.classList.add("time-container");
   backBtnContainer.classList.add("back-btn-container");
   titleLabel.htmlFor = "task-title";
-  // titleLabel.textContent = "Name";
   descriptionLabel.htmlFor = "description";
   dateLabel.htmlFor = "date";
   dateLabel.textContent = "Due Date";
   timeLabel.htmlFor = "time";
   timeLabel.textContent = "Due Time";
   priorityLabel.htmlFor = "priority";
-  // priorityLabel.textContent = "Priority";
   listSelectLabel.htmlFor = "list";
   backBtn.type = "button";
   backBtn.classList.add("back-btn");
@@ -248,7 +246,6 @@ const sortTaskBars = (btn) => {
         title.textContent = taskTitle;
         date.textContent = taskDate;
         listName.textContent = listChoice;
-        //   listImg = img
 
         checkBoxContainer.appendChild(checkBoxLabel);
         checkBoxContainer.appendChild(checkBox);

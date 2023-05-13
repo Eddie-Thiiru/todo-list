@@ -224,7 +224,7 @@ const changeButton = (ele) => {
 };
 
 const newListForm = () => {
-  const wrapper = document.querySelector(".wrapper");
+  const display = document.querySelector(".task-display");
 
   const listForm = document.createElement("form");
   const label = document.createElement("label");
@@ -246,13 +246,14 @@ const newListForm = () => {
   input.name = "new-list";
   input.id = "new-list";
   input.required = true;
+  input.placeholder = "Enter List Name";
 
-  btnContainer.appendChild(cancelBtn);
   btnContainer.appendChild(acceptBtn);
+  btnContainer.appendChild(cancelBtn);
   listForm.appendChild(label);
   listForm.appendChild(input);
   listForm.appendChild(btnContainer);
-  wrapper.appendChild(listForm);
+  display.appendChild(listForm);
 };
 
 const addTimeOption = () => {
