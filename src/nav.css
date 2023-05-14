@@ -9,7 +9,7 @@
 }
 
 .main-menu button {
-  background-color: #d9d9d9;
+  background-color: #e3e9f6;
   border: none;
   padding: 2px 10px;
   justify-self: flex-start;
@@ -91,7 +91,7 @@
 .upcoming-container:hover,
 .fav-wrapper:hover,
 .proj-wrapper:hover {
-  background-color: aqua;
+  background-color: #77c4fe;
 }
 
 .today-container:hover .today-btn,
@@ -99,16 +99,16 @@
 .fav-wrapper:hover .favorites-btn,
 .proj-wrapper:hover .projects-btn,
 .proj-wrapper:hover .add-project-btn {
-  background-color: aqua;
+  background-color: #77c4fe;
 }
 
 .favorites > div:hover,
 .projects > div:hover,
 .favorites > div:hover button,
 .projects > div:hover button {
-  background-color: chocolate;
+  background-color: #77c4fe;
 }
 
 .main-menu button:hover {
-  font-weight: 700;
+  font-weight: 600;
 }

@@ -30,7 +30,7 @@ body.modal-open .pop-up {
   position: absolute;
   width: 250px;
   height: 150px;
-  background-color: aqua;
+  background-color: #77c4fe;
   border-radius: 5px;
   padding: 10px;
   top: 50%;
@@ -47,9 +47,9 @@ body.modal-open .pop-up {
 }
 
 .pop-up input {
-  background-color: aqua;
+  background-color: #77c4fe;
   border-radius: 0px;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid #050203;
 }
 
 .pop-up > div {
@@ -73,6 +73,8 @@ body.modal-open .pop-up {
 }
 
 .full-task-form #task-title {
+  font-size: 1.5rem;
+  font-weight: bold;
   height: auto;
   width: 300px;
   text-align: center;
@@ -80,6 +82,9 @@ body.modal-open .pop-up {
 
 .task-form #task-title {
   width: 300px;
+  background-color: #f6f8fc;
+  border-bottom: 2px solid #050203;
+  border-radius: 0px;
 }
 
 .title-wrapper {
@@ -117,6 +122,7 @@ body.modal-open .pop-up {
   display: grid;
   grid-template-columns: 1fr 40px;
   align-items: center;
+  gap: 2px;
 }
 
 .date-container,
@@ -157,15 +163,21 @@ body.modal-open .pop-up {
 input,
 textarea,
 select {
-  height: 30px;
+  height: 35px;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
   font-size: 1rem;
-  background-color: #ecf0f2;
+  background-color: #dee0e0;
   border: none;
   border-radius: 5px;
   padding: 5px;
 }
+/* 
+.full-task-form input,
+.full-task-form textarea,
+.full-task-form select {
+  background-color: #ebeced;
+} */
 
 label {
   font-weight: 600;
@@ -179,4 +191,9 @@ textarea {
 .description-wrapper > textarea {
   height: 100%;
   width: 100%;
+}
+
+.task-form #task-title:focus,
+.pop-up input {
+  outline: none;
 }

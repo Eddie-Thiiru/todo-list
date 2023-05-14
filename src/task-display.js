@@ -204,11 +204,35 @@ const taskPage = (taskIndex) => {
 
 const sortTaskBars = (btn) => {
   const display = document.querySelector(".task-display");
+  const heading = document.querySelector("h2");
   const sibling = btn.nextElementSibling;
   const btnClass = btn.className;
   const todayDate = new Date().toISOString().split("T")[0];
 
   display.textContent = "";
+
+  // changeButton();
+
+  if (btnClass.includes("today")) {
+    heading.textContent = "Today";
+  } else if (btnClass.includes("upcoming")) {
+    heading.textContent = "Upcoming";
+  } else if (btnClass.includes("critical")) {
+    heading.textContent = "Critical Priority Tasks";
+  } else if (btnClass.includes("high")) {
+    heading.textContent = "High Priority Tasks";
+  } else if (btnClass.includes("normal")) {
+    heading.textContent = "Normal Priority Tasks";
+  } else if (btnClass.includes("personal")) {
+    heading.textContent = "Personal";
+  } else if (btnClass.includes("work")) {
+    heading.textContent = "Work";
+  } else if (btnClass.includes("shopping")) {
+    heading.textContent = "Shopping";
+  } else {
+    let title = btnClass.replaceAll("-", " ");
+    heading.textContent = title.replaceAll("btn", "");
+  }
 
   if (sibling.textContent !== "") {
     for (let i = 0; i < taskArray.length; i++) {
@@ -243,10 +267,23 @@ const sortTaskBars = (btn) => {
         checkBox.type = "checkbox";
         checkBox.name = "task-checkbox";
         checkBox.classList.add("checkbox");
-        listImg.alt = "img";
         title.textContent = taskTitle;
         date.textContent = taskDate;
         listName.textContent = listChoice;
+
+        if (listChoice === "personal") {
+          listImg.src = Img;
+          listImg.alt = "Person icon";
+        } else if (listChoice === "work") {
+          listImg.src = Img2;
+          listImg.alt = "Briefcase icon";
+        } else if (listChoice === "shopping") {
+          listImg.src = Img3;
+          listImg.alt = "Shopping cart icon";
+        } else {
+          listImg.src = Img4;
+          listImg.alt = "Large dot icon";
+        }
 
         checkBoxContainer.appendChild(checkBoxLabel);
         checkBoxContainer.appendChild(checkBox);

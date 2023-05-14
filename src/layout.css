@@ -10,7 +10,7 @@ body {
   height: 100vh;
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
-  background-color: #d9d9d9;
+  background-color: #e3e9f6;
   color: #050203;
 }
 
@@ -18,7 +18,7 @@ body {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 1fr minmax(600px, 5fr);
   grid-template-rows: 60px 4fr 60px;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 .main-section {
-  background-color: #fff;
+  background-color: #f6f8fc;
   border-radius: 20px;
   margin: 10px 20px;
   grid-column-end: span 3;
@@ -62,7 +62,7 @@ button {
 
 .menu-button {
   border: none;
-  background-color: #d9d9d9;
+  background-color: #e3e9f6;
   display: grid;
   align-items: center;
 }
@@ -79,7 +79,7 @@ button {
 }
 
 .menu-button:hover {
-  background-color: grey;
+  background-color: #dee0e0;
 }
 
 .display-btn-container img,

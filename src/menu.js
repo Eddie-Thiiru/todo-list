@@ -164,12 +164,12 @@ const projectList = () => {
     const taskCount = document.createElement("div");
     const img = new Image();
 
-    container.classList.add(`${listName}-list`);
+    container.classList.add(`${listName.replaceAll(" ", "-")}-list`);
     listBtn.type = "button";
-    listBtn.classList.add(`${listName}-btn`);
+    listBtn.classList.add(`${listName.replaceAll(" ", "-")}-btn`);
     listBtn.id = "task-btn";
     listBtn.textContent = listName;
-    taskCount.classList.add(`${listName}-count`);
+    taskCount.classList.add(`${listName.replaceAll(" ", "-")}-count`);
 
     if (listName === "personal") {
       img.src = Img8;

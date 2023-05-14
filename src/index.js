@@ -51,23 +51,25 @@ function component() {
     });
 
     content.addEventListener("click", function (e) {
-      const heading = document.querySelector("h2");
-
       // Toggle Today or Upcoming projects
       if (e.target.className === "today-btn") {
         const btn = e.target;
 
-        heading.textContent = "Today";
-
+        backButtonController();
+        changeButton(btn);
         sortTaskBars(btn);
+
+        return;
       }
 
       if (e.target.className === "upcoming-btn") {
         const btn = e.target;
 
-        heading.textContent = "Upcoming";
-
+        backButtonController();
         sortTaskBars(btn);
+        changeButton(btn);
+
+        return;
       }
 
       // Toggle Favorites and Projects menu choices
@@ -78,10 +80,16 @@ function component() {
           favoritesList();
           taskCount();
           changeFavoritesImage();
+          // backButtonController();
+          // changeButton(e.target);
         } else {
           favorites.textContent = "";
           changeFavoritesImage();
+          // backButtonController();
+          // changeButton(e.target);
         }
+
+        return;
       }
 
       const display = document.querySelector(".task-display");
@@ -99,10 +107,11 @@ function component() {
           changeProjectsImage();
         }
 
-        if (display.contains(form)) {
-        } else {
-          taskBars();
-        }
+        backButtonController();
+        changeButton(e.target);
+        taskBars();
+
+        return;
       }
 
       const listForm = document.querySelector(".pop-up");
@@ -111,7 +120,10 @@ function component() {
       if (e.target.className === "form-btn") {
         removeDeleteOption();
         createForm();
+        backButtonController();
         changeButton(e.target);
+
+        return;
       }
 
       if (e.target.className === "submit-btn") {
@@ -127,10 +139,12 @@ function component() {
           e.preventDefault();
           processForm();
           backButtonController();
+          changeButton(e.target);
           taskBars();
           taskCount();
-          changeButton(e.target);
         }
+
+        return;
       }
 
       if (e.target.className === "save-btn") {
@@ -142,15 +156,19 @@ function component() {
         } else {
           modifyTask();
           backButtonController();
+          changeButton(e.target);
           taskBars();
           taskCount();
-          changeButton(e.target);
         }
+
+        return;
       }
 
       // Add time input option
       if (e.target.id === "date" && e.target.name === "date") {
         addTimeOption();
+
+        return;
       }
 
       // Remove form display or full-task display
@@ -162,6 +180,8 @@ function component() {
         backButtonController();
         taskBars();
         changeButton(e.target);
+
+        return;
       }
 
       // Create new list form
@@ -204,13 +224,19 @@ function component() {
             display.removeChild(listForm);
           }
         }
+
+        return;
       }
 
       // Sort tasks according to the clicked project or priority list
       if (e.target.id === "task-btn" || e.target.id === "priority-btn") {
         const btn = e.target;
 
+        backButtonController();
+        changeButton(btn);
         sortTaskBars(btn);
+
+        return;
       }
 
       // Display full task details
@@ -220,6 +246,8 @@ function component() {
         removeDeleteOption();
         taskPage(index);
         changeButton(e.target);
+
+        return;
       }
 
       // Delete tasks

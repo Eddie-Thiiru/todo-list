@@ -1,11 +1,13 @@
 import "./content.css";
 import "./forms.css";
 import { listArray } from "./layout";
+import { removeDeleteOption } from "./task-display";
 import Img from "./images/add-task.svg";
 import Img2 from "./images/back.svg";
 import Img3 from "./images/add-list.svg";
 import Img4 from "./images/save.svg";
 import Img5 from "./images/calendar.svg";
+import { doc } from "prettier";
 
 const taskArray = [];
 
@@ -73,9 +75,6 @@ const createForm = () => {
   const dateContainer = document.createElement("div");
   const dueDateLabel = document.createElement("label");
   const dueDateInput = document.createElement("input");
-  const backBtnContainer = document.createElement("div");
-  const backBtn = document.createElement("button");
-  const backBtnImg = new Image();
 
   // create form selections
   const priorityDiv = document.createElement("div");
@@ -99,13 +98,8 @@ const createForm = () => {
   priorityDiv.classList.add("priority-wrapper");
   submitContainer.classList.add("list-wrapper");
   dateContainer.classList.add("date-container");
-  backBtnContainer.classList.add("back-btn-container");
-  backBtn.type = "button";
-  backBtn.classList.add("back-btn");
-  backBtnImg.src = Img2;
-  backBtnImg.alt = "Back arrow icon";
   taskLabel.htmlFor = "task-title";
-  taskLabel.textContent = "Task name";
+  taskLabel.textContent = "New Task";
   descriptionLabel.htmlFor = "description";
   descriptionLabel.textContent = "What is to be done?";
   dueDateLabel.htmlFor = "date";
@@ -119,9 +113,11 @@ const createForm = () => {
   taskInput.name = "title";
   taskInput.id = "task-title";
   taskInput.maxLength = "35";
+  taskInput.placeholder = "Enter Task Name";
   taskInput.required = true;
   descriptionInput.name = "description";
   descriptionInput.id = "description";
+  descriptionInput.placeholder = "Enter Task Description Here";
   dueDateInput.name = "date";
   dueDateInput.id = "date";
   priorityInput.name = "priority";
@@ -168,21 +164,25 @@ const createForm = () => {
   submitContainer.appendChild(submitSelect);
   submitContainer.appendChild(createListBtn);
   dueDateContainer.appendChild(dateContainer);
-  backBtn.appendChild(backBtnImg);
-  backBtnContainer.appendChild(backBtn);
   form.appendChild(taskContainer);
   form.appendChild(descriptionContainer);
   form.appendChild(dueDateContainer);
   form.appendChild(priorityDiv);
   form.appendChild(submitContainer);
-  header.appendChild(backBtnContainer);
   display.appendChild(form);
 };
 
 const changeButton = (ele) => {
+  // const display = document.querySelector(".task-display")
+  // const form = document.querySelector("task-form")
+  // const formTwo = document.querySelector("full-task-form")
   const btnContainer = document.querySelector(".display-btn-container");
 
   btnContainer.textContent = "";
+
+  // if (display.contains(form) || display.contains(formTwo)){
+
+  // }
 
   if (ele.className === "form-btn") {
     const btn = document.createElement("button");
@@ -195,18 +195,14 @@ const changeButton = (ele) => {
 
     btn.appendChild(btnImg);
     btnContainer.appendChild(btn);
-  } else if (
-    ele.className === "submit-btn" ||
-    ele.className === "back-btn" ||
-    ele.className === "save-btn"
-  ) {
+  } else if (ele.className === "task") {
     const btn = document.createElement("button");
     const btnImg = new Image();
 
     btn.type = "button";
-    btn.classList.add("form-btn");
-    btnImg.src = Img;
-    btnImg.alt = "Add circle icon";
+    btn.classList.add("save-btn");
+    btnImg.src = Img4;
+    btnImg.alt = "Check circle icon";
 
     btn.appendChild(btnImg);
     btnContainer.appendChild(btn);
@@ -215,9 +211,9 @@ const changeButton = (ele) => {
     const btnImg = new Image();
 
     btn.type = "button";
-    btn.classList.add("save-btn");
-    btnImg.src = Img4;
-    btnImg.alt = "Check circle icon";
+    btn.classList.add("form-btn");
+    btnImg.src = Img;
+    btnImg.alt = "Add circle icon";
 
     btn.appendChild(btnImg);
     btnContainer.appendChild(btn);
@@ -248,6 +244,7 @@ const newListForm = () => {
   input.id = "new-list";
   input.required = true;
   input.placeholder = "Enter List Name";
+  input.maxLength = "15";
 
   btnContainer.appendChild(acceptBtn);
   btnContainer.appendChild(cancelBtn);
@@ -311,12 +308,69 @@ const modifyTask = () => {
 
 const backButtonController = () => {
   const header = document.querySelector(".task-header");
+  const display = document.querySelector(".task-display");
+  const form = document.querySelector(".task-form");
+  const formTwo = document.querySelector(".full-task-form");
   const child = document.querySelector(".back-btn-container");
 
-  if (header.contains(child)) {
+  if (header.contains(child) && display.contains(form)) {
     header.removeChild(child);
+    display.removeChild(form);
+  } else if (header.contains(child) && display.contains(formTwo)) {
+    header.removeChild(child);
+    display.removeChild(formTwo);
+  } else if (display.contains(form) || display.contains(formTwo)) {
+    // Create a back button
+    const backBtnContainer = document.createElement("div");
+    const backBtn = document.createElement("button");
+    const backBtnImg = new Image();
+
+    backBtnContainer.classList.add("back-btn-container");
+    backBtn.type = "button";
+    backBtn.classList.add("back-btn");
+    backBtnImg.src = Img2;
+    backBtnImg.alt = "Back arrow icon";
+
+    backBtn.appendChild(backBtnImg);
+    backBtnContainer.appendChild(backBtn);
+    header.appendChild(backBtnContainer);
+  } else {
+    return;
   }
 };
+
+// const deleteBtnController = () => {
+//   const header = document.querySelector(".task-header");
+//   const div = document.querySelector(".del-btn-container");
+
+//   if (header.contains(div)) {
+//     return;
+//   }
+
+//   const container = document.createElement("div");
+//   const delBtn = document.createElement("button");
+//   const delBtnImg = new Image();
+
+//   container.classList.add("del-btn-container");
+//   delBtn.type = "submit";
+//   delBtn.classList.add("del-btn");
+//   delBtnImg.src = Img5;
+//   delBtnImg.alt = "Delete icon";
+
+//   delBtn.appendChild(delBtnImg);
+//   container.appendChild(delBtn);
+//   header.appendChild(container);
+// };
+
+// const removeDeleteOption = () => {
+//   const header = document.querySelector(".task-header");
+//   const div = document.querySelector(".del-btn-container");
+
+//   if (header.contains(div)) {
+//     header.removeChild(div);
+//   }
+// };
+
 export {
   mainContent,
   emptyIndicator,
