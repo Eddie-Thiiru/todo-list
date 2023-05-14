@@ -3,13 +3,14 @@ import {
   mainContent,
   emptyIndicator,
   createForm,
-  changeButton,
+  displayBtnController,
   newListForm,
   addTimeOption,
   addListOption,
   processForm,
   modifyTask,
-  backButtonController,
+  backBtnController,
+  deleteBtnController,
 } from "./main-content.js";
 import {
   mainMenu,
@@ -23,8 +24,6 @@ import {
   taskBars,
   taskPage,
   sortTaskBars,
-  addDeleteOption,
-  removeDeleteOption,
   deleteTask,
 } from "./task-display.js";
 
@@ -55,8 +54,9 @@ function component() {
       if (e.target.className === "today-btn") {
         const btn = e.target;
 
-        backButtonController();
-        changeButton(btn);
+        backBtnController();
+        deleteBtnController().checkDeleteBtn();
+        displayBtnController(btn);
         sortTaskBars(btn);
 
         return;
@@ -65,9 +65,10 @@ function component() {
       if (e.target.className === "upcoming-btn") {
         const btn = e.target;
 
-        backButtonController();
+        backBtnController();
+        deleteBtnController().checkDeleteBtn();
         sortTaskBars(btn);
-        changeButton(btn);
+        displayBtnController(btn);
 
         return;
       }
@@ -80,13 +81,9 @@ function component() {
           favoritesList();
           taskCount();
           changeFavoritesImage();
-          // backButtonController();
-          // changeButton(e.target);
         } else {
           favorites.textContent = "";
           changeFavoritesImage();
-          // backButtonController();
-          // changeButton(e.target);
         }
 
         return;
@@ -107,8 +104,9 @@ function component() {
           changeProjectsImage();
         }
 
-        backButtonController();
-        changeButton(e.target);
+        backBtnController();
+        deleteBtnController().checkDeleteBtn();
+        displayBtnController(e.target);
         taskBars();
 
         return;
@@ -118,10 +116,10 @@ function component() {
 
       // create, submit and process forms
       if (e.target.className === "form-btn") {
-        removeDeleteOption();
+        deleteBtnController().checkDeleteBtn();
         createForm();
-        backButtonController();
-        changeButton(e.target);
+        backBtnController();
+        displayBtnController(e.target);
 
         return;
       }
@@ -138,8 +136,8 @@ function component() {
 
           e.preventDefault();
           processForm();
-          backButtonController();
-          changeButton(e.target);
+          backBtnController();
+          displayBtnController(e.target);
           taskBars();
           taskCount();
         }
@@ -155,8 +153,8 @@ function component() {
           form.reportValidity();
         } else {
           modifyTask();
-          backButtonController();
-          changeButton(e.target);
+          backBtnController();
+          displayBtnController(e.target);
           taskBars();
           taskCount();
         }
@@ -177,9 +175,9 @@ function component() {
           display.removeChild(listForm);
         }
 
-        backButtonController();
+        backBtnController();
         taskBars();
-        changeButton(e.target);
+        displayBtnController(e.target);
 
         return;
       }
@@ -190,7 +188,10 @@ function component() {
         e.target.className === "create-list-btn"
       ) {
         newListForm();
+
         document.body.classList.toggle("modal-open");
+
+        return;
       }
 
       // Cancel new list form
@@ -198,6 +199,8 @@ function component() {
         document.body.classList.toggle("modal-open");
 
         display.removeChild(listForm);
+
+        return;
       }
 
       // Add new list option
@@ -232,8 +235,9 @@ function component() {
       if (e.target.id === "task-btn" || e.target.id === "priority-btn") {
         const btn = e.target;
 
-        backButtonController();
-        changeButton(btn);
+        backBtnController();
+        deleteBtnController().checkDeleteBtn();
+        displayBtnController(btn);
         sortTaskBars(btn);
 
         return;
@@ -243,23 +247,23 @@ function component() {
       if (e.target.className === "task") {
         const index = e.target.dataset.num;
 
-        removeDeleteOption();
         taskPage(index);
-        changeButton(e.target);
+        displayBtnController(e.target);
 
         return;
       }
 
-      // Delete tasks
+      // Add delete btn
       if (e.target.className === "checkbox" && e.target.checked === true) {
-        addDeleteOption();
+        deleteBtnController().addDeleteBtn();
       } else if (
         e.target.className === "checkbox" &&
         e.target.checked === false
       ) {
-        removeDeleteOption();
+        deleteBtnController().removeDeleteBtn();
       }
 
+      // Delete tasks
       if (e.target.className === "del-btn") {
         deleteTask();
         taskCount();

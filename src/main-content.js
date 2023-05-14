@@ -1,13 +1,12 @@
 import "./content.css";
 import "./forms.css";
 import { listArray } from "./layout";
-import { removeDeleteOption } from "./task-display";
 import Img from "./images/add-task.svg";
 import Img2 from "./images/back.svg";
 import Img3 from "./images/add-list.svg";
 import Img4 from "./images/save.svg";
 import Img5 from "./images/calendar.svg";
-import { doc } from "prettier";
+import Img6 from "./images/delete.svg";
 
 const taskArray = [];
 
@@ -172,17 +171,10 @@ const createForm = () => {
   display.appendChild(form);
 };
 
-const changeButton = (ele) => {
-  // const display = document.querySelector(".task-display")
-  // const form = document.querySelector("task-form")
-  // const formTwo = document.querySelector("full-task-form")
+const displayBtnController = (ele) => {
   const btnContainer = document.querySelector(".display-btn-container");
 
   btnContainer.textContent = "";
-
-  // if (display.contains(form) || display.contains(formTwo)){
-
-  // }
 
   if (ele.className === "form-btn") {
     const btn = document.createElement("button");
@@ -306,7 +298,7 @@ const modifyTask = () => {
   taskArray.splice(index, 1, formData);
 };
 
-const backButtonController = () => {
+const backBtnController = () => {
   const header = document.querySelector(".task-header");
   const display = document.querySelector(".task-display");
   const form = document.querySelector(".task-form");
@@ -339,48 +331,68 @@ const backButtonController = () => {
   }
 };
 
-// const deleteBtnController = () => {
-//   const header = document.querySelector(".task-header");
-//   const div = document.querySelector(".del-btn-container");
+const deleteBtnController = () => {
+  const header = document.querySelector(".task-header");
+  const div = document.querySelector(".del-btn-container");
 
-//   if (header.contains(div)) {
-//     return;
-//   }
+  const addDeleteBtn = () => {
+    if (header.contains(div)) {
+      return;
+    }
 
-//   const container = document.createElement("div");
-//   const delBtn = document.createElement("button");
-//   const delBtnImg = new Image();
+    const container = document.createElement("div");
+    const delBtn = document.createElement("button");
+    const delBtnImg = new Image();
 
-//   container.classList.add("del-btn-container");
-//   delBtn.type = "submit";
-//   delBtn.classList.add("del-btn");
-//   delBtnImg.src = Img5;
-//   delBtnImg.alt = "Delete icon";
+    container.classList.add("del-btn-container");
+    delBtn.type = "submit";
+    delBtn.classList.add("del-btn");
+    delBtnImg.src = Img6;
+    delBtnImg.alt = "Delete icon";
 
-//   delBtn.appendChild(delBtnImg);
-//   container.appendChild(delBtn);
-//   header.appendChild(container);
-// };
+    delBtn.appendChild(delBtnImg);
+    container.appendChild(delBtn);
+    header.appendChild(container);
+  };
 
-// const removeDeleteOption = () => {
-//   const header = document.querySelector(".task-header");
-//   const div = document.querySelector(".del-btn-container");
+  const checkDeleteBtn = () => {
+    if (header.contains(div)) {
+      header.removeChild(div);
+    }
+  };
 
-//   if (header.contains(div)) {
-//     header.removeChild(div);
-//   }
-// };
+  const removeDeleteBtn = () => {
+    const checkBoxes = document.querySelectorAll(".checkbox");
+
+    let checkedCount = 0;
+
+    checkBoxes.forEach((checkBox) => {
+      if (checkBox.checked === true) {
+        checkedCount += 1;
+      }
+    });
+
+    if (checkedCount === 0) {
+      header.removeChild(div);
+    } else {
+      return;
+    }
+  };
+
+  return { addDeleteBtn, checkDeleteBtn, removeDeleteBtn };
+};
 
 export {
   mainContent,
   emptyIndicator,
   createForm,
-  changeButton,
+  displayBtnController,
   newListForm,
   addTimeOption,
   addListOption,
   processForm,
   modifyTask,
-  backButtonController,
+  backBtnController,
+  deleteBtnController,
   taskArray,
 };

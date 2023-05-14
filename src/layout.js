@@ -14,7 +14,7 @@ const pageLayout = () => {
   const footer = document.createElement("div");
   const para = document.createElement("p");
   const menuContainer = document.createElement("div");
-  const menuButton = document.createElement("button");
+  const menuBtn = document.createElement("button");
   const menuImg = new Image();
   const profile = document.createElement("div");
   const profileImg = new Image();
@@ -27,8 +27,8 @@ const pageLayout = () => {
   para.textContent = "Copyright @ Todo 2023";
   menuImg.src = Img;
   menuImg.alt = "menu icon";
-  menuButton.type = "button";
-  menuButton.classList.add("menu-button");
+  menuBtn.type = "button";
+  menuBtn.classList.add("menu-button");
   profileImg.src = Img2;
   profileImg.alt = "A cat icon";
   bellImg.src = Img3;
@@ -36,11 +36,11 @@ const pageLayout = () => {
   helpImg.src = Img4;
   helpImg.alt = "A question mark icon";
 
-  menuButton.appendChild(menuImg);
+  menuBtn.appendChild(menuImg);
   profile.appendChild(helpImg);
   profile.appendChild(bellImg);
   profile.appendChild(profileImg);
-  menuContainer.appendChild(menuButton);
+  menuContainer.appendChild(menuBtn);
   header.appendChild(menuContainer);
   header.appendChild(profile);
   footer.appendChild(para);

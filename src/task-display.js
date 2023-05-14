@@ -1,11 +1,14 @@
-import { taskArray, emptyIndicator } from "./main-content.js";
+import {
+  taskArray,
+  emptyIndicator,
+  deleteBtnController,
+} from "./main-content.js";
 import { listArray, priorityArray } from "./layout.js";
 import "./forms.css";
 import Img from "./images/personal.svg";
 import Img2 from "./images/work.svg";
 import Img3 from "./images/shopping.svg";
 import Img4 from "./images/new.svg";
-import Img5 from "./images/delete.svg";
 import Img6 from "./images/back.svg";
 
 const taskBars = () => {
@@ -302,38 +305,6 @@ const sortTaskBars = (btn) => {
   }
 };
 
-const addDeleteOption = () => {
-  const header = document.querySelector(".task-header");
-  const div = document.querySelector(".del-btn-container");
-
-  if (header.contains(div)) {
-    return;
-  }
-
-  const container = document.createElement("div");
-  const delBtn = document.createElement("button");
-  const delBtnImg = new Image();
-
-  container.classList.add("del-btn-container");
-  delBtn.type = "submit";
-  delBtn.classList.add("del-btn");
-  delBtnImg.src = Img5;
-  delBtnImg.alt = "Delete icon";
-
-  delBtn.appendChild(delBtnImg);
-  container.appendChild(delBtn);
-  header.appendChild(container);
-};
-
-const removeDeleteOption = () => {
-  const header = document.querySelector(".task-header");
-  const div = document.querySelector(".del-btn-container");
-
-  if (header.contains(div)) {
-    header.removeChild(div);
-  }
-};
-
 const deleteTask = () => {
   const display = document.querySelector(".task-display");
   const tasks = document.querySelectorAll(".checkbox");
@@ -355,15 +326,8 @@ const deleteTask = () => {
 
   if (display.textContent === "") {
     emptyIndicator();
-    removeDeleteOption();
+    deleteBtnController().removeDeleteBtn();
   }
 };
 
-export {
-  taskBars,
-  taskPage,
-  sortTaskBars,
-  addDeleteOption,
-  removeDeleteOption,
-  deleteTask,
-};
+export { taskBars, taskPage, sortTaskBars, deleteTask };
