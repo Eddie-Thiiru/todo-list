@@ -273,5 +273,3 @@ function component() {
   eventHandler();
 }
 component();
-
-// ADD PROFILE DETAILS WHEN YOU CLICK ON THE CAT

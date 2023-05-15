@@ -3,7 +3,7 @@ import {
   emptyIndicator,
   deleteBtnController,
 } from "./main-content.js";
-import { listArray, priorityArray } from "./layout.js";
+import { listArray, priorityArray, displayHeight } from "./layout.js";
 import "./forms.css";
 import Img from "./images/personal.svg";
 import Img2 from "./images/work.svg";
@@ -15,6 +15,9 @@ const taskBars = () => {
   const display = document.querySelector(".task-display");
 
   display.textContent = "";
+
+  // Add height to the task display area for overflow scrollbar
+  display.style.height = displayHeight();
 
   if (taskArray.length !== 0) {
     for (let i = 0; i < taskArray.length; i++) {
@@ -213,8 +216,6 @@ const sortTaskBars = (btn) => {
   const todayDate = new Date().toISOString().split("T")[0];
 
   display.textContent = "";
-
-  // changeButton();
 
   if (btnClass.includes("today")) {
     heading.textContent = "Today";

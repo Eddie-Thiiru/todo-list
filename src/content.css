@@ -16,9 +16,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* Inroduce scroll bar
-  height: 596px;
-  overflow-y: auto; */
+  overflow-y: auto;
 }
 
 .empty-indicator {

@@ -54,4 +54,10 @@ const updateListArray = () => {
   listArray.push(newList);
 };
 
-export { listArray, priorityArray, pageLayout, updateListArray };
+const displayHeight = () => {
+  let height = document.querySelector(".task-display").clientHeight;
+
+  return height;
+};
+
+export { listArray, priorityArray, pageLayout, updateListArray, displayHeight };
