@@ -1,3 +1,9 @@
+import {
+  storageAvailable,
+  populateStorage,
+  setArrayValues,
+  removeItems,
+} from "./data.js";
 import { pageLayout, updateListArray } from "./layout.js";
 import {
   mainContent,
@@ -33,6 +39,23 @@ function component() {
   mainContent();
   emptyIndicator();
 
+  // Test if localStorage is available
+  if (storageAvailable("localStorage")) {
+    console.log("localStorage available");
+
+    // localStorage.clear();
+
+    if (!localStorage.getItem("listArray")) {
+      populateStorage();
+    } else {
+      setArrayValues().setLists();
+      setArrayValues().setTasks();
+      sortTaskBars().todayStoredTasks();
+    }
+  } else {
+    console.log("localStorage unavailable");
+  }
+
   function eventHandler() {
     const menuBtn = document.querySelector(".menu-button");
     const content = document.querySelector(".content");
@@ -57,7 +80,7 @@ function component() {
         backBtnController();
         deleteBtnController().checkDeleteBtn();
         displayBtnController(btn);
-        sortTaskBars(btn);
+        sortTaskBars().menuChoice(btn);
 
         return;
       }
@@ -67,7 +90,7 @@ function component() {
 
         backBtnController();
         deleteBtnController().checkDeleteBtn();
-        sortTaskBars(btn);
+        sortTaskBars().menuChoice(btn);
         displayBtnController(btn);
 
         return;
@@ -136,6 +159,7 @@ function component() {
 
           e.preventDefault();
           processForm();
+          populateStorage();
           backBtnController();
           displayBtnController(e.target);
           taskBars();
@@ -153,6 +177,7 @@ function component() {
           form.reportValidity();
         } else {
           modifyTask();
+          populateStorage();
           backBtnController();
           displayBtnController(e.target);
           taskBars();
@@ -214,6 +239,7 @@ function component() {
         } else {
           e.preventDefault();
           updateListArray();
+          populateStorage();
 
           if (display.contains(form)) {
             addListOption();
@@ -238,7 +264,7 @@ function component() {
         backBtnController();
         deleteBtnController().checkDeleteBtn();
         displayBtnController(btn);
-        sortTaskBars(btn);
+        sortTaskBars().menuChoice(btn);
 
         return;
       }
@@ -267,6 +293,8 @@ function component() {
       if (e.target.className === "del-btn") {
         deleteTask();
         taskCount();
+        removeItems();
+        populateStorage();
       }
     });
   }

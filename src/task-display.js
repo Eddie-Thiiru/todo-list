@@ -13,8 +13,10 @@ import Img6 from "./images/back.svg";
 
 const taskBars = () => {
   const display = document.querySelector(".task-display");
+  const heading = document.querySelector("h2");
 
   display.textContent = "";
+  heading.textContent = "All Tasks";
 
   // Add height to the task display area for overflow scrollbar
   display.style.height = displayHeight();
@@ -208,50 +210,118 @@ const taskPage = (taskIndex) => {
   display.appendChild(form);
 };
 
-const sortTaskBars = (btn) => {
+const sortTaskBars = () => {
   const display = document.querySelector(".task-display");
   const heading = document.querySelector("h2");
-  const sibling = btn.nextElementSibling;
-  const btnClass = btn.className;
   const todayDate = new Date().toISOString().split("T")[0];
 
   display.textContent = "";
 
-  if (btnClass.includes("today")) {
-    heading.textContent = "Today";
-  } else if (btnClass.includes("upcoming")) {
-    heading.textContent = "Upcoming";
-  } else if (btnClass.includes("critical")) {
-    heading.textContent = "Critical Priority Tasks";
-  } else if (btnClass.includes("high")) {
-    heading.textContent = "High Priority Tasks";
-  } else if (btnClass.includes("normal")) {
-    heading.textContent = "Normal Priority Tasks";
-  } else if (btnClass.includes("personal")) {
-    heading.textContent = "Personal";
-  } else if (btnClass.includes("work")) {
-    heading.textContent = "Work";
-  } else if (btnClass.includes("shopping")) {
-    heading.textContent = "Shopping";
-  } else {
-    let title = btnClass.replaceAll("-", " ");
-    heading.textContent = title.replaceAll("btn", "");
-  }
+  const menuChoice = (btn) => {
+    const sibling = btn.nextElementSibling;
+    const btnClass = btn.className;
 
-  if (sibling.textContent !== "") {
+    if (btnClass.includes("today")) {
+      heading.textContent = "Today";
+    } else if (btnClass.includes("upcoming")) {
+      heading.textContent = "Upcoming";
+    } else if (btnClass.includes("critical")) {
+      heading.textContent = "Critical Priority Tasks";
+    } else if (btnClass.includes("high")) {
+      heading.textContent = "High Priority Tasks";
+    } else if (btnClass.includes("normal")) {
+      heading.textContent = "Normal Priority Tasks";
+    } else if (btnClass.includes("personal")) {
+      heading.textContent = "Personal";
+    } else if (btnClass.includes("work")) {
+      heading.textContent = "Work";
+    } else if (btnClass.includes("shopping")) {
+      heading.textContent = "Shopping";
+    } else {
+      let title = btnClass.replaceAll("-", " ");
+      heading.textContent = title.replaceAll("btn", "");
+    }
+
+    if (sibling.textContent !== "") {
+      for (let i = 0; i < taskArray.length; i++) {
+        const obj = taskArray[i];
+        const taskTitle = obj["title"];
+        const listChoice = obj["list"];
+        const taskDate = obj["date"];
+        const priority = obj["priority"];
+
+        if (
+          btnClass.includes(listChoice) ||
+          (todayDate === taskDate && btnClass.includes("today")) ||
+          (todayDate !== taskDate && btnClass.includes("upcoming")) ||
+          btnClass.includes(priority)
+        ) {
+          // create elements for each task
+          const wrapper = document.createElement("div");
+          const checkBoxContainer = document.createElement("form");
+          const checkBoxLabel = document.createElement("label");
+          const checkBox = document.createElement("input");
+          const wrapperTwo = document.createElement("div");
+          const title = document.createElement("h3");
+          const date = document.createElement("div");
+          const listContainer = document.createElement("div");
+          const listName = document.createElement("p");
+          const listImg = new Image();
+
+          wrapper.classList.add("task");
+          wrapper.id = taskTitle;
+          wrapper.dataset.num = i;
+          checkBoxLabel.htmlFor = "checkbox";
+          checkBox.type = "checkbox";
+          checkBox.name = "task-checkbox";
+          checkBox.classList.add("checkbox");
+          title.textContent = taskTitle;
+          date.textContent = taskDate;
+          listName.textContent = listChoice;
+
+          if (listChoice === "personal") {
+            listImg.src = Img;
+            listImg.alt = "Person icon";
+          } else if (listChoice === "work") {
+            listImg.src = Img2;
+            listImg.alt = "Briefcase icon";
+          } else if (listChoice === "shopping") {
+            listImg.src = Img3;
+            listImg.alt = "Shopping cart icon";
+          } else {
+            listImg.src = Img4;
+            listImg.alt = "Large dot icon";
+          }
+
+          checkBoxContainer.appendChild(checkBoxLabel);
+          checkBoxContainer.appendChild(checkBox);
+          wrapperTwo.appendChild(title);
+          wrapperTwo.appendChild(date);
+          listContainer.appendChild(listName);
+          listContainer.appendChild(listImg);
+          wrapper.appendChild(checkBoxContainer);
+          wrapper.appendChild(wrapperTwo);
+          wrapper.appendChild(listContainer);
+          display.appendChild(wrapper);
+        }
+      }
+    } else {
+      emptyIndicator();
+    }
+  };
+
+  const todayStoredTasks = () => {
+    let count = 0;
+
     for (let i = 0; i < taskArray.length; i++) {
       const obj = taskArray[i];
       const taskTitle = obj["title"];
       const listChoice = obj["list"];
       const taskDate = obj["date"];
-      const priority = obj["priority"];
 
-      if (
-        btnClass.includes(listChoice) ||
-        (todayDate === taskDate && btnClass.includes("today")) ||
-        (todayDate !== taskDate && btnClass.includes("upcoming")) ||
-        btnClass.includes(priority)
-      ) {
+      if (todayDate === taskDate) {
+        count += 1;
+
         // create elements for each task
         const wrapper = document.createElement("div");
         const checkBoxContainer = document.createElement("form");
@@ -301,9 +371,13 @@ const sortTaskBars = (btn) => {
         display.appendChild(wrapper);
       }
     }
-  } else {
-    emptyIndicator();
-  }
+
+    if (count === 0) {
+      emptyIndicator();
+    }
+  };
+
+  return { menuChoice, todayStoredTasks };
 };
 
 const deleteTask = () => {
