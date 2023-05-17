@@ -2,7 +2,7 @@ import "./layout.css";
 import Img from "./images/menu.svg";
 import Img2 from "./images/cat.svg";
 import Img3 from "./images/bell.svg";
-import Img4 from "./images/help.svg";
+import Img4 from "./images/list.svg";
 
 const listArray = ["personal", "work", "shopping"];
 const priorityArray = ["critical", "high", "normal"];
@@ -19,7 +19,8 @@ const pageLayout = () => {
   const profile = document.createElement("div");
   const profileImg = new Image();
   const bellImg = new Image();
-  const helpImg = new Image();
+  const listGroupBtn = document.createElement("button");
+  const listGroupImg = new Image();
 
   header.classList.add("header");
   main.classList.add("main-section");
@@ -28,16 +29,19 @@ const pageLayout = () => {
   menuImg.src = Img;
   menuImg.alt = "menu icon";
   menuBtn.type = "button";
-  menuBtn.classList.add("menu-button");
+  menuBtn.classList.add("menu-btn");
   profileImg.src = Img2;
   profileImg.alt = "A cat icon";
   bellImg.src = Img3;
   bellImg.alt = "A bell icon";
-  helpImg.src = Img4;
-  helpImg.alt = "A question mark icon";
+  listGroupBtn.type = "button";
+  listGroupBtn.classList.add("view-lists-btn");
+  listGroupImg.src = Img4;
+  listGroupImg.alt = "A list icon";
 
   menuBtn.appendChild(menuImg);
-  profile.appendChild(helpImg);
+  listGroupBtn.appendChild(listGroupImg);
+  profile.appendChild(listGroupBtn);
   profile.appendChild(bellImg);
   profile.appendChild(profileImg);
   menuContainer.appendChild(menuBtn);

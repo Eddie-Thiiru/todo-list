@@ -60,7 +60,8 @@ button {
   grid-template-rows: 1fr 1fr;
 }
 
-.menu-button {
+.menu-btn,
+.view-lists-btn {
   border: none;
   background-color: #bccbea;
   display: grid;
@@ -78,7 +79,8 @@ button {
   width: 40px;
 }
 
-.menu-button:hover {
+.menu-btn:hover,
+.view-lists-btn:hover {
   background-color: #dee0e0;
 }
 
@@ -86,6 +88,7 @@ button {
 .del-btn-container img,
 .create-list-btn img,
 .add-project-btn img,
-.back-btn img {
+.back-btn img,
+.remove-project-btn img {
   pointer-events: none;
 }

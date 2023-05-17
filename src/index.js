@@ -17,6 +17,7 @@ import {
   modifyTask,
   backBtnController,
   deleteBtnController,
+  listDisplayController,
 } from "./main-content.js";
 import {
   mainMenu,
@@ -57,7 +58,8 @@ function component() {
   }
 
   function eventHandler() {
-    const menuBtn = document.querySelector(".menu-button");
+    const menuBtn = document.querySelector(".menu-btn");
+    const viewListBtn = document.querySelector(".view-lists-btn");
     const content = document.querySelector(".content");
 
     // Toggle the Main Menu
@@ -70,6 +72,10 @@ function component() {
         mainMenu();
         taskCount();
       }
+    });
+
+    viewListBtn.addEventListener("click", () => {
+      listDisplayController().listsView();
     });
 
     content.addEventListener("click", function (e) {
@@ -295,6 +301,18 @@ function component() {
         taskCount();
         removeItems();
         populateStorage();
+      }
+
+      // Delete projects/lists
+      if (e.target.className === "remove-project-btn") {
+        const menu = document.querySelector(".main-menu");
+
+        listDisplayController().removeList(e.target);
+
+        if (menu) {
+          projectList();
+          taskCount();
+        }
       }
     });
   }

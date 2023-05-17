@@ -7,6 +7,7 @@ import Img3 from "./images/add-list.svg";
 import Img4 from "./images/save.svg";
 import Img5 from "./images/calendar.svg";
 import Img6 from "./images/delete.svg";
+import { populateStorage } from "./data";
 
 const taskArray = [];
 
@@ -382,6 +383,74 @@ const deleteBtnController = () => {
   return { addDeleteBtn, checkDeleteBtn, removeDeleteBtn };
 };
 
+const listDisplayController = () => {
+  const listsView = () => {
+    const display = document.querySelector(".task-display");
+    const header = document.querySelector("h2");
+
+    display.textContent = "";
+    header.textContent = "Task Lists";
+
+    for (let i = 0; i < listArray.length; i++) {
+      const listContainer = document.createElement("div");
+      const titleWrapper = document.createElement("div");
+      const listTitle = document.createElement("h3");
+      const description = document.createElement("p");
+
+      listContainer.classList.add("list-bar");
+      listContainer.id = listArray[i];
+      listContainer.dataset.num = i;
+      listTitle.textContent = listArray[i];
+
+      titleWrapper.appendChild(listTitle);
+      titleWrapper.appendChild(description);
+      listContainer.appendChild(titleWrapper);
+
+      if (i > 2) {
+        const btn = document.createElement("button");
+        const btnImg = new Image();
+
+        btn.type = "button";
+        btn.classList.add("remove-project-btn");
+        btnImg.src = Img6;
+        btnImg.alt = "Remove list icon";
+        description.textContent = "Custom";
+
+        btn.appendChild(btnImg);
+        listContainer.appendChild(btn);
+      } else {
+        description.textContent = "Default";
+      }
+
+      display.appendChild(listContainer);
+    }
+  };
+
+  const removeList = (btn) => {
+    const parent = btn.parentNode;
+    const index = parseInt(parent.dataset.num);
+
+    // Remove list and update display
+    listArray.splice(index, 1);
+    listsView();
+
+    // Change task list to default list
+    for (let i = 0; i < taskArray.length; i++) {
+      const obj = taskArray[i];
+      const listChoice = obj["list"];
+
+      if (parent.id.includes(listChoice)) {
+        console.log("includes");
+        obj["list"] = "personal";
+      }
+    }
+
+    populateStorage();
+  };
+
+  return { listsView, removeList };
+};
+
 export {
   mainContent,
   emptyIndicator,
@@ -394,5 +463,6 @@ export {
   modifyTask,
   backBtnController,
   deleteBtnController,
+  listDisplayController,
   taskArray,
 };
