@@ -32,18 +32,20 @@ const storageAvailable = (type) => {
 
 const populateStorage = () => {
   // Populate lists in storage
-  localStorage.setItem("listArray", listArray);
+
+  const listArrayString = JSON.stringify(listArray);
+
+  localStorage.setItem("listArray", listArrayString);
 
   setArrayValues().setLists();
 
   // Populate tasks in storage
   if (taskArray.length !== 0) {
     for (let i = 0; i < taskArray.length; i++) {
-      let objKeys = Object.keys(taskArray[i]);
-      let objValues = Object.values(taskArray[i]);
+      let obj = taskArray[i];
+      let objString = JSON.stringify(obj);
 
-      localStorage.setItem(`taskArrayKey-${i}`, objKeys);
-      localStorage.setItem(`taskArrayValue-${i}`, objValues);
+      localStorage.setItem(`task-${i}`, objString);
     }
 
     setArrayValues().setTasks();
@@ -60,7 +62,8 @@ const setArrayValues = () => {
     const listValues = localStorage.getItem("listArray");
 
     if (listValues) {
-      const newListArray = listValues.split(",");
+      const newListArray = JSON.parse(listValues);
+
       listArray.length = 0;
 
       for (let i = 0; i < newListArray.length; i++) {
@@ -74,19 +77,12 @@ const setArrayValues = () => {
     taskArray.length = 0;
 
     for (let i = 0; i < localStorage.length; i++) {
-      const taskKeys = localStorage.getItem(`taskArrayKey-${i}`);
-      const taskValues = localStorage.getItem(`taskArrayValue-${i}`);
+      const task = localStorage.getItem(`task-${i}`);
 
-      if (taskKeys && taskValues) {
-        const newTaskKeysArr = taskKeys.split(",");
-        const newTaskValuesArr = taskValues.split(",");
+      const newTaskObj = JSON.parse(task);
 
-        let obj = {};
-
-        for (let i = 0; i < newTaskKeysArr.length; i++) {
-          obj[newTaskKeysArr[i]] = newTaskValuesArr[i];
-        }
-        taskArray.push(obj);
+      if (task) {
+        taskArray.push(newTaskObj);
       } else {
         return;
       }
