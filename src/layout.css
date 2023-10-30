@@ -53,6 +53,7 @@ button {
   font-weight: 400;
   font-size: 1rem;
   color: #050203;
+  cursor: pointer;
 }
 
 .task-header {
